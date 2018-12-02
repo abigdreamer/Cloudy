@@ -1,0 +1,6 @@
+module Application
+singleton Settings 1.0 Settings.qml
+DayItem 1.0 DayItem.qml
+WeatherItem 1.0 WeatherItem.qml
+Cursor 1.0 Cursor.qml
+Utils 1.0 utils.js
