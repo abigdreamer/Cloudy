@@ -83,7 +83,7 @@ function updateWeeksWeather(coord, notify) {
         }
         for (var i = 0; i < value.length; ++i) {
             var widget = getWidgetFromIndex(i)
-            widget.day = value[i].date.toLocaleString(Qt.locale(), "dddd");
+            widget.day = value[i].date.toLocaleString(Qt.locale(lang), "dddd");
             widget.temp = App.Utils.toCleanTemp(value[i].temp, metric)
             widget.icon = AppRes.Resource.images.weatherCondition[value[i].icon]
             widget.description = App.Utils.toTitleCase(value[i].weatherDescription)

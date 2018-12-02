@@ -18,21 +18,17 @@ function addRoundButton_onClicked() {
     addCityPane.x = 0
 }
 
-function searchField_onTextEdited() {
+function searchField_onTextEdited() {    
+    noResultLabel.visible = searchField.text === ""
+    busyIndicator.running = true
     citySearchList.model = []
     
-    var city = searchField.text
-    if (city === "") {
-        busyIndicator.running = false
-        noResultLabel.visible = true
-        return
-    }
-    
-    busyIndicator.running = true
-    
     App.Utils.suppressCall(1000, searchField, function() {
+        var city = searchField.text
         var lang = App.Settings.language
         var metric = App.Settings.metric
+            
+        citySearchList.model = []
 
         if (city === "") {
             busyIndicator.running = false
@@ -41,10 +37,10 @@ function searchField_onTextEdited() {
         }
         
         searchField.enabled = false
-        busyIndicator.running = false
 
         WeatherInfo.Fetch.getCityList(city, metric, lang, function(value, err) {        
             searchField.enabled = true
+            busyIndicator.running = false
             if (err) {
                 console.log(err)
                 noResultLabel.visible = true
