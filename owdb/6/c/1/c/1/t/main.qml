@@ -7,5 +7,13 @@ TextField {
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: parent.top
-    anchors.margins: 5
+    leftPadding: 8
+    rightPadding: 0
+    bottomPadding: 0
+    topPadding: 0
+    height: 40
+    background: Rectangle {
+        color: "#20ffffff"
+        radius: 4
+    }
 }

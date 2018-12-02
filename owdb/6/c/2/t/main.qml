@@ -8,12 +8,13 @@ RoundButton {
     height: 75
     width: 75
     text: '+'
-    font.pixelSize: 32
+    font.pixelSize: 36
+    font.weight: Font.Light
     Material.theme: Material.Light
     Material.background: Material.Blue
     Material.foreground: "white"
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    anchors.margins: 5
+    anchors.margins: 8
     Cursor {}
 }

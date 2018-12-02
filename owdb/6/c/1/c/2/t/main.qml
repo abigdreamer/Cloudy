@@ -8,7 +8,6 @@ Button {
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    anchors.margins: 5
     height: 45
     Cursor {}
 }

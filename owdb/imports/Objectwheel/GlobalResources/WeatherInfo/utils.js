@@ -17,13 +17,20 @@ function toQueryForecastUrl(coord, metric, lang) {
             '&units=' + (metric ? 'metric' : 'imperial')
 }
 
-function toWeatherObject(response) {
+function toQueryCityListUrl(cityName, metric, lang) {
+    return WeatherInfo.Constants.apiUrl + 'find?mode=json&APPID=' + WeatherInfo.Constants.apiKey +
+            '&type=like&sort=population&cnt=30' +
+            '&q=' + cityName +
+            '&lang=' + lang +
+            '&units=' + (metric ? 'metric' : 'imperial')
+}
+
+function toCurrentWeatherObject(response) {
     return {
         "city": response.name,
         "country": response.sys.country,
         "icon": response.weather[0].icon,
         "weatherDescription": response.weather[0].description, // String
-        "date": new Date(response.dt_txt),
         "temp": response.main.temp, // Metric: Celsius, Imperial: Fahrenheit
         "tempMax": response.main.temp_max, // Metric: Celsius, Imperial: Fahrenheit
         "tempMin": response.main.temp_min, // Metric: Celsius, Imperial: Fahrenheit
@@ -34,9 +41,41 @@ function toWeatherObject(response) {
     }
 }
 
+function toCityListObject(response) {
+    return {
+        "city": response.name,
+        "country": response.sys.country,
+        "icon": response.weather[0].icon,
+        "weatherDescription": response.weather[0].description, // String
+        "longitude": response.coord.lon,
+        "latitude": response.coord.lat,
+        "temp": response.main.temp, // Metric: Celsius, Imperial: Fahrenheit
+        "humidity": response.main.humidity, // %
+        "pressure": response.main.pressure, // hPa
+        "windSpeed": response.wind.speed, // Metric: meter/sec, Imperial: miles/hour.
+        "cloudiness": response.clouds.all // %
+    }
+}
+
+function toForecastWeatherObject(response) {
+    return {
+        "icon": response.weather[0].icon,
+        "weatherDescription": response.weather[0].description, // String
+        "date": new Date(response.dt_txt),
+        "temp": response.main.temp, // Metric: Celsius, Imperial: Fahrenheit
+    }
+}
+
 function toForecastList(response) {
     var finalList = []
     for (var i = 8; i < response.list.length; i+=8)
+        finalList.push(response.list[i])
+    return finalList
+}
+
+function toCityList(response) {
+    var finalList = []
+    for (var i = 0; i < response.list.length; ++i)
         finalList.push(response.list[i])
     return finalList
 }

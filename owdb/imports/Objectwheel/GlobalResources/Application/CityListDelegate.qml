@@ -2,8 +2,8 @@ import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import Objectwheel.GlobalResources 1.0
 import Application 1.0
+import Application.Resources 1.0
 
 Item {
     height: 55
@@ -18,7 +18,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             smooth: true
             antialiasing: true
-            source: UtilsJS.toWeatherIcon(modelData.icon)
+            source: Resource.images.weatherCondition[modelData.icon]
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
         }
         
@@ -34,7 +34,7 @@ Item {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     antialiasing: true
-                    source: modelData.flagImageUrl
+                    source: Resource.images.flag[modelData.country.toUpperCase()]
                 }
                 Label {
                     text: modelData.city + ", " + modelData.country.toUpperCase()
@@ -50,12 +50,12 @@ Item {
             Row {
                 spacing: 1
                 Label {
-                    text: UtilsJS.toCleanTemp(modelData.temp, Settings.metric) + ','
+                    text: Utils.toCleanTemp(modelData.temp, Settings.metric) + ','
                     font.bold: true
                     font.pixelSize: 12
                 }
                 Label {
-                    text: UtilsJS.toTitleCase(modelData.weatherDescription)
+                    text: Utils.toTitleCase(modelData.weatherDescription)
                     font.pixelSize: 12
                 }
             }
@@ -72,7 +72,7 @@ Item {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     antialiasing: true
-                    source: GlobalResources.url() + "/images/icons/cloudiness.png"
+                    source: Resource.images.other.cloudiness
                 }
                 Label {
                     text: modelData.cloudiness + "%"
@@ -88,7 +88,7 @@ Item {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     antialiasing: true
-                    source: GlobalResources.url() + "/images/icons/humidity.png"
+                    source: Resource.images.other.humidity
                 }
                 Label {
                     text: modelData.humidity + "%"
@@ -104,10 +104,10 @@ Item {
                     fillMode: Image.PreserveAspectFit
                     smooth: true
                     antialiasing: true
-                    source: GlobalResources.url() + "/images/icons/wind.png"
+                    source: Resource.images.other.wind
                 }
                 Label {
-                    text: UtilsJS.toCleanSpeed(modelData.windSpeed, Settings.metric)
+                    text: Utils.toCleanSpeed(modelData.windSpeed, Settings.metric)
                     font.pixelSize: 12
                 }
             }

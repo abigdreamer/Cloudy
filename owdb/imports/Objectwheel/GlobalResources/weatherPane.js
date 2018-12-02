@@ -24,9 +24,8 @@ function getWidgetFromIndex(index) {
 
 function map_onMarkerCoordinateActivated(coord) {
     weatherPane.enabled = false
-    var metric = App.Settings.metricSystem
-    updateTodaysWeather(coord, metric)
-    updateWeeksWeather(coord, metric, function() {
+    updateTodaysWeather(coord)
+    updateWeeksWeather(coord, function() {
         weatherPane.enabled = true
     })
 }
@@ -40,8 +39,9 @@ function updateGps_onClicked() {
     map.setMarkerCoordFromGps(map_onMarkerCoordinateActivated)
 }
 
-function updateTodaysWeather(coord, metric, notify) {
+function updateTodaysWeather(coord, notify) {
     var lang = App.Settings.language
+    var metric = App.Settings.metric
     WeatherInfo.Fetch.getCurrent(coord, metric, lang, function(val, err) {
         if (notify) notify()
         if (err) {
@@ -68,8 +68,9 @@ function updateTodaysWeather(coord, metric, notify) {
     })
 }
 
-function updateWeeksWeather(coord, metric, notify) {
+function updateWeeksWeather(coord, notify) {
     var lang = App.Settings.language
+    var metric = App.Settings.metric
     WeatherInfo.Fetch.getForecast(coord, metric, lang, function(value, err) {        
         if (notify) notify()
         if (err) {
