@@ -1,4 +1,5 @@
 import QtQuick 2.7
+import Application 1.0
 
 Item {
     y: 238
@@ -13,6 +14,6 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        color: "#444047"
+        color: Settings.dark ? "#404447" : "#e2e2e2"
     }
 }

@@ -1,6 +1,7 @@
 import QtQuick 2.8
 import QtLocation 5.9
 import QtPositioning 5.8
+import Application 1.0
 import Application.Resources 1.0
 import QtQuick.Dialogs 1.1
 
@@ -51,7 +52,7 @@ Item {
         id: mapView
         plugin: mapPlugin
         anchors.fill: parent
-        activeMapType: supportedMapTypes[7]
+        activeMapType: Settings.dark ? supportedMapTypes[7] : supportedMapTypes[6]
         copyrightsVisible: false
         zoomLevel: 14
         gesture.flickDeceleration: 3000

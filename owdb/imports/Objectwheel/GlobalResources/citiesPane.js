@@ -3,6 +3,7 @@
 .import WeatherInfo 1.0 as WeatherInfo
 
 function citiesPane_onCompleted() {
+    cleanSearchFieldButton.clicked.connect(cleanSearchFieldButton_onClicked)
     searchField.textEdited.connect(searchField_onTextEdited)
     addRoundButton.clicked.connect(addRoundButton_onClicked)
     addFinishButton.clicked.connect(addFinishButton_onClicked)
@@ -50,4 +51,9 @@ function searchField_onTextEdited() {
             noResultLabel.visible = value.length === 0
         })
     })
+}
+
+function cleanSearchFieldButton_onClicked() {
+    searchField.text = ""
+    searchField_onTextEdited()
 }

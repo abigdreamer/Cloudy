@@ -1,4 +1,5 @@
 import QtQuick 2.7
+import Application 1.0
 
 Rectangle {
     y: 166
@@ -9,15 +10,21 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
     gradient: Gradient {
-        GradientStop { position: 0.0; color: "#08ffffff" }
-        GradientStop { position: 1.0; color: "#01ffffff" }
+        GradientStop {
+            position: 0.0
+            color: Settings.dark ? "#08ffffff" : "#08000000"
+        }
+        GradientStop {
+            position: 1.0
+            color: Settings.dark ? "#01ffffff" : "#01000000"
+        }
     }
     Rectangle {
         height: 1
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        color: "#404447"
+        color: Settings.dark ? "#404447" : "#e2e2e2"
     }
 }
 

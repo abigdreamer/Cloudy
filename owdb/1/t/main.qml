@@ -19,23 +19,27 @@ ApplicationWindow {
             switch (index) {
             case 0:
                 Material.theme = Material.Light
-                Material.background = Material.Red
+                redAnim.restart()
                 Material.foreground = "white"
                 break
             
             case 1:
                 Material.theme = Material.Light
-                Material.background = Material.LightGreen
+                greenAnim.restart()
                 Material.foreground = "white"
                 break
             
             case 2:
                 Material.theme = Material.Light
-                Material.background = Material.Blue
+                blueAnim.restart()
                 Material.foreground = "white"
                 break
             }
         }
+        ColorAnimation on Material.background { to: "#4689F2"; id: blueAnim; duration: 300 }
+        ColorAnimation on Material.background { to: "#7EB643"; id: greenAnim; duration: 300 }
+        ColorAnimation on Material.background { to: "#DA453D"; id: redAnim; duration: 300 }
+        
         RowLayout {
             spacing: 20
             anchors.fill: parent
@@ -118,7 +122,7 @@ ApplicationWindow {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            color: "#404447"
+            color: Settings.dark ? "#404447" : "#e2e2e2"
         }
     }
  

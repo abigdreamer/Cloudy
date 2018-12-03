@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 
 Pane {
     y: 0
-    x: -360
+    x: -347
     id: addCityPane
     width: parent.width
     height: parent.height

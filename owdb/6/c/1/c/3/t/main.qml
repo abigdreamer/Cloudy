@@ -2,6 +2,9 @@ import QtQuick 2.9
 import Application 1.0
 
 ListView {
+    z: -1
+    y: 55
+    x: 12
     id: citySearchList
     clip: true
     anchors.left: parent.left
@@ -11,10 +14,9 @@ ListView {
     anchors.topMargin: 10
     anchors.bottomMargin: 10
     highlightMoveDuration: 200
-    delegate: CityListDelegate {}
+    delegate: CitySearchListDelegate {}
     highlight: Rectangle {
-        radius: 4
-        color: "#30ffffff"
+        color: Settings.dark ? "#30ffffff" : "#10000000"
     }
 
     property real longestWidth: 0

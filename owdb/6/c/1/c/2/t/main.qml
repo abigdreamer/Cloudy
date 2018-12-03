@@ -5,13 +5,13 @@ import Application 1.0
 
 Button {
     id: addFinishButton
-    text: qsTr("Ok")
+    text: qsTr("Done")
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    height: 45
+    height: 50
     Cursor {}
     Material.theme: Material.Light
-    Material.background: Material.Blue
+    Material.background: "#4689F2"
     Material.foreground: "white"
 }
