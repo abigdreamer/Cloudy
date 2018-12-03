@@ -39,13 +39,11 @@ Item {
         
         onSourceErrorChanged: {
             weatherPane.enabled = true
-            stop()
-            if (sourceError !== PositionSource.NoError) {
-                map.valid = false
-                errorDialog.text = "GPS Error: " +
-                    d.getGpsErrorString(sourceError).trim().replace(/\s+/g, ' ')
-                errorDialog.visible = true
-            }
+            if (active)
+                stop()
+            error = ""
+            if (sourceError !== PositionSource.NoError)
+                error = d.getGpsErrorString(sourceError)
         }
     }
 
@@ -56,13 +54,13 @@ Item {
         activeMapType: supportedMapTypes[7]
         copyrightsVisible: false
         zoomLevel: 14
-        //gesture.flickDeceleration: 3000
-        //gesture.enabled: true
-        //gesture.acceptedGestures: MapGestureArea.PanGesture
-        //                          | MapGestureArea.FlickGesture
-        //                          | MapGestureArea.PinchGesture
-        //                          | MapGestureArea.RotationGesture
-        //                          | MapGestureArea.TiltGesture
+        gesture.flickDeceleration: 3000
+        gesture.enabled: true
+        gesture.acceptedGestures: MapGestureArea.PanGesture
+                                  | MapGestureArea.FlickGesture
+                                  | MapGestureArea.PinchGesture
+                                  | MapGestureArea.RotationGesture
+                                  | MapGestureArea.TiltGesture
         
         MapQuickItem {
             id: marker
@@ -134,23 +132,25 @@ Item {
     QtObject {
         id: d
         function getGpsErrorString(error) {
-            switch(error) {
-            case PositionSource.AccessError:
-                return "The connection setup to the remote positioning \
-                        backend failed because the application lacked \
-                        the required privileges."
-            case PositionSource.ClosedError:
-                return "The positioning backend closed the connection, \
-                        which happens for example in case the user is \
-                        switching location services to off. As soon as \
-                        the location service is re-enabled regular \
-                        updates will resume."
-            case PositionSource.UnknownSourceError:
-                return "An unidentified error occurred."
-            case PositionSource.SocketError:
-                return "An error occurred while connecting to an nmea \
-                        source using a socket."
-            }
+            return (function (err) {
+                switch(err) {
+                case PositionSource.AccessError:
+                    return "The connection setup to the remote positioning \
+                            backend failed because the application lacked \
+                            the required privileges."
+                case PositionSource.ClosedError:
+                    return "The positioning backend closed the connection, \
+                            which happens for example in case the user is \
+                            switching location services to off. As soon as \
+                            the location service is re-enabled regular \
+                            updates will resume."
+                case PositionSource.UnknownSourceError:
+                    return "An unidentified error occurred."
+                case PositionSource.SocketError:
+                    return "An error occurred while connecting to an nmea \
+                            source using a socket."
+                }
+            })(error).trim().replace(/\s+/g, ' ')
         }
         
         property var gpsPositionChangeCallback: null
@@ -158,8 +158,9 @@ Item {
 
     signal markerCoordinateChanged(var coord)
     signal markerCoordinateActivated(var coord)
-    
-    property bool valid: true
+
+    property string error: ""
+    property bool valid: error === ""
     property alias pS: positionSource
     property alias map: mapView
 }

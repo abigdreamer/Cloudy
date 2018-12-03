@@ -8,5 +8,7 @@ ListView {
     anchors.right: parent.right
     anchors.top: searchField.bottom
     anchors.bottom: addFinishButton.top
+    anchors.topMargin: 10
+    anchors.bottomMargin: 10
     delegate: CityListDelegate {}
 }

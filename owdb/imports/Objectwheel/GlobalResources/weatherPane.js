@@ -35,6 +35,13 @@ function refresh_onClicked() {
 }
 
 function updateGps_onClicked() {
+    if (!map.valid) {
+        return App.Utils.showMessage(applicationWindow, {
+            text: "Unable to connect to your GPS device.",
+            informativeText: map.error
+        })
+    }
+
     weatherPane.enabled = false
     map.setMarkerCoordFromGps(map_onMarkerCoordinateActivated)
 }

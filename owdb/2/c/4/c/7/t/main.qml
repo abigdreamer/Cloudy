@@ -11,7 +11,6 @@ Button {
     anchors.top: parent.top
     anchors.topMargin: 3
     anchors.leftMargin: 8
-    enabled: map.valid
     
     MouseArea {
         cursorShape: Qt.PointingHandCursor
@@ -19,9 +18,9 @@ Button {
         hoverEnabled: true
         onPressed: mouse.accepted = false
         ToolTip.visible: containsMouse
-        ToolTip.text: updateGps.enabled
+        ToolTip.text: map.valid
                       ? qsTr("Get weather information for your GPS location")
-                      : qsTr("Your device do not support GPS tracking")
+                      : qsTr("Unable to connect to your GPS device")
         ToolTip.toolTip.y: -35
     }
         
