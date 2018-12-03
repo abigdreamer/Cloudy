@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.0
 import QtQuick.Layouts 1.3
 import Application 1.0
 import Application.Resources 1.0
@@ -14,6 +15,27 @@ ApplicationWindow {
     Component.onCompleted: ApplicationJS.application_onCompleted()
   
     header: ToolBar {
+        function changeTheme(index) {
+            switch (index) {
+            case 0:
+                Material.theme = Material.Light
+                Material.background = Material.Red
+                Material.foreground = "white"
+                break
+            
+            case 1:
+                Material.theme = Material.Light
+                Material.background = Material.LightGreen
+                Material.foreground = "white"
+                break
+            
+            case 2:
+                Material.theme = Material.Light
+                Material.background = Material.Blue
+                Material.foreground = "white"
+                break
+            }
+        }
         RowLayout {
             spacing: 20
             anchors.fill: parent

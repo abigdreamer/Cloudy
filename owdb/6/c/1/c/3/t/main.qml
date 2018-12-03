@@ -10,5 +10,12 @@ ListView {
     anchors.bottom: addFinishButton.top
     anchors.topMargin: 10
     anchors.bottomMargin: 10
+    highlightMoveDuration: 200
     delegate: CityListDelegate {}
+    highlight: Rectangle {
+        radius: 4
+        color: "#30ffffff"
+    }
+
+    property real longestWidth: 0
 }

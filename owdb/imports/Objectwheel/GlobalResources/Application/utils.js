@@ -19,6 +19,16 @@ function toTitleCase(str) {
     )
 }
 
+function delayCall(interval, parent, callback) {
+    var timer = Qt.createQmlObject('import QtQuick 2.0; Timer{}', parent)
+    timer.interval = interval
+    timer.triggered.connect(function () {
+        callback()
+        timer.destroy()
+    })
+    timer.start()
+}
+
 function suppressCall(interval, parent, callback) {
     var timerObj = timerMap[parent]
     if (typeof timerObj === "undefined") {

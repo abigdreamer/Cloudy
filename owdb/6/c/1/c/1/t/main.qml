@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.2
 
 TextField {
     id: searchField
@@ -11,9 +12,9 @@ TextField {
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
-    height: 40
+    height: 35
     background: Rectangle {
-        color: "#20ffffff"
+        color: "#30ffffff"
         radius: 4
     }
 }

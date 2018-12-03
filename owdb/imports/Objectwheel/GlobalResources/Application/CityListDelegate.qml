@@ -1,6 +1,7 @@
 import QtQuick 2.9
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
 import Application 1.0
 import Application.Resources 1.0
@@ -9,7 +10,17 @@ Item {
     height: 55
     width: ListView.view.width
     clip: true
+    property var listView: ListView.view
     
+   MouseArea {
+        anchors.fill: parent
+        hoverEnabled: false
+        onPressed: {
+            mouse.accepted = false
+            listView.currentIndex = index
+        }
+    }
+        
     RowLayout {
         anchors.fill: parent
         
@@ -70,6 +81,13 @@ Item {
             spacing: 1
             clip: true
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            Component.onCompleted: {
+                if (width > listView.longestWidth)
+                    listView.longestWidth = width
+                Utils.delayCall(10, parent, function() {
+                    Layout.preferredWidth = listView.longestWidth
+                })
+            }
             Row {
                 spacing: 4
                 Image {
@@ -118,6 +136,23 @@ Item {
                     font.pixelSize: 12
                 }
             }
+        }
+
+        RoundButton {
+            text: "+"
+            Behavior on x {
+                PropertyAnimation{}
+            }
+
+            Layout.preferredWidth: 48
+            Layout.preferredHeight: 48
+            visible: listView.currentIndex === index
+            font.pixelSize: 26
+            font.weight: Font.Light
+            Material.theme: Material.Light
+            Material.background: Material.Blue
+            Material.foreground: "white"
+            Cursor {}
         }
     }
 }

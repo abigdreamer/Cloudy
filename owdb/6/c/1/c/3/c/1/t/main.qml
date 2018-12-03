@@ -10,5 +10,4 @@ Label {
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
     text: searchField.text === "" ? qsTr("Empty") : qsTr("No results\nfound")
-    visible: false
 }
