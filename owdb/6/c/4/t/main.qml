@@ -10,5 +10,6 @@ ListView {
     highlight: Rectangle {
         radius: 4
         color: Settings.dark ? "#30ffffff" : "#15000000"
+        Behavior on color { SmoothColorAnimation {} }
     }
 }

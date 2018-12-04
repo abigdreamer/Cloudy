@@ -2,7 +2,7 @@
     "crdate": "2018-11-21T04:51:33",
     "description": "Weather information for daily life",
     "hash": "41ca9dbe8f98",
-    "mfdate": "2018-12-03T07:33:41",
+    "mfdate": "2018-12-04T04:22:48",
     "name": "Cloudy",
     "owner": "beta@objectwheel.com",
     "owprj": "T3dwcmpfdjIuMA",
@@ -10,8 +10,6 @@
     "theme": {
         "accent": "#E91E63",
         "background": "#333432",
-        "foreground": "#ffffff",
-        "primary": "",
         "stylev1": "Desktop",
         "stylev2": "Material",
         "theme": "Dark"

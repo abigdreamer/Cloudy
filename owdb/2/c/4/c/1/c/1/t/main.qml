@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
+import Application 1.0
 
 Label {
     y: 24.5
@@ -16,11 +17,8 @@ Label {
     horizontalAlignment: Text.AlignRight
     verticalAlignment: Text.AlignVCenter
     
-    MouseArea {
+    Tip {
         anchors.fill: parent
-        hoverEnabled: true
-        ToolTip.visible: containsMouse
-        ToolTip.text: qsTr("Temperature (last 3hr)")
-        ToolTip.toolTip.y: -35
+        text: qsTr("Temperature (last 3hr)")
     }
 }

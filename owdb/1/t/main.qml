@@ -13,8 +13,27 @@ ApplicationWindow {
     visible: true
     title: qsTr("Cloudy")    
     Component.onCompleted: ApplicationJS.application_onCompleted()
-  
+
+    SmoothColorAnimation on Material.background { to: "#ffffff"; id: lightAnim}
+    SmoothColorAnimation on Material.foreground { to: "#555555"; id: lightAnim2}
+    SmoothColorAnimation on Material.background { to: "#333432"; id: darkAnim }
+    SmoothColorAnimation on Material.foreground { to: "#ffffff"; id: darkAnim2 }
+
+    function changeTheme(dark) {
+        if (dark) {
+            darkAnim.restart()
+            darkAnim2.restart()
+        } else {
+            lightAnim.restart()
+            lightAnim2.restart()
+        }
+    }
+
     header: ToolBar {
+        SmoothColorAnimation on Material.background { to: "#4689F2"; id: blueAnim }
+        SmoothColorAnimation on Material.background { to: "#7EB643"; id: greenAnim }
+        SmoothColorAnimation on Material.background { to: "#DA453D"; id: redAnim }
+        
         function changeTheme(index) {
             switch (index) {
             case 0:
@@ -36,10 +55,7 @@ ApplicationWindow {
                 break
             }
         }
-        ColorAnimation on Material.background { to: "#4689F2"; id: blueAnim; duration: 300 }
-        ColorAnimation on Material.background { to: "#7EB643"; id: greenAnim; duration: 300 }
-        ColorAnimation on Material.background { to: "#DA453D"; id: redAnim; duration: 300 }
-        
+
         RowLayout {
             spacing: 20
             anchors.fill: parent
@@ -123,6 +139,7 @@ ApplicationWindow {
             anchors.right: parent.right
             anchors.top: parent.top
             color: Settings.dark ? "#404447" : "#e2e2e2"
+            Behavior on color { SmoothColorAnimation {} }
         }
     }
  

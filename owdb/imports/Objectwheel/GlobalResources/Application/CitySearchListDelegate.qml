@@ -164,6 +164,7 @@ Item {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         color: Settings.dark ? "#404447" : "#e9e9e9"
+        Behavior on color { SmoothColorAnimation {} }
         visible: index !== listView.count - 1
     }
 }

@@ -17,10 +17,6 @@ Item {
         name: "mapboxgl"
     }
     
-    MessageDialog {
-        id: errorDialog
-        title: "Oops"
-    }
     PositionSource{
         id: positionSource
         active: false

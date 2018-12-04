@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.2
 
 Item {
     clip: true
@@ -27,12 +28,9 @@ Item {
         horizontalAlignment: Text.AlignLeft
     }
     
-    MouseArea {
+    Tip {
         anchors.fill: parent
-        hoverEnabled: true
-        ToolTip.visible: containsMouse
-        ToolTip.text: tip
-        ToolTip.toolTip.y: -35
+        text: tip
     }
 
     property string tip: ""

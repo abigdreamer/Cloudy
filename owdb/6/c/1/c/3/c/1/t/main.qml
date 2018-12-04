@@ -7,6 +7,7 @@ Label {
     height: 40
     width: 150
     color: Settings.dark ? "#55ffffff" : "#55000000"
+    Behavior on color { SmoothColorAnimation {} }
     anchors.centerIn: parent
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter

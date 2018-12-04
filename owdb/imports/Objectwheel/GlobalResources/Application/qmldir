@@ -5,4 +5,6 @@ WeatherItem 1.0 WeatherItem.qml
 CityListDelegate 1.0 CityListDelegate.qml
 CitySearchListDelegate 1.0 CitySearchListDelegate.qml
 Cursor 1.0 Cursor.qml
+SmoothColorAnimation 1.0 SmoothColorAnimation.qml
+Tip 1.0 Tip.qml
 Utils 1.0 utils.js

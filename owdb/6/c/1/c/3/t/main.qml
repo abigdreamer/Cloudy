@@ -17,6 +17,7 @@ ListView {
     delegate: CitySearchListDelegate {}
     highlight: Rectangle {
         color: Settings.dark ? "#30ffffff" : "#10000000"
+        Behavior on color { SmoothColorAnimation {} }
     }
 
     property real longestWidth: 0

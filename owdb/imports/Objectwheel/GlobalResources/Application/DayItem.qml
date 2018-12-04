@@ -36,12 +36,9 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    MouseArea {
+    Tip {
         anchors.fill: parent
-        hoverEnabled: true
-        ToolTip.visible: containsMouse
-        ToolTip.text: description
-        ToolTip.toolTip.y: -35
+        text: description
     }
     
     property string description: ""

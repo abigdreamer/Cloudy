@@ -17,6 +17,7 @@ TextField {
     selectByMouse: true
     background: Rectangle {
         color: Settings.dark ? "#30ffffff" : "#15000000"
+        Behavior on color { SmoothColorAnimation {} }
         radius: 4
     }
 }

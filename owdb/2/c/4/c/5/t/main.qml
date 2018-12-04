@@ -1,5 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.2
+import Application 1.0
 import Application.Resources 1.0
 
 Button {
@@ -30,4 +31,10 @@ Button {
         anchors.centerIn: parent
         smooth: true
     }
+    
+    Tip {
+        anchors.fill: parent
+        text: qsTr("Refresh weather data")
+    }
+    Cursor {}
 }

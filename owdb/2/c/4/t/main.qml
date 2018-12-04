@@ -15,5 +15,6 @@ Item {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         color: Settings.dark ? "#404447" : "#e2e2e2"
+        Behavior on color { SmoothColorAnimation {} }
     }
 }

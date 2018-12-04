@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
+import Application 1.0
 import Application.Resources 1.0
 import QtGraphicalEffects 1.0
 
@@ -47,15 +48,12 @@ Item {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignRight
     }
-    
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        ToolTip.visible: containsMouse
-        ToolTip.text: qsTr("Max temperature for the day")
-        ToolTip.toolTip.y: -35
-    }
 
+    Tip {
+        anchors.fill: parent
+        text: qsTr("Max temperature for the day")
+    }
+    
     property alias lbl: label
     property alias icn: icon
     property alias text: label.text
