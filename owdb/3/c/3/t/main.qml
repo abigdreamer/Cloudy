@@ -10,7 +10,7 @@ Label {
     anchors.top: logo.bottom
     anchors.left: parent.left
     anchors.right: parent.right
-    anchors.bottom: arrow.top
+    anchors.bottom: parent.bottom
     horizontalAlignment: Label.AlignHCenter
     verticalAlignment: Label.AlignVCenter
     wrapMode: Label.Wrap

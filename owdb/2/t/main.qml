@@ -8,4 +8,11 @@ Page {
     height: 608
     Component.onCompleted: WeatherPaneJS.weatherPane_onCompleted()
     title: qsTr("Weather")
+    
+    function jumpToCoord(coord) {
+        map.setMarkerCoord(coord)
+        WeatherPaneJS.map_onMarkerCoordinateActivated(coord)
+    }
+
+    property var weatherMap: map
 }

@@ -156,6 +156,7 @@ Item {
             id: cursor
             hoverEnabled: true
         }
+        onClicked: listView.cityAdded(modelData)
     }
 
     Rectangle {

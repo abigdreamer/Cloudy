@@ -5,11 +5,12 @@ ListView {
     id: cityList
     clip: true
     anchors.fill: parent
+    anchors.margins: 10
     highlightMoveDuration: 200
     delegate: CityListDelegate {}
     highlight: Rectangle {
-        radius: 4
-        color: Settings.dark ? "#30ffffff" : "#15000000"
+        color: Settings.dark ? "#30ffffff" : "#10000000"
         Behavior on color { SmoothColorAnimation {} }
     }
+    signal jumpToCity(var modelData)
 }

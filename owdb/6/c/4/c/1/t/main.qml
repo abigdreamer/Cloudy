@@ -17,6 +17,6 @@ RoundButton {
     Material.foreground: "white"
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    anchors.margins: 15
+    anchors.margins: 5
     Cursor {}
 }

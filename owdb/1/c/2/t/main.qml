@@ -5,6 +5,8 @@ import Application.Resources 1.0
 Image {
     id: nightDarkModeBalloon
     z: 2
+    x: 5
+    y: 475
     width: 75
     height: 75
     source: Settings.dark ? Resource.images.other.light

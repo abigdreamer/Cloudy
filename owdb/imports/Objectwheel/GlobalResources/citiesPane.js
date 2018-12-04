@@ -1,8 +1,12 @@
 // citiesPane.js
 .import Application 1.0 as App
 .import WeatherInfo 1.0 as WeatherInfo
+.import QtPositioning 5.2 as QP
+.import "weatherPane.js" as WeatherPaneJS
 
 function citiesPane_onCompleted() {
+    cityList.jumpToCity.connect(cityList_onJumpToCity)
+    citySearchList.cityAdded.connect(citySearchList_onCityAdded)
     cleanSearchFieldButton.clicked.connect(cleanSearchFieldButton_onClicked)
     searchField.textEdited.connect(searchField_onTextEdited)
     addRoundButton.clicked.connect(addRoundButton_onClicked)
@@ -56,4 +60,20 @@ function searchField_onTextEdited() {
 function cleanSearchFieldButton_onClicked() {
     searchField.text = ""
     searchField_onTextEdited()
+}
+
+function citySearchList_onCityAdded(modelData) {
+    if (typeof cityList.model == "undefined")
+        cityList.model = []
+    var model = cityList.model
+    model.push(modelData)
+    cityList.model = model
+}
+
+function cityList_onJumpToCity(modelData) {
+    var coord = QP.QtPositioning.coordinate(modelData.latitude, modelData.longitude)
+    //weatherPane.weatherMap.setMarkerCoord(coord)
+    //WeatherPaneJS.map_onMarkerCoordinateActivated(coord)
+    weatherPane.jumpToCoord(coord)
+    applicationWindow.tabBar.currentIndex = 1
 }

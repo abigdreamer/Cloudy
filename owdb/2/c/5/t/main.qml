@@ -29,7 +29,6 @@ Item {
                 stop()
                 var coord = position.coordinate
                 setMarkerCoord(coord)
-                scrollToMarker()
                 d.gpsPositionChangeCallback(coord)
             }
         }
@@ -114,6 +113,7 @@ Item {
 
     function setMarkerCoord(coord) {
         marker.coordinate = coord
+        scrollToMarker()
         markerCoordinateChanged(coord)
     }
 

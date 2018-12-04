@@ -2,7 +2,6 @@ import QtQuick 2.9
 import Application 1.0
 
 ListView {
-    z: -1
     y: 55
     x: 12
     id: citySearchList
@@ -21,4 +20,5 @@ ListView {
     }
 
     property real longestWidth: 0
+    signal cityAdded(var modelData)
 }
