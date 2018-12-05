@@ -6,7 +6,7 @@ Label {
     id: noResultLabel
     height: 40
     width: 150
-    color: Settings.dark ? "#55ffffff" : "#55000000"
+    color: Settings.theme === 'Dark' ? "#55ffffff" : "#55000000"
     Behavior on color { SmoothColorAnimation {} }
     anchors.centerIn: parent
     horizontalAlignment: Text.AlignHCenter

@@ -9,8 +9,14 @@ Image {
     y: 475
     width: 75
     height: 75
-    source: Settings.dark ? Resource.images.other.light
-                          : Resource.images.other.dark
+    opacity: Settings.themeBalloonVisible ? 1 : 0
+    visible: opacity > 0
+    
+    Behavior on opacity { PropertyAnimation {} }
+
+    source: Settings.theme === 'Dark'
+                        ? Resource.images.other.light
+                        : Resource.images.other.dark
     Drag.active: true
     Drag.hotSpot.x: width / 2.0
     Drag.hotSpot.y: height / 2.0
@@ -36,6 +42,7 @@ Image {
         cursorShape: drag.active
                      ? Qt.ClosedHandCursor
                      : Qt.PointingHandCursor
-        onClicked: Settings.dark = !Settings.dark
+        onClicked: Settings.theme = Settings.theme === 'Dark'
+                ? 'Light' : 'Dark'
     }
 }

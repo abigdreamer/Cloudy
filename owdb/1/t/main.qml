@@ -62,15 +62,22 @@ ApplicationWindow {
 
             ToolButton {
                 Cursor {}
-                icon.source: Resource.images.other.drawer
+                icon.source: stackView.currentItem === swipeView
+                             ? Resource.images.other.drawer
+                             : Resource.images.other.back
                 onClicked: {
-                    drawer.open()
+                    stackView.currentItem === swipeView
+                        ? drawer.open()
+                        : stackView.pop()
+                             
                 }
             }
 
             Label {
                 id: titleLabel
-                text: swipeView.currentItem ? swipeView.currentItem.title : "Cloudy"
+                text: stackView.currentItem === swipeView
+                      ? (swipeView.currentItem ? swipeView.currentItem.title : qsTr("Cloudy"))
+                      : qsTr("Settings")
                 font.pixelSize: 20
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
@@ -89,7 +96,8 @@ ApplicationWindow {
 
                     MenuItem {
                         text: qsTr("Settings")
-                        onTriggered: tabbar.currentIndex = 2
+                        enabled: stackView.currentItem === swipeView
+                        onTriggered: stackView.push(settingsPane)
                         icon.source: Resource.images.other.settings
                         icon.color: "transparent"
                         Cursor {}
@@ -109,6 +117,7 @@ ApplicationWindow {
     footer: Rectangle {
         height: tabbar.height
         width: applicationWindow.width
+        visible: stackView.currentItem === swipeView
         TabBar {
             id: tabbar
             anchors.left: parent.left
@@ -138,7 +147,7 @@ ApplicationWindow {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            color: Settings.dark ? "#404447" : "#e2e2e2"
+            color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
             Behavior on color { SmoothColorAnimation {} }
         }
     }
@@ -180,4 +189,5 @@ ApplicationWindow {
 
     property var tabBar: tabbar
     property var sW: swipeView
+    property var stW: stackView
 }

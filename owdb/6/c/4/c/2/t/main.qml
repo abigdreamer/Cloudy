@@ -8,7 +8,7 @@ Label {
     width: 200
     text: qsTr("No Cities")
     anchors.centerIn: parent
-    color: Settings.dark ? "#55ffffff" : "#55000000"
+    color: Settings.theme === 'Dark' ? "#55ffffff" : "#55000000"
     Behavior on color { SmoothColorAnimation {} }
     visible: cityList.count === 0
     verticalAlignment: Text.AlignVCenter

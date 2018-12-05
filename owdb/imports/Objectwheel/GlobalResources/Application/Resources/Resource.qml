@@ -45,7 +45,9 @@ QtObject {
             "myCities": Qt.resolvedUrl('./images/other/my-cities.svg'),
             "dark": Qt.resolvedUrl('./images/other/dark.png'),
             "light": Qt.resolvedUrl('./images/other/light.png'),
-            "jump": Qt.resolvedUrl('./images/other/jump.png')
+            "jump": Qt.resolvedUrl('./images/other/jump.png'),
+            "colorful": Qt.resolvedUrl('./images/other/colorful.png'),
+            "check": Qt.resolvedUrl('./images/other/check.png')
         },
         "flag": {
             "AD": Qt.resolvedUrl('./images/flag/AD.svg'),

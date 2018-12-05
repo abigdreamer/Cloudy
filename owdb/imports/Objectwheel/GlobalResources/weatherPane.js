@@ -2,13 +2,19 @@
 .import WeatherInfo 1.0 as WeatherInfo
 .import Application 1.0 as App
 .import Application.Resources 1.0 as AppRes
+.import QtPositioning 5.2 as QP
 
 function weatherPane_onCompleted() {
     updateGps.clicked.connect(updateGps_onClicked)
     map.markerCoordinateActivated.connect(map_onMarkerCoordinateActivated)
     refresh.clicked.connect(refresh_onClicked)
-    if (map.valid)
-        updateGps_onClicked()
+    App.Settings.measurementSystemChanged.connect(refresh_onClicked)
+    
+    updateGps_onClicked()
+    App.Utils.delayCall(1000, weatherPane, function() {
+        if (!map.valid)
+            goToIstanbul()
+    })
 }
 
 function getWidgetFromIndex(index) {
@@ -34,6 +40,11 @@ function refresh_onClicked() {
     map_onMarkerCoordinateActivated(map.getMarkerCoordinate())
 }
 
+function goToIstanbul() {
+    weatherPane.enabled = false
+    weatherPane.jumpToCoord(QP.QtPositioning.coordinate(41.00925, 28.95330))
+}
+
 function updateGps_onClicked() {
     if (!map.valid) {
         return App.Utils.showMessage(applicationWindow, {
@@ -48,7 +59,7 @@ function updateGps_onClicked() {
 
 function updateTodaysWeather(coord, notify) {
     var lang = App.Settings.language
-    var metric = App.Settings.metric
+    var metric = App.Settings.isMetric()
     WeatherInfo.Fetch.getCurrent(coord, metric, lang, function(val, err) {
         if (notify) notify()
         if (err) {
@@ -77,7 +88,7 @@ function updateTodaysWeather(coord, notify) {
 
 function updateWeeksWeather(coord, notify) {
     var lang = App.Settings.language
-    var metric = App.Settings.metric
+    var metric = App.Settings.isMetric()
     WeatherInfo.Fetch.getForecast(coord, metric, lang, function(value, err) {        
         if (notify) notify()
         if (err) {

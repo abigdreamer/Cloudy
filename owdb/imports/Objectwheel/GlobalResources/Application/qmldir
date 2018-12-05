@@ -7,4 +7,5 @@ CitySearchListDelegate 1.0 CitySearchListDelegate.qml
 Cursor 1.0 Cursor.qml
 SmoothColorAnimation 1.0 SmoothColorAnimation.qml
 Tip 1.0 Tip.qml
+SettingItem 1.0 SettingItem.qml
 Utils 1.0 utils.js

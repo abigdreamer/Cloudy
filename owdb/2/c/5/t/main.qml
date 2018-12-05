@@ -47,7 +47,9 @@ Item {
         id: mapView
         plugin: mapPlugin
         anchors.fill: parent
-        activeMapType: Settings.dark ? supportedMapTypes[7] : supportedMapTypes[6]
+        activeMapType: Settings.theme === 'Dark'
+                ? supportedMapTypes[7]
+                : supportedMapTypes[6]
         copyrightsVisible: false
         zoomLevel: 14
         gesture.flickDeceleration: 3000

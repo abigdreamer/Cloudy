@@ -64,7 +64,7 @@ Item {
                 spacing: 1
                 Label {
                     id: l
-                    text: Utils.toCleanTemp(modelData.temp, Settings.metric) + ','
+                    text: Utils.toCleanTemp(modelData.temp, Settings.isMetric()) + ','
                     font.bold: true
                     font.pixelSize: 13
                 }
@@ -132,7 +132,7 @@ Item {
                     source: Resource.images.other.wind
                 }
                 Label {
-                    text: Utils.toCleanSpeed(modelData.windSpeed, Settings.metric)
+                    text: Utils.toCleanSpeed(modelData.windSpeed, Settings.isMetric())
                     font.pixelSize: 13
                 }
             }
@@ -164,7 +164,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        color: Settings.dark ? "#404447" : "#e9e9e9"
+        color: Settings.theme === 'Dark' ? "#404447" : "#e9e9e9"
         Behavior on color { SmoothColorAnimation {} }
         visible: index !== listView.count - 1
     }

@@ -9,7 +9,7 @@ ListView {
     highlightMoveDuration: 200
     delegate: CityListDelegate {}
     highlight: Rectangle {
-        color: Settings.dark ? "#30ffffff" : "#10000000"
+        color: Settings.theme === 'Dark' ? "#30ffffff" : "#10000000"
         Behavior on color { SmoothColorAnimation {} }
     }
     signal jumpToCity(var modelData)

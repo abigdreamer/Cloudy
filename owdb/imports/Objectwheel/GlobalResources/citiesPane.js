@@ -11,6 +11,7 @@ function citiesPane_onCompleted() {
     searchField.textEdited.connect(searchField_onTextEdited)
     addRoundButton.clicked.connect(addRoundButton_onClicked)
     addFinishButton.clicked.connect(addFinishButton_onClicked)
+    App.Settings.measurementSystemChanged.connect(searchField_onTextEdited)
     addCityPane.y = Qt.binding(function() { return addCityPane.height })
 }
 
@@ -31,8 +32,8 @@ function searchField_onTextEdited() {
     App.Utils.suppressCall(1000, searchField, function() {
         var city = searchField.text
         var lang = App.Settings.language
-        var metric = App.Settings.metric
-            
+        var metric = App.Settings.isMetric()
+
         citySearchList.model = []
 
         if (city === "") {
@@ -72,8 +73,6 @@ function citySearchList_onCityAdded(modelData) {
 
 function cityList_onJumpToCity(modelData) {
     var coord = QP.QtPositioning.coordinate(modelData.latitude, modelData.longitude)
-    //weatherPane.weatherMap.setMarkerCoord(coord)
-    //WeatherPaneJS.map_onMarkerCoordinateActivated(coord)
     weatherPane.jumpToCoord(coord)
     applicationWindow.tabBar.currentIndex = 1
 }
