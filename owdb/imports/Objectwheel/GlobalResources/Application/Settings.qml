@@ -34,6 +34,10 @@ QtObject {
         return null
     }
 
+    function localMeasurementText() {
+        return Qt.locale().measurementSystem === Locale.MetricSystem ? 'Metric' : 'Imperial'
+    }
+
     function isMetric() {
         if (measurementSystem === 'Metric')
             return true

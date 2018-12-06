@@ -18,7 +18,10 @@ ComboBox {
     anchors.topMargin: -3
     delegate: ItemDelegate {
         width: measurementBox.width
-        text: qsTr(measurementBox.model[index])
+        text: measurementBox.model[index] !== 'Auto'
+                ? qsTr(measurementBox.model[index])
+                : qsTr(measurementBox.model[index]) +
+                  ' (%1)'.arg(qsTr(Settings.localMeasurementText())[0])
         font: measurementBox.font
         leftPadding: 8
         rightPadding: 8
