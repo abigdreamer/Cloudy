@@ -8,4 +8,5 @@ Cursor 1.0 Cursor.qml
 SmoothColorAnimation 1.0 SmoothColorAnimation.qml
 Tip 1.0 Tip.qml
 SettingItem 1.0 SettingItem.qml
+TintImage 1.0 TintImage.qml
 Utils 1.0 utils.js

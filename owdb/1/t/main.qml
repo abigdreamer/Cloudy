@@ -14,46 +14,49 @@ ApplicationWindow {
     title: qsTr("Cloudy")    
     Component.onCompleted: ApplicationJS.application_onCompleted()
 
-    SmoothColorAnimation on Material.background { to: "#ffffff"; id: lightAnim}
-    SmoothColorAnimation on Material.foreground { to: "#555555"; id: lightAnim2}
-    SmoothColorAnimation on Material.background { to: "#333432"; id: darkAnim }
-    SmoothColorAnimation on Material.foreground { to: "#ffffff"; id: darkAnim2 }
-
-    function changeTheme(dark) {
-        if (dark) {
-            darkAnim.restart()
-            darkAnim2.restart()
-        } else {
-            lightAnim.restart()
-            lightAnim2.restart()
-        }
+    Timer {
+        interval: 2000
+        repeat: true
+        running: Settings.themeAccent === 'Colorful'
+        onTriggered: header.randomAccent()
     }
 
-    header: ToolBar {
-        SmoothColorAnimation on Material.background { to: "#4689F2"; id: blueAnim }
-        SmoothColorAnimation on Material.background { to: "#7EB643"; id: greenAnim }
-        SmoothColorAnimation on Material.background { to: "#DA453D"; id: redAnim }
+    SmoothColorAnimation on Material.background { id: themeAnimBackground }
+    SmoothColorAnimation on Material.foreground { id: themeAnimForeground }
+    function applyThemeChange() {
+        if (Settings.theme === 'Dark') {
+            themeAnimBackground.to = "#333432"
+            themeAnimForeground.to = "#ffffff"
+        } else {
+            themeAnimBackground.to = "#ffffff"
+            themeAnimForeground.to = "#555555"
+        }
+        themeAnimBackground.restart()
+        themeAnimForeground.restart()
+    }
+
+    SmoothColorAnimation on Material.accent { id: accentAnimApp }
+    function changeAccent(accentName) {
+        accentAnimApp.to = Settings.accentColor(accentName)
+        accentAnimApp.restart()
+    }
         
-        function changeTheme(index) {
-            switch (index) {
-            case 0:
-                Material.theme = Material.Light
-                redAnim.restart()
-                Material.foreground = "white"
-                break
-            
-            case 1:
-                Material.theme = Material.Light
-                greenAnim.restart()
-                Material.foreground = "white"
-                break
-            
-            case 2:
-                Material.theme = Material.Light
-                blueAnim.restart()
-                Material.foreground = "white"
-                break
-            }
+    header: ToolBar {
+        SmoothColorAnimation on Material.background { id: accentAnim }
+        function changeAccent(accentName) {
+            Material.theme = Material.Light
+            accentAnim.to = Settings.accentColor(accentName)
+            accentAnim.restart()
+            Material.foreground = "white"
+        }
+        function randomAccent() {
+            var newAccent
+            do {
+                newAccent = Settings.availableThemeAccents
+                        [Math.floor(Math.random() * Settings.availableThemeAccents.length)]
+            } while (newAccent.name === 'Colorful' || Qt.colorEqual(newAccent.color, accentAnim.to))
+            applicationWindow.changeAccent(newAccent.name)
+            changeAccent(newAccent.name)
         }
 
         RowLayout {

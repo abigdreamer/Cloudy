@@ -3,7 +3,6 @@
 .import QtQuick.Controls.Material 2.2 as QM
 
 function application_onCompleted() {
-    swipeView.currentIndexChanged.connect(swipeView_onCurrentIndexChanged)
     App.Settings.themeChanged.connect(settings_onThemeChanged)
     swipeView.addItem(homePane)
     swipeView.addItem(weatherPane)
@@ -11,15 +10,10 @@ function application_onCompleted() {
     settings_onThemeChanged()
 }
 
-function swipeView_onCurrentIndexChanged() {
-    applicationWindow.header.changeTheme(swipeView.currentIndex)
-}
-
 function settings_onThemeChanged() {
-    var dark = App.Settings.theme === 'Dark'
-    applicationWindow.changeTheme(dark)
+    applicationWindow.applyThemeChange()
     App.Utils.delayCall(300, applicationWindow, function() {
-        applicationWindow.QM.Material.theme
-                = dark ? QM.Material.Dark : QM.Material.Light
+        applicationWindow.QM.Material.theme = App.Settings.theme === 'Dark'
+                ? QM.Material.Dark : QM.Material.Light
     })
 }

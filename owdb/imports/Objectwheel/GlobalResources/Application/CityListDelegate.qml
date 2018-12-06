@@ -65,7 +65,7 @@ Item {
         font.pixelSize: 32
         font.weight: Font.Light
         Material.theme: Material.Light
-        Material.background: Material.Blue
+        Material.background: Material.accent
         Material.foreground: "white"
         Tip { anchors.fill: parent; text: qsTr("Jump to city") }
         Cursor {}

@@ -22,6 +22,8 @@ ComboBox {
         font: themeAccentBox.font
         leftPadding: 8
         rightPadding: 8
+        icon.width: 24
+        icon.height: 24
         icon.source: Resource.images.other.colorful
         icon.color: modelData.name === "Colorful"
                     ? "transparent"

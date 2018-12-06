@@ -150,7 +150,7 @@ Item {
         font.pixelSize: 32
         font.weight: Font.Light
         Material.theme: Material.Light
-        Material.background: "#4689F2"
+        Material.background: Material.accent
         Material.foreground: "white"
         Cursor {
             id: cursor

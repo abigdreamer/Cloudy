@@ -12,6 +12,6 @@ Button {
     height: 50
     Cursor {}
     Material.theme: Material.Light
-    Material.background: "#4689F2"
+    Material.background: Material.accent
     Material.foreground: "white"
 }
