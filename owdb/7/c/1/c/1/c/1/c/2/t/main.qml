@@ -1,15 +1,12 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
-import QtQuick.Controls.Material 2.2
 
 Label {
     y: 12
     x: 15
     id: langDesc
-    width: parent.width - 160
-    textFormat: Text.RichText
-    text: qsTr('Change overall application language. This will only take place <b style="color:%1;">after you restart the application.</b>'
-               .arg(Material.accent))
+    width: parent.width - 175
+    text: qsTr('Change overall application language. Automatic option has taken from your system settings.')
     font.weight: Font.Light
     font.pixelSize: 12
     anchors.left: parent.left

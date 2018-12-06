@@ -9,7 +9,8 @@ function weatherPane_onCompleted() {
     map.markerCoordinateActivated.connect(map_onMarkerCoordinateActivated)
     refresh.clicked.connect(refresh_onClicked)
     App.Settings.measurementSystemChanged.connect(refresh_onClicked)
-    
+    App.Settings.languageChanged.connect(refresh_onClicked)
+
     updateGps_onClicked()
     App.Utils.delayCall(1000, weatherPane, function() {
         if (!map.valid)
@@ -48,7 +49,7 @@ function goToIstanbul() {
 function updateGps_onClicked() {
     if (!map.valid) {
         return App.Utils.showMessage(applicationWindow, {
-            text: "Unable to connect to your GPS device.",
+            text: qsTr("Unable to connect to your GPS device."),
             informativeText: map.error
         })
     }
@@ -58,7 +59,7 @@ function updateGps_onClicked() {
 }
 
 function updateTodaysWeather(coord, notify) {
-    var lang = App.Settings.language
+    var lang = App.Settings.languageCode()
     var metric = App.Settings.isMetric()
     WeatherInfo.Fetch.getCurrent(coord, metric, lang, function(val, err) {
         if (notify) notify()
@@ -87,7 +88,7 @@ function updateTodaysWeather(coord, notify) {
 }
 
 function updateWeeksWeather(coord, notify) {
-    var lang = App.Settings.language
+    var lang = App.Settings.languageCode()
     var metric = App.Settings.isMetric()
     WeatherInfo.Fetch.getForecast(coord, metric, lang, function(value, err) {        
         if (notify) notify()

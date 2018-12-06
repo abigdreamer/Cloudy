@@ -9,16 +9,16 @@ ComboBox {
     x: 241
     id: themeBox
     height: 45
-    width: 120
+    width: 130
     model: Settings.availableThemes
-    displayText: qsTr(currentText)
+    displayText: qsTranslate("Settings", currentText)
     anchors.rightMargin: 16
     anchors.right: parent.right
     anchors.top: themeTitle.top
     anchors.topMargin: -3
     delegate: ItemDelegate {
         width: themeBox.width
-        text: qsTr(themeBox.model[index])
+        text: qsTranslate("Settings", themeBox.model[index])
         font: themeBox.font
         leftPadding: 8
         rightPadding: 8

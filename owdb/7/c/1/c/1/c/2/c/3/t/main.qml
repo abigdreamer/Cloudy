@@ -9,9 +9,9 @@ ComboBox {
     x: 239
     id: measurementBox
     height: 45
-    width: 120
+    width: 130
     model: Settings.availableMeasurementSystems
-    displayText: qsTr(currentText)
+    displayText: qsTranslate("Settings", currentText)
     anchors.rightMargin: 16
     anchors.right: parent.right
     anchors.top: measurementTitle.top
@@ -19,9 +19,9 @@ ComboBox {
     delegate: ItemDelegate {
         width: measurementBox.width
         text: measurementBox.model[index] !== 'Auto'
-                ? qsTr(measurementBox.model[index])
-                : qsTr(measurementBox.model[index]) +
-                  ' (%1)'.arg(qsTr(Settings.localMeasurementText())[0])
+                ? qsTranslate("Settings", measurementBox.model[index])
+                : qsTranslate("Settings", measurementBox.model[index]) +
+                  ' (%1)'.arg(qsTranslate("Settings", Settings.localMeasurementText())[0])
         font: measurementBox.font
         leftPadding: 8
         rightPadding: 8

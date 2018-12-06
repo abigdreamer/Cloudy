@@ -88,8 +88,13 @@ ApplicationWindow {
                 Layout.fillWidth: true
             }
 
-            ToolButton {
-                Cursor {}
+            ToolButton {id:bb
+                Tip {
+                }
+                Cursor{
+                ToolTip.toolTip.text: "looo"
+                ToolTip.toolTip.visible: bb.down
+                }
                 icon.source: Resource.images.other.menu
                 onClicked: optionsMenu.open()
                 Menu {

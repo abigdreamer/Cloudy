@@ -5,8 +5,8 @@ Label {
     y: -157
     x: 10
     id: themeAccentDesc
-    width: parent.width - 160
-    text: qsTr("Choose whether the theme changing balloon (bubble head) should be shown or hid.")
+    width: parent.width - 175
+    text: qsTr('Choose the color tone that will add richness to the theme.')
     font.weight: Font.Light
     font.pixelSize: 12
     anchors.left: parent.left

@@ -5,7 +5,7 @@ Label {
     y: -159
     x: 31
     id: themeDesc
-    width: parent.width - 160
+    width: parent.width - 175
     text: qsTr("Change application theme. Dark and Light themes are available for now.")
     font.weight: Font.Light
     font.pixelSize: 12

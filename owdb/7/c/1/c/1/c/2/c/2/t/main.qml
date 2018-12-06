@@ -5,8 +5,8 @@ Label {
     y: 12
     x: 15
     id: measurementDesc
-    width: parent.width - 160
-    text: qsTr("Change current measurement system used by application to represent information.")
+    width: parent.width - 175
+    text: qsTr("Change current measurement system used by the application to represent information.")
     font.weight: Font.Light
     font.pixelSize: 12
     anchors.left: parent.left

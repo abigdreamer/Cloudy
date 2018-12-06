@@ -7,16 +7,16 @@ import QtQuick.Controls.Material 2.2
 ComboBox {
     id: langBox
     height: 45
-    width: 120
+    width: 130
     model: Settings.availableLanguages
-    displayText: qsTr(currentText)
+    displayText: qsTranslate("Settings", currentText)
     anchors.rightMargin: 16
     anchors.right: parent.right
     anchors.top: langTitle.top
     anchors.topMargin: -3
     delegate: ItemDelegate {
         width: langBox.width
-        text: qsTr(langBox.model[index])
+        text: qsTranslate("Settings", langBox.model[index])
         font: langBox.font
         leftPadding: 8
         rightPadding: 8

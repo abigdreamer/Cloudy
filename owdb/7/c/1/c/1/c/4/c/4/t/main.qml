@@ -8,9 +8,9 @@ ComboBox {
     x: 242
     id: themeAccentBox
     height: 45
-    width: 120
+    width: 130
     model: Settings.availableThemeAccents
-    displayText: qsTr(currentText)
+    displayText: qsTranslate("Settings", currentText)
     anchors.rightMargin: 16
     anchors.right: parent.right
     anchors.top: themeAccentTitle.top
@@ -18,7 +18,7 @@ ComboBox {
     textRole: "name"
     delegate: ItemDelegate {
         width: themeAccentBox.width
-        text: qsTr(modelData.name)
+        text: qsTranslate("Settings", modelData.name)
         font: themeAccentBox.font
         leftPadding: 8
         rightPadding: 8

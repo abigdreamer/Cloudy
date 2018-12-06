@@ -8,20 +8,28 @@ QtObject {
     property string language: 'Auto'
     property string measurementSystem: 'Auto'
 
-    readonly property var availableThemes:
-        ["Dark", "Light"]
-    readonly property var availableLanguages:
-        ["Auto", "English", "Türkçe"]
-    readonly property var availableMeasurementSystems:
-        ["Auto", "Metric", "Imperial"]
+    readonly property var availableThemes: [
+        QT_TRANSLATE_NOOP("Settings", "Dark"),
+        QT_TRANSLATE_NOOP("Settings", "Light")
+    ]
+    readonly property var availableLanguages: [
+        QT_TRANSLATE_NOOP("Settings", "Auto"),
+        QT_TRANSLATE_NOOP("Settings", "English"),
+        QT_TRANSLATE_NOOP("Settings", "Turkish")
+    ]
+    readonly property var availableMeasurementSystems: [
+        QT_TRANSLATE_NOOP("Settings", "Auto"),
+        QT_TRANSLATE_NOOP("Settings", "Metric"),
+        QT_TRANSLATE_NOOP("Settings", "Imperial")
+    ]
     readonly property var availableThemeAccents: [
-        { "name": "Red", "color": "#DA453D" },
-        { "name": "Indigo", "color": "#673AB7" },
-        { "name": "Blue", "color": "#4689F2" },
-        { "name": "Green", "color": "#7EB643" },
-        { "name": "Orange", "color": "#FF9800" },
-        { "name": "Brown", "color": "#795548" },
-        { "name": "Colorful", "color": "#ffffff" }
+        { "name": QT_TRANSLATE_NOOP("Settings", "Red"), "color": "#DA453D" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Indigo"), "color": "#673AB7" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Blue"), "color": "#4689F2" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Green"), "color": "#7EB643" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Orange"), "color": "#FF9800" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Brown"), "color": "#795548" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Colorful"), "color": "#ffffff" }
     ]
     
     function accentColor(name) {
@@ -47,20 +55,20 @@ QtObject {
     }
     
     function languageCode(lang) {
-        var localCode = Qt.locale().name.substr(0, 2).toUpperCase()
+        var localCode = Qt.locale().name.substr(0, 2).toLowerCase()
         if (!lang)
             lang = language
         if (lang === 'Auto'
-                && (localCode === 'TR' || localCode === 'EN'))
+                && (localCode === 'tr' || localCode === 'en'))
             return localCode
-        if (lang === 'Türkçe')
-            return 'TR'
-        return 'EN'
+        if (lang === 'Turkish')
+            return 'tr'
+        return 'en'
     }
     
     function flagCode(lang) {
         var langCode = languageCode(lang)
-        if (langCode === 'TR')
+        if (langCode === 'tr')
             return 'TR'
         return 'US'
     }

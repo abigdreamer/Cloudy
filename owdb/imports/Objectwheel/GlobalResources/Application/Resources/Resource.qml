@@ -2,6 +2,10 @@ pragma Singleton
 import QtQuick 2.6
 
 QtObject {
+    readonly property var translations: {
+        "tr": Qt.resolvedUrl('./translations/tr.qm')
+    }
+ 
     readonly property var images: {
         "weatherCondition": {
             "01d": Qt.resolvedUrl('./images/weather-condition/01d.png'),
@@ -24,6 +28,7 @@ QtObject {
             "50n": Qt.resolvedUrl('./images/weather-condition/50n.png')
         },
         "other": {
+            "qtLogo": Qt.resolvedUrl('./images/other/qtlogo.png'),
             "about": Qt.resolvedUrl('./images/other/about.png'),
             "arrowDown": Qt.resolvedUrl('./images/other/arrow-down.png'),
             "arrowUp": Qt.resolvedUrl('./images/other/arrow-up.png'),

@@ -45,7 +45,6 @@ Item {
 
     Map {
         id: mapView
-        plugin: mapPlugin
         anchors.fill: parent
         activeMapType: Settings.theme === 'Dark'
                 ? supportedMapTypes[7]
@@ -59,7 +58,7 @@ Item {
                                   | MapGestureArea.PinchGesture
                                   | MapGestureArea.RotationGesture
                                   | MapGestureArea.TiltGesture
-        
+        Component.onCompleted: plugin = mapPlugin
         MapQuickItem {
             id: marker
             anchorPoint.x: image.width/2
@@ -131,25 +130,23 @@ Item {
     QtObject {
         id: d
         function getGpsErrorString(error) {
-            return (function (err) {
-                switch(err) {
+                switch(error) {
                 case PositionSource.AccessError:
-                    return "The connection setup to the remote positioning \
-                            backend failed because the application lacked \
-                            the required privileges."
+                    return qsTr("The connection setup to the remote positioning " +
+                                "backend failed because the application lacked " +
+                                "the required privileges.")
                 case PositionSource.ClosedError:
-                    return "The positioning backend closed the connection, \
-                            which happens for example in case the user is \
-                            switching location services to off. As soon as \
-                            the location service is re-enabled regular \
-                            updates will resume."
+                    return qsTr("The positioning backend closed the connection, " +
+                                "which happens for example in case the user is " +
+                                "switching location services to off. As soon as " +
+                                "the location service is re-enabled regular " +
+                                "updates will resume.")
                 case PositionSource.UnknownSourceError:
-                    return "An unidentified error occurred."
+                    return qsTr("An unidentified error occurred.")
                 case PositionSource.SocketError:
-                    return "An error occurred while connecting to an nmea \
-                            source using a socket."
+                    return qsTr("An error occurred while connecting to an nmea " +
+                                "source using a socket.")
                 }
-            })(error).trim().replace(/\s+/g, ' ')
         }
         
         property var gpsPositionChangeCallback: null

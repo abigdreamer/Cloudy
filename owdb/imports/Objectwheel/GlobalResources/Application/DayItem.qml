@@ -8,7 +8,7 @@ Item {
     
     Label {
         id: day
-        text: "Day"
+        text: qsTr("Day")
         font.pixelSize: 13
         anchors.left: parent.left
         anchors.top: parent.top

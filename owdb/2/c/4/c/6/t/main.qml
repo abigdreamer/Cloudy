@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 
 Label {
     id: city
-    text: "UNKNOWN"
+    text: qsTr("Unknown")
     anchors.right: refresh.left
     anchors.left: updateGps.right
     anchors.top: parent.top

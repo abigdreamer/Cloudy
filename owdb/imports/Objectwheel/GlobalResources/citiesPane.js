@@ -12,6 +12,7 @@ function citiesPane_onCompleted() {
     addRoundButton.clicked.connect(addRoundButton_onClicked)
     addFinishButton.clicked.connect(addFinishButton_onClicked)
     App.Settings.measurementSystemChanged.connect(searchField_onTextEdited)
+    App.Settings.languageChanged.connect(searchField_onTextEdited)
     addCityPane.y = Qt.binding(function() { return addCityPane.height })
 }
 
@@ -31,7 +32,7 @@ function searchField_onTextEdited() {
     
     App.Utils.suppressCall(1000, searchField, function() {
         var city = searchField.text
-        var lang = App.Settings.language
+        var lang = App.Settings.languageCode()
         var metric = App.Settings.isMetric()
 
         citySearchList.model = []
