@@ -1,7 +1,8 @@
 pragma Singleton
 import QtQuick 2.6
+import Qt.labs.settings 1.0
 
-QtObject {
+Settings {
     property bool themeBalloonVisible: true
     property string theme: 'Light'
     property string themeAccent: 'Blue'
@@ -41,11 +42,9 @@ QtObject {
         console.trace()
         return null
     }
-
     function localMeasurementText() {
         return Qt.locale().measurementSystem === Locale.MetricSystem ? 'Metric' : 'Imperial'
     }
-
     function isMetric() {
         if (measurementSystem === 'Metric')
             return true
@@ -53,7 +52,6 @@ QtObject {
             return Qt.locale().measurementSystem === Locale.MetricSystem
         return false
     }
-    
     function languageCode(lang) {
         var localCode = Qt.locale().name.substr(0, 2).toLowerCase()
         if (!lang)
@@ -65,7 +63,6 @@ QtObject {
             return 'tr'
         return 'en'
     }
-    
     function flagCode(lang) {
         var langCode = languageCode(lang)
         if (langCode === 'tr')
