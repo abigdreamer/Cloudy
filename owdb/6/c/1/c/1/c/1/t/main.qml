@@ -3,6 +3,8 @@ import QtQuick.Controls 2.2
 import Application 1.0
 
 RoundButton {
+    y: 0
+    x: 278
     id: cleanSearchFieldButton
     width: height
     text: "\u00d7"

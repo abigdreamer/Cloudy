@@ -4,8 +4,6 @@ import QtQuick.Controls.Material 2.2
 import Application 1.0
 
 RoundButton {
-    y: 508
-    x: 242
     id: addRoundButton
     height: 75
     width: 75
@@ -17,6 +15,6 @@ RoundButton {
     Material.foreground: "white"
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    anchors.margins: 5
+    anchors.margins: 15
     Cursor {}
 }

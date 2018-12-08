@@ -31,7 +31,7 @@ Item {
             sourceSize: Qt.size(48, 48)
             fillMode: Image.PreserveAspectFit
             smooth: true
-            source: Resource.images.flag[modelData.country.toUpperCase()]
+            source: Resource.images.flag[country.toUpperCase()]
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
         }
         
@@ -41,13 +41,13 @@ Item {
             spacing: 5
             Layout.fillWidth: true
             Label {
-                text: modelData.city + ", " + modelData.country.toUpperCase()
+                text: city + ", " + country.toUpperCase()
                 font.weight: Font.Medium
                 font.pixelSize: 16
             }
             Label {
                 font.pixelSize: 14
-                text: qsTr("Coords: [%1, %2]").arg(modelData.latitude.toFixed(2)).arg(modelData.longitude.toFixed(2))
+                text: qsTr("Coords: [%1, %2]").arg(latitude.toFixed(2)).arg(longitude.toFixed(2))
             }
         }
     }
@@ -69,7 +69,7 @@ Item {
         Material.foreground: "white"
         Tip { anchors.fill: parent; text: qsTr("Jump to city") }
         Cursor {}
-        onClicked: listView.jumpToCity(modelData)
+        onClicked: listView.jumpToCity(listView.model.get(index))
     }
         
     Rectangle {

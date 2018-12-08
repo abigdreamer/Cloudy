@@ -79,7 +79,7 @@ function updateTodaysWeather(coord, notify) {
         temp.text = App.Utils.toCleanTemp(val.temp, metric)
         tempMax.text = App.Utils.toCleanTemp(val.tempMax, metric)
         tempMin.text = App.Utils.toCleanTemp(val.tempMin, metric)
-        icon.source = AppRes.Resource.images.weatherCondition[val.icon]
+        icon.source = AppRes.Resource.images.weatherCondition[val.iconName]
         cloudiness.text = val.cloudiness + "%"
         windSpeed.text = App.Utils.toCleanSpeed(val.windSpeed, metric)
         humidity.text = val.humidity + "%"
@@ -104,7 +104,7 @@ function updateWeeksWeather(coord, notify) {
             var widget = getWidgetFromIndex(i)
             widget.day = value[i].date.toLocaleString(Qt.locale(lang), "dddd");
             widget.temp = App.Utils.toCleanTemp(value[i].temp, metric)
-            widget.icon = AppRes.Resource.images.weatherCondition[value[i].icon]
+            widget.icon = AppRes.Resource.images.weatherCondition[value[i].iconName]
             widget.description = App.Utils.toTitleCase(value[i].weatherDescription)
         }
     })

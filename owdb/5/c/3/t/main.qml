@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 
 Label {
     id: lowerParagraph
-    text: qsTr("Objectwheel is an application programming platform based on Qt. " +
+    text: qsTr("Objectwheel is an application programming platform based on QML and Javascript. " +
           "We are trying to combine best programming tools with the easiest " +
           "way of developing.")
     wrapMode: Label.WordWrap

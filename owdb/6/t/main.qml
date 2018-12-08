@@ -4,7 +4,7 @@ import Objectwheel.GlobalResources 1.0
 
 Page {
     id: citiesPane
-    title: qsTr("My Cities")
+    title: qsTr("Cities")
     width: 342
     height: 608
     Component.onCompleted: CitiesPaneJS.citiesPane_onCompleted()

@@ -29,7 +29,7 @@ function toCurrentWeatherObject(response) {
     return {
         "city": response.name,
         "country": response.sys.country,
-        "icon": response.weather[0].icon,
+        "iconName": response.weather[0].icon,
         "weatherDescription": response.weather[0].description, // String
         "temp": response.main.temp, // Metric: Celsius, Imperial: Fahrenheit
         "tempMax": response.main.temp_max, // Metric: Celsius, Imperial: Fahrenheit
@@ -45,7 +45,7 @@ function toCityListObject(response) {
     return {
         "city": response.name,
         "country": response.sys.country,
-        "icon": response.weather[0].icon,
+        "iconName": response.weather[0].icon,
         "weatherDescription": response.weather[0].description, // String
         "longitude": response.coord.lon,
         "latitude": response.coord.lat,
@@ -59,7 +59,7 @@ function toCityListObject(response) {
 
 function toForecastWeatherObject(response) {
     return {
-        "icon": response.weather[0].icon,
+        "iconName": response.weather[0].icon,
         "weatherDescription": response.weather[0].description, // String
         "date": new Date(response.dt_txt),
         "temp": response.main.temp, // Metric: Celsius, Imperial: Fahrenheit

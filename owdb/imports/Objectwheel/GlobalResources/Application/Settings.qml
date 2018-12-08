@@ -4,7 +4,7 @@ import QtQuick 2.6
 QtObject {
     property bool themeBalloonVisible: true
     property string theme: 'Light'
-    property string themeAccent: 'Colorful'
+    property string themeAccent: 'Blue'
     property string language: 'Auto'
     property string measurementSystem: 'Auto'
 

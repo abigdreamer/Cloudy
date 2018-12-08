@@ -12,5 +12,6 @@ ListView {
         color: Settings.theme === 'Dark' ? "#30ffffff" : "#10000000"
         Behavior on color { SmoothColorAnimation {} }
     }
-    signal jumpToCity(var modelData)
+    model: ListModel {}
+    signal jumpToCity(var listElement)
 }

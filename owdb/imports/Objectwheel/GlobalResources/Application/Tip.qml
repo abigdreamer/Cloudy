@@ -3,8 +3,12 @@ import QtQuick.Controls 2.3
 
 MouseArea {
     hoverEnabled: true
-    onPressed: mouse.accepted = false
-    ToolTip.visible: containsMouse
+    onPressed: {
+        if (Qt.platform.os == "ios" || Qt.platform.os == "android")
+            show = !show
+        mouse.accepted = false
+    }
+    ToolTip.visible: containsMouse || show
     ToolTip.text: text
     ToolTip.toolTip.y: -35
     ToolTip.toolTip.contentItem: Text {
@@ -12,5 +16,6 @@ MouseArea {
       font: ToolTip.toolTip.font
       color: "#d0d0d0"
     }
+    property bool show: false
     property string text: "-"
 }

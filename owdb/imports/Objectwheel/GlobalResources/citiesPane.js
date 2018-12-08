@@ -28,14 +28,14 @@ function addRoundButton_onClicked() {
 function searchField_onTextEdited() {    
     noResultLabel.visible = searchField.text === ""
     busyIndicator.running = true
-    citySearchList.model = []
+    citySearchList.model.clear()
     
     App.Utils.suppressCall(1000, searchField, function() {
         var city = searchField.text
         var lang = App.Settings.languageCode()
         var metric = App.Settings.isMetric()
 
-        citySearchList.model = []
+        citySearchList.model.clear()
 
         if (city === "") {
             busyIndicator.running = false
@@ -53,7 +53,8 @@ function searchField_onTextEdited() {
                 noResultLabel.visible = true
                 return
             }
-            citySearchList.model = value
+            for (var i = 0; i < value.length; ++i)
+                citySearchList.model.append(value[i])
             noResultLabel.visible = value.length === 0
         })
     })
@@ -64,16 +65,12 @@ function cleanSearchFieldButton_onClicked() {
     searchField_onTextEdited()
 }
 
-function citySearchList_onCityAdded(modelData) {
-    if (typeof cityList.model == "undefined")
-        cityList.model = []
-    var model = cityList.model
-    model.push(modelData)
-    cityList.model = model
+function citySearchList_onCityAdded(listElement) {
+    cityList.model.append(listElement)
 }
 
-function cityList_onJumpToCity(modelData) {
-    var coord = QP.QtPositioning.coordinate(modelData.latitude, modelData.longitude)
+function cityList_onJumpToCity(listElement) {
+    var coord = QP.QtPositioning.coordinate(listElement.latitude, listElement.longitude)
     weatherPane.jumpToCoord(coord)
     applicationWindow.tabBar.currentIndex = 1
 }

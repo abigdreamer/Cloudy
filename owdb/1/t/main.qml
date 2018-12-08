@@ -88,13 +88,8 @@ ApplicationWindow {
                 Layout.fillWidth: true
             }
 
-            ToolButton {id:bb
-                Tip {
-                }
-                Cursor{
-                ToolTip.toolTip.text: "looo"
-                ToolTip.toolTip.visible: bb.down
-                }
+            ToolButton {
+                Cursor{}
                 icon.source: Resource.images.other.menu
                 onClicked: optionsMenu.open()
                 Menu {
@@ -145,7 +140,7 @@ ApplicationWindow {
             }
             TabButton {
                 icon.source: Resource.images.other.myCities
-                text: qsTr("My Cities")
+                text: qsTr("Cities")
                 icon.color: "transparent"
                 Cursor {}
             }
@@ -175,7 +170,7 @@ ApplicationWindow {
 
             delegate: ItemDelegate {
                 width: parent.width
-                text: model.title
+                text: title
                 highlighted: ListView.isCurrentItem
                 onClicked: {
                     listView.currentIndex = index
