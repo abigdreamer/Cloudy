@@ -109,7 +109,8 @@ Item {
     
     function scrollToMarker() {
         mapView.center = marker.coordinate
-        mapView.zoomLevel = 14
+        if (mapView.zoomLevel < 2.8)
+            mapView.zoomLevel = 2.8
     }
 
     function setMarkerCoord(coord) {

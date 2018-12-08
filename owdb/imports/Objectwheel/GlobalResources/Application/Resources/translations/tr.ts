@@ -4,12 +4,17 @@
 <context>
     <name>CityListDelegate</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CityListDelegate.qml" line="50"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CityListDelegate.qml" line="25"/>
+        <source>Delete</source>
+        <translation>Sil</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CityListDelegate.qml" line="143"/>
         <source>Coords: [%1, %2]</source>
         <translation>Koord: [%1, %2]</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CityListDelegate.qml" line="70"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CityListDelegate.qml" line="163"/>
         <source>Jump to city</source>
         <translation>Şehre atla</translation>
     </message>
@@ -17,7 +22,12 @@
 <context>
     <name>CitySearchListDelegate</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CitySearchListDelegate.qml" line="61"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CitySearchListDelegate.qml" line="25"/>
+        <source>Add</source>
+        <translation>Ekle</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/CitySearchListDelegate.qml" line="154"/>
         <source>Coords: [%1, %2]</source>
         <translation>Koord: [%1, %2]</translation>
     </message>
@@ -33,73 +43,73 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="12"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="13"/>
         <source>Dark</source>
         <translation>Koyu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="13"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="14"/>
         <source>Light</source>
         <translation>Açık</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="16"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="21"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="17"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="22"/>
         <source>Auto</source>
         <translation>Oto</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="17"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="18"/>
         <source>English</source>
         <translation>İngilizce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="18"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="19"/>
         <source>Turkish</source>
         <translation>Türkçe</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="22"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="23"/>
         <source>Metric</source>
         <translation>Metrik</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="23"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="24"/>
         <source>Imperial</source>
         <translation>Emperyal</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="26"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="27"/>
         <source>Red</source>
         <translation>Kırmızı</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="27"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="28"/>
         <source>Indigo</source>
         <translation>Çivit</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="28"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="29"/>
         <source>Blue</source>
         <translation>Mavi</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="29"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="30"/>
         <source>Green</source>
         <translation>Yeşil</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="30"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="31"/>
         <source>Orange</source>
         <translation>Turuncu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="31"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="32"/>
         <source>Brown</source>
         <translation>Kahverengi</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="32"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="33"/>
         <source>Colorful</source>
         <translation>Rengarenk</translation>
     </message>
@@ -108,39 +118,48 @@
     <name>main</name>
     <message>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="14"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="82"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="84"/>
         <source>Cloudy</source>
         <translation>Bulutlu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="83"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="106"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="85"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="103"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="210"/>
         <source>Settings</source>
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="114"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="111"/>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/t/main.qml" line="10"/>
         <source>About</source>
         <translation>Hakkında</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="136"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="133"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="207"/>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/3/t/main.qml" line="10"/>
         <source>Home</source>
         <translation>Giriş</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="142"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="139"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="208"/>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/t/main.qml" line="10"/>
         <source>Weather</source>
         <translation>Hava</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="148"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="145"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="209"/>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/6/t/main.qml" line="7"/>
-        <source>My Cities</source>
+        <source>Cities</source>
         <translation>Şehirler</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/1/t/main.qml" line="174"/>
+        <source>Menu</source>
+        <translation>Menü</translation>
     </message>
     <message>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/4/c/1/c/1/t/main.qml" line="22"/>
@@ -250,16 +269,6 @@ found</source>
         <translation>Tema Balonu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/c/2/t/main.qml" line="6"/>
-        <source>This example application have been built by passionate developers with using Objectwheel to introduce best application building experience to our users.</source>
-        <translation>Bu örnek uygulama, Objectwheel kullanılarak, kullanıcılarımızla en iyi uygulama geliştirme deneyimini tanıştırmak için tarafımızca geliştirildi.</translation>
-    </message>
-    <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/c/3/t/main.qml" line="6"/>
-        <source>Objectwheel is an application programming platform based on Qt. We are trying to combine best programming tools with the easiest way of developing.</source>
-        <translation>Objectwheel, Qt tabanlı bir uygulama geliştirme platformudur. Size en iyi programlama araçlarını, en kolay kullanım ile birleştirerek sunmaya çalışıyoruz.</translation>
-    </message>
-    <message>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/c/4/t/main.qml" line="14"/>
         <source>&lt;p&gt;&lt;b&gt;Thanks&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;— Objectwheel Team&lt;/i&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Teşekkürler&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;— Objectwheel Takımı&lt;/i&gt;&lt;/p&gt;</translation>
@@ -295,30 +304,40 @@ found</source>
         <translation>Bilinmiyor</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="136"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="135"/>
         <source>The connection setup to the remote positioning backend failed because the application lacked the required privileges.</source>
         <translation>Uygulama, gerekli ayrıcalıklara sahip olmadığı için uzaktan konumlandırma arka ucuna bağlantı kurulumu başarısız oldu.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="140"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="139"/>
         <source>The positioning backend closed the connection, which happens for example in case the user is switching location services to off. As soon as the location service is re-enabled regular updates will resume.</source>
         <translation>Konumlandırma arka ucu, örneğin kullanıcının konum servislerini kapalı konuma getirmesi durumundaki gibi, gerçekleşen bağlantıyı kapattı. Yer hizmeti yeniden etkinleştirildiğinde, düzenli güncellemeler devam edecektir.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="146"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="145"/>
         <source>An unidentified error occurred.</source>
         <translation>Tanımlanamayan bir hata oluştu.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="148"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/2/c/5/t/main.qml" line="147"/>
         <source>An error occurred while connecting to an nmea source using a socket.</source>
         <translation>Soket kullanarak nmea kaynağına bağlanmaya çalışılırken bir hata meydana geldi.</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/c/2/t/main.qml" line="6"/>
+        <source>This example application has been built by passionate developers using Objectwheel in order to introduce the best application building experience to our users.</source>
+        <translation>Bu örnek uygulama, Objectwheel kullanılarak, kullanıcılarımızla en iyi uygulama geliştirme deneyimini tanıştırmak için tarafımızca geliştirildi.</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/5/c/3/t/main.qml" line="6"/>
+        <source>Objectwheel is an application programming platform based on QML and JavaScript. We are trying to combine best programming tools with the easiest way of developing.</source>
+        <translation>Objectwheel, QML ve JavaScript tabanlı bir uygulama geliştirme platformudur. Size en iyi programlama araçlarını, en kolay kullanım ile birleştirerek sunmaya çalışıyoruz.</translation>
     </message>
 </context>
 <context>
     <name>weatherPane</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/weatherPane.js" line="51"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/weatherPane.js" line="52"/>
         <source>Unable to connect to your GPS device.</source>
         <translation>GPS cihazına bağlantı sağlanamadı.</translation>
     </message>

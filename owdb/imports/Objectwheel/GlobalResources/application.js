@@ -21,12 +21,6 @@ function settings_onThemeChanged() {
 }
 
 function restoreSettings() {
-    //App.Settings.themeBalloonVisible = themeBalloonSwitch.checked // Auto applied
-    //App.Settings.measurementSystem = measurementBox.currentText // No need to apply
-    //App.Settings.theme = 'Light'
-    //App.Settings.themeAccent = themeAccentBox.currentText
-    //App.Settings.language = langBox.currentText
-
     settings_onThemeChanged()
     if (App.Settings.themeAccent === 'Colorful') {
         applicationWindow.header.randomAccent()
