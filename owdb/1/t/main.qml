@@ -48,6 +48,7 @@ ApplicationWindow {
             accentAnim.to = Settings.accentColor(accentName)
             accentAnim.restart()
             Material.foreground = "white"
+            drawer.changeAccent(accentName)
         }
         function randomAccent() {
             var newAccent
@@ -56,6 +57,7 @@ ApplicationWindow {
                         [Math.floor(Math.random() * Settings.availableThemeAccents.length)]
             } while (newAccent.name === 'Colorful' || Qt.colorEqual(newAccent.color, accentAnim.to))
             applicationWindow.changeAccent(newAccent.name)
+            drawer.changeAccent(newAccent.name)
             changeAccent(newAccent.name)
         }
 
@@ -81,7 +83,7 @@ ApplicationWindow {
                 text: stackView.currentItem === swipeView
                       ? (swipeView.currentItem ? swipeView.currentItem.title : qsTr("Cloudy"))
                       : qsTr("Settings")
-                font.pixelSize: 20
+                font.pixelSize: 18
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
@@ -160,33 +162,56 @@ ApplicationWindow {
         width: Math.min(applicationWindow.width, applicationWindow.height) / 3 * 2
         height: applicationWindow.height
         interactive: true
-
-        ListView {
-            id: listView
-
-            focus: true
-            currentIndex: -1
+        property var changeAccent: tbar.changeAccent
+        
+        ColumnLayout {
             anchors.fill: parent
-
-            delegate: ItemDelegate {
-                width: parent.width
-                text: title
-                highlighted: ListView.isCurrentItem
-                onClicked: {
-                    listView.currentIndex = index
-                    stackView.push(model.source)
-                    drawer.close()
+            ToolBar {
+                id: tbar
+                Layout.fillWidth: true
+                Label {
+                    anchors.centerIn: parent
+                    text: qsTr("Menu")
+                    font.pixelSize: 18
+                }
+                SmoothColorAnimation on Material.background { id: accentAnimDrawerToolbar }
+                function changeAccent(accentName) {
+                    Material.theme = Material.Light
+                    accentAnimDrawerToolbar.to = Settings.accentColor(accentName)
+                    accentAnimDrawerToolbar.restart()
+                    Material.foreground = "white"
                 }
             }
-
-            model: ListModel {
-                ListElement { title: "BusyIndicator"; source: "qrc:/pages/BusyIndicatorPage.qml" }
-                ListElement { title: "Button"; source: "qrc:/pages/ButtonPage.qml" }
-                ListElement { title: "CheckBox"; source: "qrc:/pages/CheckBoxPage.qml" }
-                ListElement { title: "ComboBox"; source: "qrc:/pages/ComboBoxPage.qml" }
+            ListView {
+                id: listView
+                focus: true
+                currentIndex: tabbar.currentIndex
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                
+                delegate: ItemDelegate {
+                    width: parent.width
+                    text: title
+                    highlighted: ListView.isCurrentItem
+                    onClicked: {
+                        if (stack)
+                            stackView.push(settingsPane)
+                        else
+                            tabBar.currentIndex = index
+                        drawer.close()
+                    }
+                    Cursor {}
+                }
+    
+                model: ListModel {
+                    ListElement { title: qsTr("Home"); index: 0; stack: false }
+                    ListElement { title: qsTr("Weather"); index: 1; stack: false }
+                    ListElement { title: qsTr("Cities"); index: 2; stack: false }
+                    ListElement { title: qsTr("Settings"); index: 0; stack: true }
+                }
+    
+                ScrollIndicator.vertical: ScrollIndicator { }
             }
-
-            ScrollIndicator.vertical: ScrollIndicator { }
         }
     }
 
