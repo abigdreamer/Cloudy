@@ -12,7 +12,8 @@ SwipeDelegate {
     width: listView.width
     clip: false
     property var listView: ListView.view
-
+    property bool weRemoveIt: false
+    
     swipe.left: Rectangle {
         id: swipeRect
         width: delegate.height
@@ -46,7 +47,8 @@ SwipeDelegate {
         
         Cursor {}
         
-        SwipeDelegate.onClicked: {   
+        SwipeDelegate.onClicked: {
+            weRemoveIt = true
             dropShadow.opacity = 0
             delegate.swipe.close()
             listView.cityAdded(listView.model.get(index))
@@ -60,6 +62,7 @@ SwipeDelegate {
     }
 
     ListView.onRemove: SequentialAnimation {
+        running: weRemoveIt
         PropertyAction { target: delegate; property: "ListView.delayRemove"; value: true }
         PropertyAction { target: containerItem; property: "animStarted"; value: true }
         NumberAnimation { target: containerItem; property: "rerWidth"; to: delegate.width; duration: 500; easing.type: Easing.OutExpo }
@@ -89,10 +92,10 @@ SwipeDelegate {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             color: "#7EB643"
-            width: containerItem.rerWidth
+            width: weRemoveIt ? containerItem.rerWidth : 0
         }
         SmoothColorAnimation on Material.foreground {
-            running: containerItem.animStarted;
+            running: containerItem.animStarted && weRemoveIt
             to: "white"
             duration: 500
             easing.type: Easing.OutExpo
@@ -236,7 +239,7 @@ SwipeDelegate {
             anchors.rightMargin: 10
             opacity: cursor.containsMouse ? 1.0 : 0.9
             width: 55; height: 55
-            visible: listView.currentIndex === index
+            visible: listView.currentIndex === index && listView.currentIndex >= 0
             font.pixelSize: 32
             font.weight: Font.Light
             Material.theme: Material.Light
@@ -246,10 +249,11 @@ SwipeDelegate {
                 id: cursor
                 hoverEnabled: true
             }
-            onClicked: {   
+            onClicked: {
+                opacity = 0
+                weRemoveIt = true
                 listView.cityAdded(listView.model.get(index))
                 listView.model.remove(index, 1)
-                opacity = 0
             }
             Behavior on opacity { NumberAnimation {} }
         }
