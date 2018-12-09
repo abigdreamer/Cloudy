@@ -4,6 +4,8 @@ import Application 1.0
 import Application.Resources 1.0
 
 Button {
+    y: 2
+    x: 8
     id: updateGps
     height: 36
     width: 30

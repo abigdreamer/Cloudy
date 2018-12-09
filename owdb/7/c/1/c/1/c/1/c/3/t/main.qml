@@ -5,6 +5,8 @@ import Application.Resources 1.0
 import QtQuick.Controls.Material 2.2
 
 ComboBox {
+    y: 17
+    x: 224
     id: langBox
     height: 45
     width: 130

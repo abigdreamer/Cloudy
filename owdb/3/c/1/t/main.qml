@@ -31,28 +31,15 @@ AnimatedImage {
             y = parent.height - height
     }
     
-    Rectangle {
-        id: onOffIndicator
-        anchors.centerIn: parent
-        width: 35
-        height: 30
-        radius: 12
-        color: "#a0000000"
-        opacity: 0
-    
+    Tip {
+        id: tip
+        text: flowOn ? qsTr("News flow: On") : qsTr("News flow: Off")
+        ToolTip.visible: show
         SequentialAnimation {
             id: anim
-            NumberAnimation { target: onOffIndicator; property: "opacity"; to: 1; duration: 100 }
-            NumberAnimation { target: onOffIndicator; property: "opacity"; to: 1; duration: 1000 }
-            NumberAnimation { target: onOffIndicator; property: "opacity"; to: 0; duration: 400 }
-        }
-        
-        Label {
-            color: "white"
-            font.pixelSize: 16
-            font.bold: true
-            anchors.centerIn: parent
-            text: flowOn ? qsTr("On") : qsTr("Off")
+            NumberAnimation { target: tip; property: "show"; to: 1; duration: 100 }
+            NumberAnimation { target: tip; property: "show"; to: 1; duration: 1000 }
+            NumberAnimation { target: tip; property: "show"; to: 0; duration: 400 }
         }
         property alias onOffAnim: anim
     }
@@ -66,6 +53,6 @@ AnimatedImage {
                      : Qt.PointingHandCursor
         onClicked: flowOn = !flowOn
     }
-    onFlowOnChanged: onOffIndicator.onOffAnim.running = true
+    onFlowOnChanged: tip.onOffAnim.running = true
     property bool flowOn: false
 }
