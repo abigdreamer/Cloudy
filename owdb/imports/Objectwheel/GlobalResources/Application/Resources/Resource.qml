@@ -52,7 +52,9 @@ QtObject {
             "light": Qt.resolvedUrl('./images/other/light.png'),
             "jump": Qt.resolvedUrl('./images/other/jump.png'),
             "colorful": Qt.resolvedUrl('./images/other/colorful.png'),
-            "check": Qt.resolvedUrl('./images/other/check.png')
+            "check": Qt.resolvedUrl('./images/other/check.png'),
+            "news": Qt.resolvedUrl('./images/other/news.png'),
+            "newsOff": Qt.resolvedUrl('./images/other/newsOff.gif')
         },
         "flag": {
             "AD": Qt.resolvedUrl('./images/flag/AD.svg'),
