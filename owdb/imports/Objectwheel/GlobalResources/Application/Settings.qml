@@ -69,4 +69,7 @@ Settings {
             return 'TR'
         return 'US'
     }
+    function countryCode() {
+        return Qt.locale().name.substr(3, 2).toLowerCase()
+    }
 }

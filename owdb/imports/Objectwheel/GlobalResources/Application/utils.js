@@ -19,6 +19,17 @@ function toTitleCase(str) {
     )
 }
 
+// Min, max both should be integer
+function getRandomInteger(min, max) { // Min, max both included
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomNumber(min, max, precision) {
+    if (!precision)
+        precision = 2
+    return (Math.random() * (max - min) + min).toFixed(precision);
+}
+
 function delayCall(interval, parent, callback) {
     var timer = Qt.createQmlObject('import QtQuick 2.0; Timer{}', parent)
     timer.interval = interval
