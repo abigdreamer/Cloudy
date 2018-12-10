@@ -54,11 +54,11 @@ function moveToNextNews(index, cnt) {
     if (component.status !== QQ.Component.Ready)
         return console.trace()
     
-    var newsBubble = component.createObject(newsRiver)
+    var newsBubble = component.createObject(newsBalloon)
     if (!newsBubble)
         return console.trace()
     newsBubbles.push(newsBubble)
-    newsBubble.parent = newsRiver
+    newsBubble.parent = newsBalloon
     newsBubble.news = nextNews
     newsBubble.run()
     

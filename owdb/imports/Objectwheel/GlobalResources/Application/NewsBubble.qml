@@ -7,7 +7,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     x: parent.width / 2.0 - width / 2.0
-    y: parent.height - height
+    y: - height
     width: 70
     height: 70
 
@@ -32,6 +32,8 @@ Item {
         anchors.fill: image
         source: image
         maskSource: imageMask
+        opacity: image.status == Image.Ready ? 1 : 0
+        Behavior on opacity { NumberAnimation {} }
         Rectangle {
             visible: image.status == Image.Ready
             anchors.fill: parent
@@ -40,8 +42,7 @@ Item {
             SmoothColorAnimation on border.color {}
             color: "transparent"
             radius: width / 2.0
-            opacity: 0.65
-        }
+        }        
     }
     
     MouseArea {
@@ -78,10 +79,21 @@ Item {
     }
     
     onXChanged: {
-        if (x < -width)
-            x = -width
-        else if (x > parent.width)
-            x = parent.width
+        if (parent.x > width / 2.0) {
+            if (x < -width / 2.0)
+                x = -width / 2.0
+        } else {
+            if (x < -parent.x)
+                x = -parent.x
+        }
+
+        if (homePane.width - parent.x - parent.width > width / 2.0) {
+            if (x > width / 2.0)
+                x = width / 2.0
+        } else {
+            if (x > homePane.width - parent.x - parent.width)
+                x = homePane.width - parent.x - parent.width
+        }
     }
     
     function run() {
@@ -94,10 +106,10 @@ Item {
         id: d
         property bool horzDirection: Utils.getRandomInteger(0, 1)
         readonly property real minSpeed: 0.4
-        readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 6.5)
+        readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 4.5)
         readonly property real vSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
         readonly property real hSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
-        readonly property real directionChangeInterval: Utils.getRandomInteger(1000, 4000)
+        readonly property real directionChangeInterval: Utils.getRandomInteger(1500, 4000)
     }
 
     property var news: []

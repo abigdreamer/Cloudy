@@ -54,5 +54,6 @@ AnimatedImage {
         onClicked: flowOn = !flowOn
     }
     onFlowOnChanged: tip.onOffAnim.running = true
+    Component.onCompleted: flowOn = true
     property bool flowOn: false
 }
