@@ -44,7 +44,27 @@ AnimatedImage {
         property alias onOffAnim: anim
     }
 
+    Rectangle {
+        anchors.centerIn: parent
+        width: 34
+        height: 34
+        radius: 10
+        color: "#aa000000"
+        visible: mouseArea.containsMouse
+        TintImage {
+            width: 24
+            height: 24
+            icon.source: flowOn
+                    ? Resource.images.other.pause
+                    : Resource.images.other.play
+            icon.sourceSize: Qt.size(width, height)
+            tintColor: "white"
+            anchors.centerIn: parent
+        }
+    }
+    
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
         drag.target: newsBalloon
@@ -55,5 +75,6 @@ AnimatedImage {
     }
     onFlowOnChanged: tip.onOffAnim.running = true
     Component.onCompleted: flowOn = true
+    
     property bool flowOn: false
 }

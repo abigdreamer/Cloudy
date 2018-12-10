@@ -47,22 +47,34 @@ Item {
     }
 
     OpacityMask {
+        id: opMask
+        visible: false
         anchors.fill: image
         source: image
         maskSource: imageMask
         opacity: image.status == Image.Ready ? 1 : 0
         Behavior on opacity { NumberAnimation {} }
+    }
+
+    DropShadow {
+        source: opMask
+        anchors.fill: opMask
+        horizontalOffset: 0
+        verticalOffset: 2
+        radius: 12
+        samples: 15
+        color: "#a0000000"
         Rectangle {
-            visible: image.status == Image.Ready
             anchors.fill: parent
-            border.width: 2.3
-            border.color: Settings.theme == 'Dark' ? "#50ffffff" : "#50000000"
+            border.width: 2.5
+            border.color: Settings.theme == 'Dark' ? "#50ffffff" : "#70000000"
             SmoothColorAnimation on border.color {}
             color: "transparent"
             radius: width / 2.0
-        }        
+            visible: image.status == Image.Ready
+        }
     }
-
+            
     Timer {
         id: iterateVerticalTimer
         interval: 50
@@ -90,12 +102,12 @@ Item {
     }
     
     Canvas {
+        id: descBalloon
         anchors.right: image.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         width: 250
-        opacity: d.initiallyDescVisible || mouseArea.containsMouse ? 1 : 0
-        Behavior on opacity { NumberAnimation { duration: d.initiallyDescVisible ? 600 : 100 } }
+        visible: false
         Label {
             id: title
             anchors.left: parent.left
@@ -131,7 +143,8 @@ Item {
             elide: Text.ElideRight
         }
 
-        onPaint: drawRoundedRect(0, 0, width - 12, height, 14, '#6f6f6f')
+        onColorChanged: requestPaint()
+        onPaint: drawRoundedRect(1, 1, width - 14, height - 2, 14, '#6f6f6f')
         function drawRoundedRect(x, y, w, h, radius, color) {
             var context = getContext("2d")
             var r = x + w
@@ -139,22 +152,36 @@ Item {
             context.clearRect(0, 0, width, height);
             context.beginPath()
             context.fillStyle = color
+            context.lineWidth = 2.5
+            context.strokeStyle = Settings.theme == 'Dark' ? "#25ffffff" : "#60000000"
             context.moveTo(x + radius, y)
             context.lineTo(r - radius, y)
             context.quadraticCurveTo(r, y, r, y + radius)
-            context.lineTo(r, y + h - radius)
+            context.quadraticCurveTo(r, y + h / 2.0, r + 12, y + h / 2.0)
+            context.quadraticCurveTo(r, y + h / 2.0, r, y + h - h / 8.0)
             context.quadraticCurveTo(r, b, r - radius, b)
             context.lineTo(x + radius, b)
             context.quadraticCurveTo(x, b, x, b - radius)
             context.lineTo(x, y + radius)
             context.quadraticCurveTo(x, y, x + radius, y)
             context.moveTo(r, y + h / 8.0)
-            context.quadraticCurveTo(r, y + h / 2.0, r + 12, y + h / 2.0)
-            context.quadraticCurveTo(r, y + h / 2.0, r, y + h - h / 8.0)
             context.fill()
+            context.stroke()
         }
+        property var color: Settings.theme == 'Dark' ? "#40ffffff" : "#90000000"
     }
 
+    DropShadow {
+        source: descBalloon
+        anchors.fill: descBalloon
+        horizontalOffset: 0
+        verticalOffset: 2
+        radius: 12
+        samples: 15
+        color: "#a0000000"
+        opacity: d.initiallyDescVisible || mouseArea.containsMouse ? 1 : 0
+        Behavior on opacity { NumberAnimation { duration: d.initiallyDescVisible ? 600 : 100 } }
+    }
     MouseArea {
         id: mouseArea
         anchors.fill: image
@@ -169,7 +196,7 @@ Item {
     }
     
     Timer {
-        interval: 5500
+        interval: 15000
         repeat: false
         running: true
         onTriggered: d.initiallyDescVisible = false
@@ -181,7 +208,7 @@ Item {
         property bool horzDirection: Utils.getRandomInteger(0, 1)
         readonly property real minSpeed: 0.4
         readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 3.0)
-        readonly property real vSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
+        readonly property real vSpeed: 1
         readonly property real hSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
         readonly property real directionChangeInterval: Utils.getRandomInteger(1500, 4000)
     }

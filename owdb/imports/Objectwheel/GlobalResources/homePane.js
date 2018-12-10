@@ -25,7 +25,7 @@ function newsBalloon_onFlowOnChanged() {
     }
     
     count += 1
-    NewsInfo.Fetch.getTopNews(App.Settings.countryCode(), function(val, err) {
+    NewsInfo.Fetch.getTopNews("us" /*App.Settings.countryCode()*/, function(val, err) {
         newsBalloon.enabled = true
         if (err) {
             newsBalloon.flowOn = false
@@ -62,7 +62,7 @@ function moveToNextNews(index, cnt) {
     newsBubble.run()
     
     if (news.length > index + 1) {
-        App.Utils.delayCall(App.Utils.getRandomInteger(1500, 6000), homePane,
+        App.Utils.delayCall(App.Utils.getRandomInteger(3500, 7000), homePane,
                             function() {
             moveToNextNews(index + 1, cnt)
         })
