@@ -6,11 +6,14 @@ import Application.Resources 1.0
 import QtGraphicalEffects 1.0
 
 Item {
+    id: root
     x: parent.width / 2.0 - width / 2.0
-    y: - height
+    y: - parent.height
     width: 70
     height: 70
-
+    visible: opacity > 0
+    Behavior on opacity { NumberAnimation { duration: 600 } }
+    
     onXChanged: {
         if (parent.x > width / 2.0) {
             if (x < -width / 2.0)
@@ -37,6 +40,7 @@ Item {
         source: news.imageUrl ? news.imageUrl : ""
         fillMode: Image.PreserveAspectCrop
         visible: false
+        onStatusChanged: if (image.status == Image.Ready) root.opacity = 1
     }
     
     Rectangle {
@@ -60,14 +64,15 @@ Item {
         source: opMask
         anchors.fill: opMask
         horizontalOffset: 0
-        verticalOffset: 2
-        radius: 12
+        verticalOffset: 3
+        radius: 10
         samples: 15
-        color: "#a0000000"
+        color: "#80000000"
         Rectangle {
             anchors.fill: parent
-            border.width: 2.5
-            border.color: Settings.theme == 'Dark' ? "#50ffffff" : "#70000000"
+            border.width: 2.3
+            border.color: Settings.theme == 'Dark'
+                          ? "#50ffffff" : "#70000000"
             SmoothColorAnimation on border.color {}
             color: "transparent"
             radius: width / 2.0
@@ -144,7 +149,7 @@ Item {
         }
 
         onColorChanged: requestPaint()
-        onPaint: drawRoundedRect(1, 1, width - 14, height - 2, 14, '#6f6f6f')
+        onPaint: drawRoundedRect(1, 1, width - 14, height - 2, 14, color)
         function drawRoundedRect(x, y, w, h, radius, color) {
             var context = getContext("2d")
             var r = x + w
@@ -152,8 +157,9 @@ Item {
             context.clearRect(0, 0, width, height);
             context.beginPath()
             context.fillStyle = color
-            context.lineWidth = 2.5
-            context.strokeStyle = Settings.theme == 'Dark' ? "#25ffffff" : "#60000000"
+            context.lineWidth = 2.3
+            context.strokeStyle = Settings.theme == 'Dark'
+                    ? "#35ffffff" : "#35000000"
             context.moveTo(x + radius, y)
             context.lineTo(r - radius, y)
             context.quadraticCurveTo(r, y, r, y + radius)
@@ -168,43 +174,61 @@ Item {
             context.fill()
             context.stroke()
         }
-        property var color: Settings.theme == 'Dark' ? "#40ffffff" : "#90000000"
+        property var color: Settings.theme == 'Dark'
+                            ? "#60ffffff" : "#50000000"
     }
 
     DropShadow {
         source: descBalloon
         anchors.fill: descBalloon
         horizontalOffset: 0
-        verticalOffset: 2
-        radius: 12
+        verticalOffset: 3
+        radius: 10
         samples: 15
-        color: "#a0000000"
+        color: "#80000000"
         opacity: d.initiallyDescVisible || mouseArea.containsMouse ? 1 : 0
-        Behavior on opacity { NumberAnimation { duration: d.initiallyDescVisible ? 600 : 100 } }
+        Behavior on opacity
+        { NumberAnimation { duration: d.initiallyDescVisible ? 600 : 100 } }
     }
+    
     MouseArea {
         id: mouseArea
         anchors.fill: image
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
+        onContainsMouseChanged: {
+            parent.z = containsMouse
+            parent.parent.flowPaused = containsMouse
+        }
+        onClicked: parent.parent.showNews(news)
     }
     
-    function run() {
+    function play() {
+        if (image.status == Image.Ready)
+            opacity = 1
         iterateVerticalTimer.start()
         iterateHorizontalTimer.start()
         horzDirectionChangeTimer.start()
     }
     
-    Timer {
-        interval: 15000
-        repeat: false
-        running: true
-        onTriggered: d.initiallyDescVisible = false
+    function pause() {
+        iterateVerticalTimer.stop()
+        iterateHorizontalTimer.stop()
+        horzDirectionChangeTimer.stop()
     }
 
+    function stop() {
+        pause()
+        opacity = 0
+    }
+    
+    function resetPos() {
+        y = - parent.height
+    }
+        
     QtObject {
         id: d
-        property bool initiallyDescVisible: image.status == Image.Ready
+        property bool initiallyDescVisible: image.status == Image.Ready && root.y > -200
         property bool horzDirection: Utils.getRandomInteger(0, 1)
         readonly property real minSpeed: 0.4
         readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 3.0)

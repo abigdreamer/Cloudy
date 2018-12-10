@@ -30,6 +30,15 @@ function getRandomNumber(min, max, precision) {
     return (Math.random() * (max - min) + min).toFixed(precision);
 }
 
+function repeatedlyCall(interval, parent, callback) {
+    var timer = Qt.createQmlObject('import QtQuick 2.0; Timer{}', parent)
+    timer.repeat = true
+    timer.interval = interval
+    timer.triggered.connect(callback)
+    timer.start()
+    return timer
+}
+
 function delayCall(interval, parent, callback) {
     var timer = Qt.createQmlObject('import QtQuick 2.0; Timer{}', parent)
     timer.interval = interval
