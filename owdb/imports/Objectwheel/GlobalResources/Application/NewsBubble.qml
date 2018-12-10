@@ -11,6 +11,24 @@ Item {
     width: 70
     height: 70
 
+    onXChanged: {
+        if (parent.x > width / 2.0) {
+            if (x < -width / 2.0)
+                x = -width / 2.0
+        } else {
+            if (x < -parent.x)
+                x = -parent.x
+        }
+
+        if (homePane.width - parent.x - parent.width > width / 2.0) {
+            if (x > width / 2.0)
+                x = width / 2.0
+        } else {
+            if (x > homePane.width - parent.x - parent.width)
+                x = homePane.width - parent.x - parent.width
+        }
+    }
+
     Image {
         id: image
         anchors.centerIn: parent
@@ -37,19 +55,12 @@ Item {
         Rectangle {
             visible: image.status == Image.Ready
             anchors.fill: parent
-            border.width: 2.5
-            border.color: Material.accent
+            border.width: 2.3
+            border.color: Settings.theme == 'Dark' ? "#50ffffff" : "#50000000"
             SmoothColorAnimation on border.color {}
             color: "transparent"
             radius: width / 2.0
         }        
-    }
-    
-    MouseArea {
-        anchors.fill: image
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        //onClicked: flowOn = !flowOn
     }
 
     Timer {
@@ -78,22 +89,77 @@ Item {
         onTriggered: d.horzDirection = Utils.getRandomInteger(0, 1)
     }
     
-    onXChanged: {
-        if (parent.x > width / 2.0) {
-            if (x < -width / 2.0)
-                x = -width / 2.0
-        } else {
-            if (x < -parent.x)
-                x = -parent.x
+    Canvas {
+        anchors.right: image.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 250
+        opacity: d.initiallyDescVisible || mouseArea.containsMouse ? 1 : 0
+        Behavior on opacity { NumberAnimation { duration: d.initiallyDescVisible ? 600 : 100 } }
+        Label {
+            id: title
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.leftMargin: 10
+            anchors.rightMargin: 20
+            anchors.topMargin: 6
+            wrapMode: Label.WordWrap
+            font.weight: Font.Medium
+            text: news.title ? news.title : ""
+            color: Settings.theme == 'Dark' ? "#272727" : "white"
+            SmoothColorAnimation on color {}
+            font.pixelSize: 13
+            height: 15
+            elide: Text.ElideRight
+        }
+        Label {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: title.bottom
+            anchors.bottom: parent.bottom
+            anchors.leftMargin: 10
+            anchors.rightMargin: 20
+            anchors.topMargin: 2
+            anchors.bottomMargin: 6
+            wrapMode: Label.WordWrap
+            font.weight: Font.Light
+            text: news.description ? news.description : ""
+            color: Settings.theme == 'Dark' ? "#111111" : "white"
+            SmoothColorAnimation on color {}
+            font.pixelSize: 11
+            elide: Text.ElideRight
         }
 
-        if (homePane.width - parent.x - parent.width > width / 2.0) {
-            if (x > width / 2.0)
-                x = width / 2.0
-        } else {
-            if (x > homePane.width - parent.x - parent.width)
-                x = homePane.width - parent.x - parent.width
+        onPaint: drawRoundedRect(0, 0, width - 12, height, 14, '#6f6f6f')
+        function drawRoundedRect(x, y, w, h, radius, color) {
+            var context = getContext("2d")
+            var r = x + w
+            var b = y + h
+            context.clearRect(0, 0, width, height);
+            context.beginPath()
+            context.fillStyle = color
+            context.moveTo(x + radius, y)
+            context.lineTo(r - radius, y)
+            context.quadraticCurveTo(r, y, r, y + radius)
+            context.lineTo(r, y + h - radius)
+            context.quadraticCurveTo(r, b, r - radius, b)
+            context.lineTo(x + radius, b)
+            context.quadraticCurveTo(x, b, x, b - radius)
+            context.lineTo(x, y + radius)
+            context.quadraticCurveTo(x, y, x + radius, y)
+            context.moveTo(r, y + h / 8.0)
+            context.quadraticCurveTo(r, y + h / 2.0, r + 12, y + h / 2.0)
+            context.quadraticCurveTo(r, y + h / 2.0, r, y + h - h / 8.0)
+            context.fill()
         }
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: image
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
     }
     
     function run() {
@@ -101,12 +167,20 @@ Item {
         iterateHorizontalTimer.start()
         horzDirectionChangeTimer.start()
     }
+    
+    Timer {
+        interval: 5500
+        repeat: false
+        running: true
+        onTriggered: d.initiallyDescVisible = false
+    }
 
     QtObject {
         id: d
+        property bool initiallyDescVisible: image.status == Image.Ready
         property bool horzDirection: Utils.getRandomInteger(0, 1)
         readonly property real minSpeed: 0.4
-        readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 4.5)
+        readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 3.0)
         readonly property real vSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
         readonly property real hSpeed: Utils.getRandomNumber(minSpeed, maxSpeed)
         readonly property real directionChangeInterval: Utils.getRandomInteger(1500, 4000)

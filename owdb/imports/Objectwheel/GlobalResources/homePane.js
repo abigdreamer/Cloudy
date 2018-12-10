@@ -25,7 +25,7 @@ function newsBalloon_onFlowOnChanged() {
     }
     
     count += 1
-    NewsInfo.Fetch.getTopNews('us', function(val, err) {
+    NewsInfo.Fetch.getTopNews(App.Settings.countryCode(), function(val, err) {
         newsBalloon.enabled = true
         if (err) {
             newsBalloon.flowOn = false
@@ -58,7 +58,6 @@ function moveToNextNews(index, cnt) {
     if (!newsBubble)
         return console.trace()
     newsBubbles.push(newsBubble)
-    newsBubble.parent = newsBalloon
     newsBubble.news = nextNews
     newsBubble.run()
     
