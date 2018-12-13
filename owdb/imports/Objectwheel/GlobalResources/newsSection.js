@@ -25,7 +25,7 @@ function newsBalloon_onCompleted() {
 }
 
 function updateNews() {
-    NewsInfo.Fetch.getTopNews("us", function(val, err) {
+    NewsInfo.Fetch.getTopNews(App.Settings.countryCode(), function(val, err) {
         if (err) {
             console.log(err)
             return

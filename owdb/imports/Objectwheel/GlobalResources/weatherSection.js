@@ -2,5 +2,5 @@
 
 function weatherSection_onCompleted() {
     swipeView.addItem(weatherPane)
-    swipeView.addItem(citiesPane)
+    swipeView.addItem(cityPane)
 }

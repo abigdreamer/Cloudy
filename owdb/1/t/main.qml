@@ -141,8 +141,8 @@ ApplicationWindow {
                 Cursor {}
             }
             TabButton {
-                icon.source: Resource.images.other.myCities
-                text: qsTr("Cities")
+                icon.source: Resource.images.other.playButton
+                text: qsTr("Videos")
                 icon.color: "transparent"
                 Cursor {}
             }
@@ -206,7 +206,7 @@ ApplicationWindow {
                 model: ListModel {
                     ListElement { title: qsTr("News"); index: 0; stack: false }
                     ListElement { title: qsTr("Weather"); index: 1; stack: false }
-                    ListElement { title: qsTr("Cities"); index: 2; stack: false }
+                    ListElement { title: qsTr("Videos"); index: 2; stack: false }
                     ListElement { title: qsTr("Settings"); index: 0; stack: true }
                 }
     

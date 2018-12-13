@@ -30,6 +30,7 @@ QtObject {
         "other": {
             "pause": Qt.resolvedUrl('./images/other/pause.png'),
             "play": Qt.resolvedUrl('./images/other/play.png'),
+            "playButton": Qt.resolvedUrl('./images/other/playButton.png'),
             "qtLogo": Qt.resolvedUrl('./images/other/qtlogo.png'),
             "about": Qt.resolvedUrl('./images/other/about.png'),
             "arrowDown": Qt.resolvedUrl('./images/other/arrow-down.png'),
@@ -49,7 +50,7 @@ QtObject {
             "settings": Qt.resolvedUrl('./images/other/settings.png'),
             "weather": Qt.resolvedUrl('./images/other/weather.png'),
             "wind": Qt.resolvedUrl('./images/other/wind.png'),
-            "myCities": Qt.resolvedUrl('./images/other/my-cities.svg'),
+            "city": Qt.resolvedUrl('./images/other/city.svg'),
             "dark": Qt.resolvedUrl('./images/other/dark.png'),
             "light": Qt.resolvedUrl('./images/other/light.png'),
             "jump": Qt.resolvedUrl('./images/other/jump.png'),

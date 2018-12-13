@@ -1,10 +1,10 @@
-// citiesPane.js
+// cityPane.js
 .import Application 1.0 as App
 .import WeatherInfo 1.0 as WeatherInfo
 .import QtPositioning 5.2 as QP
 .import "weatherPane.js" as WeatherPaneJS
 
-function citiesPane_onCompleted() {
+function cityPane_onCompleted() {
     cityList.jumpToCity.connect(cityList_onJumpToCity)
     citySearchList.cityAdded.connect(citySearchList_onCityAdded)
     cleanSearchFieldButton.clicked.connect(cleanSearchFieldButton_onClicked)
@@ -72,5 +72,5 @@ function citySearchList_onCityAdded(listElement) {
 function cityList_onJumpToCity(listElement) {
     var coord = QP.QtPositioning.coordinate(listElement.latitude, listElement.longitude)
     weatherPane.jumpToCoord(coord)
-    applicationWindow.tabBar.currentIndex = 1
+    weatherSection.tB.currentIndex = 0
 }
