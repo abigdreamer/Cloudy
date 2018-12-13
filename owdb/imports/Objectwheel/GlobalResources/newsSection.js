@@ -1,4 +1,4 @@
-// newsPane.js
+// newsSection.js
 
 .import NewsInfo 1.0 as NewsInfo
 .import Application 1.0 as App
@@ -8,7 +8,7 @@ var news = []
 var newsIndex = 0
 var newsBubbles = []
 
-function newsPane_onCompleted() {
+function newsSection_onCompleted() {
     newsBalloon.QQ.Component.completed.connect(newsBalloon_onCompleted)
     newsBalloon.showNews.connect(newsBalloon_onShowNews)
     newsBalloon.flowOnChanged.connect(newsBalloon_onFlowOnChanged)
@@ -16,8 +16,8 @@ function newsPane_onCompleted() {
 }
 
 function newsBalloon_onCompleted() {
-    App.Utils.repeatedlyCall(60000, newsPane, updateNews)
-    App.Utils.repeatedlyCall(4000, newsPane, showNextBubble)
+    App.Utils.repeatedlyCall(60000, newsSection, updateNews)
+    App.Utils.repeatedlyCall(4000, newsSection, showNextBubble)
     
     updateNews()
     createBubbles(newsBalloon)
@@ -102,7 +102,7 @@ function showNextBubble() {
 }
 
 function newsBalloon_onShowNews(news) {
-    newsPane.news = news
-    newsPane.newsDialog.open()
-    App.Utils.delayCall(100, newsPane, () => newsBalloon.flowPaused = true)
+    newsSection.news = news
+    newsSection.newsDialog.open()
+    App.Utils.delayCall(100, newsSection, () => newsBalloon.flowPaused = true)
 }

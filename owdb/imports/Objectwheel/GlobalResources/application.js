@@ -6,9 +6,9 @@
 
 function application_onCompleted() {
     App.Settings.themeChanged.connect(settings_onThemeChanged)
-    swipeView.addItem(newsPane)
+    swipeView.addItem(newsSection)
     swipeView.addItem(weatherSection)
-    swipeView.addItem(videosPane)
+    swipeView.addItem(videosSection)
     restoreSettings()
 }
 

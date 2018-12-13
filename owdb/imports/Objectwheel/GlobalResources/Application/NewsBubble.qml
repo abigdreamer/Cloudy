@@ -23,12 +23,12 @@ Item {
                 x = -parent.x
         }
 
-        if (newsPane.width - parent.x - parent.width > width / 2.0) {
+        if (newsSection.width - parent.x - parent.width > width / 2.0) {
             if (x > width / 2.0)
                 x = width / 2.0
         } else {
-            if (x > newsPane.width - parent.x - parent.width)
-                x = newsPane.width - parent.x - parent.width
+            if (x > newsSection.width - parent.x - parent.width)
+                x = newsSection.width - parent.x - parent.width
         }
     }
 

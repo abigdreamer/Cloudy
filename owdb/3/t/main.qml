@@ -5,10 +5,10 @@ import QtGraphicalEffects 1.0
 import Application 1.0
 
 Page {
-    id: newsPane
+    id: newsSection
     width: 376
     height: 564
-    Component.onCompleted: NewsPaneJS.newsPane_onCompleted()
+    Component.onCompleted: NewsSectionJS.newsSection_onCompleted()
     title: qsTr("News")
     
     Dialog {

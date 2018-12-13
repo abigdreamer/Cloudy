@@ -3,9 +3,9 @@ import QtQuick.Window 2.3
 import Objectwheel.GlobalResources 1.0
 
 Window {
-    id: videosPane
+    id: videosSection
     width: 342
     height: 608
     visible: true
-    Component.onCompleted: VideosPaneJS.videosPane_onCompleted()
+    Component.onCompleted: VideosSectionJS.videosSection_onCompleted()
 }

@@ -38,8 +38,8 @@ Item {
     Canvas {
         anchors.fill: parent
         onColorChanged: requestPaint()
-        property var color: Settings.theme == 'Dark'
-                            ? "#60ffffff" : "#50000000"
+        property var color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
+        Behavior on color { SmoothColorAnimation {} }
         onPaint: {
             var context = getContext("2d")
             context.clearRect(0, 0, width, height);
@@ -47,9 +47,9 @@ Item {
             context.lineWidth = 1
             context.strokeStyle = color
             context.moveTo(width, 0)
-            context.lineTo(0, 0)
-            context.lineTo(0, height)
-            context.lineTo(width, height)
+            context.lineTo(0.5, 0.5)
+            context.lineTo(0.5, height - 0.5)
+            context.lineTo(width - 0.5, height - 0.5)
             context.stroke()
         }
     }
