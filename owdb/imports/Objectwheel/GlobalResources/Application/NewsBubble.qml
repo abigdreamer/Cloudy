@@ -23,12 +23,12 @@ Item {
                 x = -parent.x
         }
 
-        if (homePane.width - parent.x - parent.width > width / 2.0) {
+        if (newsPane.width - parent.x - parent.width > width / 2.0) {
             if (x > width / 2.0)
                 x = width / 2.0
         } else {
-            if (x > homePane.width - parent.x - parent.width)
-                x = homePane.width - parent.x - parent.width
+            if (x > newsPane.width - parent.x - parent.width)
+                x = newsPane.width - parent.x - parent.width
         }
     }
 
@@ -225,10 +225,10 @@ Item {
     function resetPos() {
         y = - parent.height
     }
-        
+
     QtObject {
         id: d
-        property bool initiallyDescVisible: image.status == Image.Ready && root.y > -200
+        property bool initiallyDescVisible: image.status == Image.Ready && root.y > -400
         property bool horzDirection: Utils.getRandomInteger(0, 1)
         readonly property real minSpeed: 0.4
         readonly property real maxSpeed: Utils.getRandomNumber(minSpeed, 3.0)

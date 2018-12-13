@@ -130,7 +130,7 @@ ApplicationWindow {
             anchors.top: parent.top
             TabButton {
                 icon.source: Resource.images.other.home
-                text: qsTr("Home")
+                text: qsTr("News")
                 icon.color: "transparent"
                 Cursor {}
             }
@@ -204,7 +204,7 @@ ApplicationWindow {
                 }
     
                 model: ListModel {
-                    ListElement { title: qsTr("Home"); index: 0; stack: false }
+                    ListElement { title: qsTr("News"); index: 0; stack: false }
                     ListElement { title: qsTr("Weather"); index: 1; stack: false }
                     ListElement { title: qsTr("Cities"); index: 2; stack: false }
                     ListElement { title: qsTr("Settings"); index: 0; stack: true }

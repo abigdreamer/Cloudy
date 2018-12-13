@@ -1,7 +1,9 @@
 module Objectwheel.GlobalResources
 ApplicationJS 1.0 application.js
 WeatherPaneJS 1.0 weatherPane.js
-HomePaneJS 1.0 homePane.js
+NewsPaneJS 1.0 newsPane.js
 SettingsPaneJS 1.0 settingsPane.js
 AboutDialogJS 1.0 aboutDialog.js
 CitiesPaneJS 1.0 citiesPane.js
+VideosPaneJS 1.0 videosPane.js
+WeatherSectionJS 1.0 weatherSection.js

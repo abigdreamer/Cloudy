@@ -1,4 +1,4 @@
-// homePane.js
+// newsPane.js
 
 .import NewsInfo 1.0 as NewsInfo
 .import Application 1.0 as App
@@ -8,21 +8,24 @@ var news = []
 var newsIndex = 0
 var newsBubbles = []
 
-function homePane_onCompleted() {
+function newsPane_onCompleted() {
+    newsBalloon.QQ.Component.completed.connect(newsBalloon_onCompleted)
     newsBalloon.showNews.connect(newsBalloon_onShowNews)
     newsBalloon.flowOnChanged.connect(newsBalloon_onFlowOnChanged)
     newsBalloon.flowPausedChanged.connect(newsBalloon_onFlowPausedChanged)
+}
 
-    App.Utils.repeatedlyCall(60000, homePane, updateNews)
-    App.Utils.repeatedlyCall(4000, homePane, showNextBubble)
+function newsBalloon_onCompleted() {
+    App.Utils.repeatedlyCall(60000, newsPane, updateNews)
+    App.Utils.repeatedlyCall(4000, newsPane, showNextBubble)
     
     updateNews()
-    createBubbles();
+    createBubbles(newsBalloon)
     newsBalloon_onFlowOnChanged()
 }
 
 function updateNews() {
-    NewsInfo.Fetch.getTopNews("us" /*App.Settings.countryCode()*/, function(val, err) {
+    NewsInfo.Fetch.getTopNews("us", function(val, err) {
         if (err) {
             console.log(err)
             return
@@ -31,17 +34,18 @@ function updateNews() {
     })
 }
 
-function createBubbles() {
+function createBubbles(parent) {
     for (var i = 0; i < 10; ++i)
-        newsBubbles.push(createBubble())
+        newsBubbles.push(createBubble(parent))
 }
 
-function createBubble() {
-    var component = Qt.createComponent(Qt.resolvedUrl('./Application/NewsBubble.qml'))
+function createBubble(parent) {
+    var component = Qt.createComponent(Qt.resolvedUrl('./Application/NewsBubble.qml'),
+                                       QQ.Component.PreferSynchronous, parent)
     if (component.status !== QQ.Component.Ready)
         return console.trace()
     
-    var newsBubble = component.createObject(newsBalloon)
+    var newsBubble = component.createObject(parent)
     if (!newsBubble)
         return console.trace()
     newsBubble.stop()
@@ -98,7 +102,7 @@ function showNextBubble() {
 }
 
 function newsBalloon_onShowNews(news) {
-    homePane.news = news
-    homePane.newsDialog.open()
-    App.Utils.delayCall(100, homePane, () => newsBalloon.flowPaused = true)
+    newsPane.news = news
+    newsPane.newsDialog.open()
+    App.Utils.delayCall(100, newsPane, () => newsBalloon.flowPaused = true)
 }

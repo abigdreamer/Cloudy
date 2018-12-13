@@ -5,11 +5,11 @@ import QtGraphicalEffects 1.0
 import Application 1.0
 
 Page {
-    id: homePane
+    id: newsPane
     width: 376
     height: 564
-    Component.onCompleted: HomePaneJS.homePane_onCompleted()
-    title: qsTr("Home")
+    Component.onCompleted: NewsPaneJS.newsPane_onCompleted()
+    title: qsTr("News")
     
     Dialog {
         id: dlgNews
