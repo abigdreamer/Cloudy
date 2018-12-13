@@ -41,7 +41,67 @@ ApplicationWindow {
         accentAnimApp.restart()
     }
         
-    header: ToolBar {
+    header: Control {
+        ToolBar {
+            anchors.fill: parent
+            RowLayout {
+                spacing: 20
+                anchors.fill: parent
+    
+                ToolButton {
+                    Cursor {}
+                    icon.source: stackView.currentItem === swipeView
+                                 ? Resource.images.other.drawer
+                                 : Resource.images.other.back
+                    onClicked: {
+                        stackView.currentItem === swipeView
+                            ? drawer.open()
+                            : stackView.pop()
+                                 
+                    }
+                }
+    
+                Label {
+                    id: titleLabel
+                    text: stackView.currentItem === swipeView
+                          ? (swipeView.currentItem ? swipeView.currentItem.title : qsTr("Cloudy"))
+                          : qsTr("Settings")
+                    font.pixelSize: 18
+                    elide: Label.ElideRight
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+                }
+    
+                ToolButton {
+                    Cursor{}
+                    icon.source: Resource.images.other.menu
+                    onClicked: optionsMenu.open()
+                    Menu {
+                        id: optionsMenu
+                        x: parent.width - width
+                        transformOrigin: Menu.TopRight
+    
+                        MenuItem {
+                            text: qsTr("Settings")
+                            enabled: stackView.currentItem === swipeView
+                            onTriggered: stackView.push(settingsPane)
+                            icon.source: Resource.images.other.settings
+                            icon.color: "transparent"
+                            Cursor {}
+                        }
+                        MenuItem {
+                            text: qsTr("About")
+                            onTriggered: aboutDialog.open()
+                            icon.source: Resource.images.other.about
+                            icon.color: "transparent"
+                            Cursor {}
+                        }
+                    }
+                }
+            }
+        }
+        
         SmoothColorAnimation on Material.background { id: accentAnim }
         function changeAccent(accentName) {
             Material.theme = Material.Light
@@ -59,63 +119,6 @@ ApplicationWindow {
             applicationWindow.changeAccent(newAccent.name)
             drawer.changeAccent(newAccent.name)
             changeAccent(newAccent.name)
-        }
-
-        RowLayout {
-            spacing: 20
-            anchors.fill: parent
-
-            ToolButton {
-                Cursor {}
-                icon.source: stackView.currentItem === swipeView
-                             ? Resource.images.other.drawer
-                             : Resource.images.other.back
-                onClicked: {
-                    stackView.currentItem === swipeView
-                        ? drawer.open()
-                        : stackView.pop()
-                             
-                }
-            }
-
-            Label {
-                id: titleLabel
-                text: stackView.currentItem === swipeView
-                      ? (swipeView.currentItem ? swipeView.currentItem.title : qsTr("Cloudy"))
-                      : qsTr("Settings")
-                font.pixelSize: 18
-                elide: Label.ElideRight
-                horizontalAlignment: Qt.AlignHCenter
-                verticalAlignment: Qt.AlignVCenter
-                Layout.fillWidth: true
-            }
-
-            ToolButton {
-                Cursor{}
-                icon.source: Resource.images.other.menu
-                onClicked: optionsMenu.open()
-                Menu {
-                    id: optionsMenu
-                    x: parent.width - width
-                    transformOrigin: Menu.TopRight
-
-                    MenuItem {
-                        text: qsTr("Settings")
-                        enabled: stackView.currentItem === swipeView
-                        onTriggered: stackView.push(settingsPane)
-                        icon.source: Resource.images.other.settings
-                        icon.color: "transparent"
-                        Cursor {}
-                    }
-                    MenuItem {
-                        text: qsTr("About")
-                        onTriggered: aboutDialog.open()
-                        icon.source: Resource.images.other.about
-                        icon.color: "transparent"
-                        Cursor {}
-                    }
-                }
-            }
         }
     }
     
@@ -214,8 +217,4 @@ ApplicationWindow {
             }
         }
     }
-
-    property var tabBar: tabbar
-    property var sW: swipeView
-    property var stW: stackView
 }
