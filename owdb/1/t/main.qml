@@ -34,20 +34,23 @@ ApplicationWindow {
         themeAnimBackground.restart()
         themeAnimForeground.restart()
     }
-
     SmoothColorAnimation on Material.accent { id: accentAnimApp }
     function changeAccent(accentName) {
         accentAnimApp.to = Settings.accentColor(accentName)
         accentAnimApp.restart()
     }
         
-    header: Control {
-        ToolBar {
-            anchors.fill: parent
+    header: ToolBar {
+        id: toolbar
+        width: column.width
+        height: column.height
+        Column {
+            id: column
+            spacing: 0
             RowLayout {
                 spacing: 20
-                anchors.fill: parent
-    
+                height: 48
+                width: applicationWindow.width
                 ToolButton {
                     Cursor {}
                     icon.source: stackView.currentItem === swipeView
@@ -57,10 +60,8 @@ ApplicationWindow {
                         stackView.currentItem === swipeView
                             ? drawer.open()
                             : stackView.pop()
-                                 
                     }
                 }
-    
                 Label {
                     id: titleLabel
                     text: stackView.currentItem === swipeView
@@ -72,7 +73,6 @@ ApplicationWindow {
                     verticalAlignment: Qt.AlignVCenter
                     Layout.fillWidth: true
                 }
-    
                 ToolButton {
                     Cursor{}
                     icon.source: Resource.images.other.menu
@@ -81,7 +81,6 @@ ApplicationWindow {
                         id: optionsMenu
                         x: parent.width - width
                         transformOrigin: Menu.TopRight
-    
                         MenuItem {
                             text: qsTr("Settings")
                             enabled: stackView.currentItem === swipeView
@@ -100,8 +99,79 @@ ApplicationWindow {
                     }
                 }
             }
+            TabBar {
+                clip: true
+                visible: height > 0
+                Behavior on height {
+                    SequentialAnimation {
+                        PropertyAnimation {
+                            duration: 300
+                            target: applicationWindow
+                            property: "title"
+                            to: applicationWindow.title
+                        }
+                        NumberAnimation {
+                            duration: 500
+                            easing.type: Easing.OutExpo
+                        }
+                    }
+                }
+                height: tabbar.currentIndex == 1 && stackView.currentItem === swipeView ? 48 : 0
+                width: applicationWindow.width
+                Material.accent: "white"
+                TabButton {
+                    text: qsTr("Weather")
+                    icon.source: Resource.images.weatherCondition["01d"]
+                    icon.color: "transparent"
+                    Cursor {}
+                }
+                TabButton {
+                    text: qsTr("City")
+                    icon.source: Resource.images.other.city
+                    icon.color: "transparent"
+                    Cursor {}
+                }
+            }
+            TabBar {
+                clip: true
+                visible: height > 0
+                Behavior on height {
+                    SequentialAnimation {
+                        PropertyAnimation {
+                            duration: 300
+                            target: applicationWindow
+                            property: "title"
+                            to: applicationWindow.title
+                        }
+                        NumberAnimation {
+                            duration: 500
+                            easing.type: Easing.OutExpo
+                        }
+                    }
+                }
+                height: tabbar.currentIndex == 2 && stackView.currentItem === swipeView ? 48 : 0
+                width: applicationWindow.width
+                Material.accent: "white"
+                TabButton {
+                    text: qsTr("Trends")
+                    icon.source: Resource.images.other.trends
+                    icon.color: "transparent"
+                    Cursor {}
+                }
+                TabButton {
+                    text: qsTr("Search")
+                    icon.source: Resource.images.other.search
+                    icon.color: "transparent"
+                    Cursor {}
+                }
+                TabButton {
+                    text: qsTr("Watch")
+                    icon.source: Resource.images.other.watch
+                    icon.color: "transparent"
+                    Cursor {}
+                }
+            }
         }
-        
         SmoothColorAnimation on Material.background { id: accentAnim }
         function changeAccent(accentName) {
             Material.theme = Material.Light
@@ -205,16 +275,18 @@ ApplicationWindow {
                     }
                     Cursor {}
                 }
-    
+                
                 model: ListModel {
                     ListElement { title: qsTr("News"); index: 0; stack: false }
                     ListElement { title: qsTr("Weather"); index: 1; stack: false }
                     ListElement { title: qsTr("Videos"); index: 2; stack: false }
                     ListElement { title: qsTr("Settings"); index: 0; stack: true }
                 }
-    
+                
                 ScrollIndicator.vertical: ScrollIndicator { }
             }
         }
     }
+    
+    property var tabBar: tabbar
 }

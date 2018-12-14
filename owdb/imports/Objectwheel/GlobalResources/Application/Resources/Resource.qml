@@ -28,6 +28,9 @@ QtObject {
             "50n": Qt.resolvedUrl('./images/weather-condition/50n.png')
         },
         "other": {
+            "watch": Qt.resolvedUrl('./images/other/watch.png'),
+            "trends": Qt.resolvedUrl('./images/other/trends.png'),
+            "search": Qt.resolvedUrl('./images/other/search.png'),
             "pause": Qt.resolvedUrl('./images/other/pause.png'),
             "play": Qt.resolvedUrl('./images/other/play.png'),
             "playButton": Qt.resolvedUrl('./images/other/playButton.png'),

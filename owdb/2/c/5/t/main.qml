@@ -11,7 +11,7 @@ Item {
     anchors.right: parent.right
     anchors.top: weeksWeather.bottom
     anchors.bottom: parent.bottom
-    
+
     Plugin {
         id: mapPlugin
         name: "mapboxgl"
