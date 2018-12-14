@@ -1,27 +1,44 @@
 .pragma library
 .import YouTube 1.0 as YouTube
 
-function toTopNewsUrl(countryCode) {
+function toTrendsUrl(countryCode) {
     return  YouTube.Constants.apiUrl +
-        '?apiKey=' + YouTube.Constants.apiKey +
-        '&country=' + countryCode
+        '?part=snippet&chart=mostPopular&maxResults=32' +
+        '&key=' + YouTube.Constants.apiKey +
+        '&regionCode=' + countryCode
 }
 
-function toTopNewsObject(response) {
+function toStatisticsUrl(countryCode) {
+    return  YouTube.Constants.apiUrl +
+        '?part=statistics&chart=mostPopular&maxResults=32' +
+        '&key=' + YouTube.Constants.apiKey +
+        '&regionCode=' + countryCode
+}
+
+function toTrendsObject(response, statistics) {
     return {
-        "sourceName": response.source.name,
-        "sourceUrl": response.url,
-        "imageUrl": response.urlToImage,
-        "title": response.title,
-        "description": response.description,
-        "content": response.content,
-        "date": new Date(response.publishedAt)
+        "id": response.id,
+        "channelTitle": response.snippet.channelTitle,
+        "title": response.snippet.localized.title,
+        "description": response.snippet.localized.description,
+        "imageUrl": response.snippet.thumbnails.high.url,
+        "statistics": statistics[response.id],
+        "date": new Date(response.snippet.publishedAt)
     }
 }
 
-function toNewsList(response) {
+function toTrendsList(response) {
     var finalList = []
-    for (var i = 0; i < response.articles.length; ++i)
-        finalList.push(response.articles[i])
+    for (var i = 0; i < response.items.length; ++i)
+        finalList.push(response.items[i])
+    return finalList
+}
+
+function toStatisticsList(response) {
+    var finalList = {}
+    for (var i = 0; i < response.items.length; ++i) {
+        var stat = response.items[i]
+        finalList[stat.id] = stat.statistics
+    }
     return finalList
 }

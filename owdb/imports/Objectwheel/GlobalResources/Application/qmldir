@@ -10,4 +10,5 @@ Tip 1.0 Tip.qml
 SettingItem 1.0 SettingItem.qml
 TintImage 1.0 TintImage.qml
 NewsBubble 1.0 NewsBubble.qml
+TrendsListDelegate 1.0 TrendsListDelegate.qml
 Utils 1.0 utils.js

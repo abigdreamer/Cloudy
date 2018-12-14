@@ -100,6 +100,7 @@ ApplicationWindow {
                 }
             }
             TabBar {
+                id: weatherbar
                 clip: true
                 visible: height > 0
                 Behavior on height {
@@ -133,6 +134,7 @@ ApplicationWindow {
                 }
             }
             TabBar {
+                id: videosbar
                 clip: true
                 visible: height > 0
                 Behavior on height {
@@ -288,5 +290,7 @@ ApplicationWindow {
         }
     }
     
+    property var videosBar: videosbar
+    property var weatherBar: weatherbar
     property var tabBar: tabbar
 }

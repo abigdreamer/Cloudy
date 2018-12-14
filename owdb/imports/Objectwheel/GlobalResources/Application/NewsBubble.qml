@@ -148,18 +148,17 @@ Item {
             elide: Text.ElideRight
         }
 
-        onColorChanged: requestPaint()
-        onPaint: drawRoundedRect(1, 1, width - 14, height - 2, 14, color)
-        function drawRoundedRect(x, y, w, h, radius, color) {
+        onPaint: drawRoundedRect(1, 1, width - 14, height - 2, 14)
+        function drawRoundedRect(x, y, w, h, radius) {
             var context = getContext("2d")
             var r = x + w
             var b = y + h
             context.clearRect(0, 0, width, height);
             context.beginPath()
-            context.fillStyle = color
+            context.fillStyle = "#6f6f6f"
             context.lineWidth = 2.3
             context.strokeStyle = Settings.theme == 'Dark'
-                    ? "#35ffffff" : "#35000000"
+                    ? "#35ffffff" : "#45000000"
             context.moveTo(x + radius, y)
             context.lineTo(r - radius, y)
             context.quadraticCurveTo(r, y, r, y + radius)
@@ -174,8 +173,7 @@ Item {
             context.fill()
             context.stroke()
         }
-        property var color: Settings.theme == 'Dark'
-                            ? "#60ffffff" : "#50000000"
+        Component.onCompleted: Settings.themeChanged.connect(requestPaint)
     }
 
     DropShadow {

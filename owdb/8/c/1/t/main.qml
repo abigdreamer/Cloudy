@@ -6,5 +6,5 @@ SwipeView {
     anchors.fill: parent
     interactive: false
     clip: true
-    currentIndex: applicationWindow.weatherBar.currentIndex
+    currentIndex: applicationWindow.videosBar.currentIndex
 }
