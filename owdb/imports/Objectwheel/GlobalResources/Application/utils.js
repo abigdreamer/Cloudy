@@ -90,3 +90,49 @@ function showMessage(parent, properties) {
     dialog.clicked.connect(dialog.destroy)
     dialog.visible = true
 }
+
+function fromNow(date) {
+    var firstSec = date.getTime() / 1000.0
+    var nowSec = (new Date()).getTime() / 1000.0
+    var diff = Math.abs(Math.floor(firstSec - nowSec))
+    if (diff < 10)
+        return QT_TRANSLATE_NOOP("Utils", "Just now")
+    if (diff < 60)
+        return diff + ' ' + QT_TRANSLATE_NOOP("Utils", "seconds ago")
+    if (diff < (60 * 60))
+        return Math.floor(diff / 60.0) + ' ' + QT_TRANSLATE_NOOP("Utils", "minutes ago")
+    if (diff < (60 * 60 * 24))
+        return Math.floor(diff / (60 * 60.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "hours ago")
+    if (diff < (60 * 60 * 24 * 7))
+        return Math.floor(diff / (60 * 60 * 24.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "days ago")
+    if (diff < (60 * 60 * 24 * 30))
+        return Math.floor(diff / (60 * 60 * 24 * 7.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "weeks ago")
+    if (diff < (60 * 60 * 24 * 30 * 12))
+        return Math.floor(diff / (60 * 60 * 24 * 30.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "months ago")
+    return Math.floor(diff / (60 * 60 * 24 * 30 * 12.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "years ago")
+}
+
+function viewString(viewCount) {
+    var val
+    if (viewCount < 1000)
+        return viewCount + ' ' + QT_TRANSLATE_NOOP("Utils", "views")
+    if (viewCount < 1000000) {
+        val = viewCount / 1000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " K views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " K views")
+    }
+    if (viewCount < 1000000000) {
+        val = viewCount / 1000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " M views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " M views")
+    }
+    if (viewCount < 1000000000000) {
+        val = viewCount / 1000000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " B views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " B views")
+    }
+    return console.trace()
+}
