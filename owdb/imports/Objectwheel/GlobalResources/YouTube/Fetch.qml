@@ -24,28 +24,25 @@ QtObject {
         else return null
     }
     
-    function getChannelImageUrl(channelId, callback) {
-        var url = Utils.toChannelsUrl(channelId)
+    function getChannelImageUrlsSync(responses) {
+        var url = Utils.toChannelsUrl(responses)
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (xhttp.readyState === 4 && xhttp.status === 200) {
-                if (!xhttp.responseText
-                        || xhttp.responseText === ""
-                        || typeof xhttp.responseText === "undefined") {
-                    return callback(null, "Server error")
-                }
-
-                var response = JSON.parse(xhttp.responseText)
-                if (response.kind !== 'youtube#channelListResponse')
-                    return callback(null, "Server getting image error")
-    
-                callback(Utils.toChannelImage(response))
-            }
-            if (xhttp.readyState === 4 && xhttp.status !== 200)
-                callback(null, "Server rejected")
-        }
-        xhttp.open("GET", url, true)
+        xhttp.open("GET", url, false)
         xhttp.send()
+        if (xhttp.status === 200) {
+            if (!xhttp.responseText
+                    || xhttp.responseText === ""
+                    || typeof xhttp.responseText === "undefined") {
+                return null
+            }
+
+            var response = JSON.parse(xhttp.responseText)
+            if (response.kind !== 'youtube#channelListResponse')
+                return null
+
+            return Utils.toChannelImageUrlList(response)
+        }
+        else return null
     }
 
     function getTrends(countryCode, callback) {
@@ -69,8 +66,16 @@ QtObject {
                 
                 var trendsDatas = Utils.toTrendsList(response)
                 var trendsResponses = []
-                for (var i = 0; i < trendsDatas.length; i++)
+                for (var i = 0; i < trendsDatas.length; ++i)
                     trendsResponses.push(Utils.toTrendsObject(trendsDatas[i], statistics))
+                
+                var channelImageUrls = getChannelImageUrlsSync(trendsResponses)
+                if (!channelImageUrls)
+                    return callback(null, "Error getting statistics")
+                
+                for (i = 0; i < trendsResponses.length; ++i)
+                    trendsResponses[i].channelImageUrl = channelImageUrls[trendsResponses[i].channelId]
+                
                 callback(trendsResponses)
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)

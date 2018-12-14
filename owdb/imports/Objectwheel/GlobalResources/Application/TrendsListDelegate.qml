@@ -24,17 +24,6 @@ Item {
         width: 340
         height: 190
         fillMode: Image.PreserveAspectCrop
-        onStatusChanged: {
-            if (status == Image.Ready) {
-                Fetch.getChannelImageUrl(channelId, function(val, err) {
-                    if (err || !val) {
-                        console.log(err)
-                        return
-                    }
-                    channelImage.source = val
-                })
-            }
-        }
     }
     
     Rectangle {
@@ -56,11 +45,12 @@ Item {
             width: 50
             height: 50
             Image {
+                id: channelImage
                 anchors.fill: parent
                 clip: true
                 visible: false
-                id: channelImage
                 fillMode: Image.PreserveAspectCrop
+                source: channelImageUrl
                 sourceSize: Qt.size(60 * Screen.devicePixelRatio,
                                     60 * Screen.devicePixelRatio)
             }
