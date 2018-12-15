@@ -5,6 +5,13 @@
 .import Objectwheel.Core 1.0 as OC
 
 function application_onCompleted() {
+    if (Qt.platform.os !== "ios" && Qt.platform.os !== "android") {
+        maximumWidth = 370
+        maximumHeight = 650
+        minimumWidth = 370
+        minimumHeight = 650
+    }
+    
     App.Settings.themeChanged.connect(settings_onThemeChanged)
     swipeView.addItem(newsSection)
     swipeView.addItem(weatherSection)

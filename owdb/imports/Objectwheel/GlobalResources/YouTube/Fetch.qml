@@ -24,25 +24,28 @@ QtObject {
         else return null
     }
     
-    function getChannelImageUrlsSync(responses) {
+    function getChannelImageUrls(responses, callback) {
         var url = Utils.toChannelsUrl(responses)
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", url, false)
-        xhttp.send()
-        if (xhttp.status === 200) {
-            if (!xhttp.responseText
-                    || xhttp.responseText === ""
-                    || typeof xhttp.responseText === "undefined") {
-                return null
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                if (!xhttp.responseText
+                        || xhttp.responseText === ""
+                        || typeof xhttp.responseText === "undefined") {
+                    return callback(null, "Server error")
+                }
+
+                var response = JSON.parse(xhttp.responseText)
+                if (response.kind !== 'youtube#channelListResponse')
+                    return callback(null, "Server returned empty data")
+                
+                callback(Utils.toChannelImageUrlList(response))
             }
-
-            var response = JSON.parse(xhttp.responseText)
-            if (response.kind !== 'youtube#channelListResponse')
-                return null
-
-            return Utils.toChannelImageUrlList(response)
+            if (xhttp.readyState === 4 && xhttp.status !== 200)
+                callback(null, "Server rejected")
         }
-        else return null
+        xhttp.open("GET", url, true)
+        xhttp.send()
     }
 
     function getTrends(countryCode, callback) {
@@ -69,14 +72,15 @@ QtObject {
                 for (var i = 0; i < trendsDatas.length; ++i)
                     trendsResponses.push(Utils.toTrendsObject(trendsDatas[i], statistics))
                 
-                var channelImageUrls = getChannelImageUrlsSync(trendsResponses)
-                if (!channelImageUrls)
-                    return callback(null, "Error getting statistics")
-                
-                for (i = 0; i < trendsResponses.length; ++i)
-                    trendsResponses[i].channelImageUrl = channelImageUrls[trendsResponses[i].channelId]
-                
-                callback(trendsResponses)
+                var channelImageUrls = getChannelImageUrls(trendsResponses, function(val, err) {
+                    if (!val || err)
+                        return callback(null, err)
+                    
+                    for (i = 0; i < trendsResponses.length; ++i)
+                        trendsResponses[i].channelImageUrl = val[trendsResponses[i].channelId]
+                    
+                    callback(trendsResponses)
+                })
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
                 callback(null, "Server rejected")

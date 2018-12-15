@@ -28,7 +28,7 @@ Settings {
         { "name": QT_TRANSLATE_NOOP("Settings", "Indigo"), "color": "#673AB7" },
         { "name": QT_TRANSLATE_NOOP("Settings", "Blue"), "color": "#4689F2" },
         { "name": QT_TRANSLATE_NOOP("Settings", "Green"), "color": "#7EB643" },
-        { "name": QT_TRANSLATE_NOOP("Settings", "Orange"), "color": "#FF9800" },
+        { "name": QT_TRANSLATE_NOOP("Settings", "Orange"), "color": "#ed9702" },
         { "name": QT_TRANSLATE_NOOP("Settings", "Brown"), "color": "#795548" },
         { "name": QT_TRANSLATE_NOOP("Settings", "Colorful"), "color": "#ffffff" }
     ]

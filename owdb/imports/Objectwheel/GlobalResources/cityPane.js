@@ -26,7 +26,7 @@ function addRoundButton_onClicked() {
 }
 
 function searchField_onTextEdited() {    
-    noResultLabel.visible = searchField.text === ""
+    noResultLabel.visible = false
     busyIndicator.running = true
     citySearchList.model.clear()
     
@@ -72,5 +72,5 @@ function citySearchList_onCityAdded(listElement) {
 function cityList_onJumpToCity(listElement) {
     var coord = QP.QtPositioning.coordinate(listElement.latitude, listElement.longitude)
     weatherPane.jumpToCoord(coord)
-    weatherSection.tB.currentIndex = 0
+    applicationWindow.weatherBar.currentIndex = 0
 }

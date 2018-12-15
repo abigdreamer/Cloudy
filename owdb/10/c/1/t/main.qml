@@ -6,6 +6,12 @@ ListView {
     id: trendsList
     clip: true
     anchors.fill: parent
-    delegate: TrendsListDelegate {}
+    delegate: YouTubeVideoDelegate {}
     model: ListModel {}
+    onContentYChanged: {
+        if (contentY < -150)
+            refresh()
+    }
+    signal refresh()
+    signal videoOpened(var modelData)
 }

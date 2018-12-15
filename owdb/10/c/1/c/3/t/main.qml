@@ -10,7 +10,7 @@ Label {
     anchors.centerIn: parent
     color: Settings.theme === 'Dark' ? "#55ffffff" : "#55000000"
     Behavior on color { SmoothColorAnimation {} }
-    visible: trendsList.count === 0
+    visible: trendsList.count === 0 && !busyIndicator.running
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
 }
