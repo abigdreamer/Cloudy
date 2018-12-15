@@ -4,6 +4,7 @@
 .import Application 1.0 as App
 
 function trendsPane_onCompleted() {
+    trendsList.videoOpened.connect(trendsList_onVideoOpened)
     trendsList.refresh.connect(trendsList_onRefresh)
 }
 
@@ -22,4 +23,9 @@ function trendsList_onRefresh() {
         for (var i = 0; i < value.length; ++i)
             trendsList.model.append(value[i])
     })
+}
+
+function trendsList_onVideoOpened(modelData) {
+    applicationWindow.videosBar.currentIndex = 2
+    watchPane.video = modelData
 }

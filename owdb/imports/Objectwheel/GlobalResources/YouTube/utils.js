@@ -3,14 +3,7 @@
 
 function toTrendsUrl(countryCode) {
     return  YouTube.Constants.apiUrl + 'videos' +
-        '?part=snippet&chart=mostPopular&maxResults=32' +
-        '&key=' + YouTube.Constants.apiKey +
-        '&regionCode=' + countryCode
-}
-
-function toStatisticsUrl(countryCode) {
-    return  YouTube.Constants.apiUrl + 'videos' +
-        '?part=statistics&chart=mostPopular&maxResults=32' +
+        '?part=snippet,statistics,player&chart=mostPopular&maxResults=32' +
         '&key=' + YouTube.Constants.apiKey +
         '&regionCode=' + countryCode
 }
@@ -24,7 +17,7 @@ function toChannelsUrl(responses) {
     return res.slice(0, -1)
 }
 
-function toTrendsObject(response, statistics) {
+function toTrendsObject(response) {
     return {
         "id": response.id,
         "channelId": response.snippet.channelId,
@@ -33,7 +26,7 @@ function toTrendsObject(response, statistics) {
         "title": response.snippet.localized.title,
         "description": response.snippet.localized.description,
         "imageUrl": response.snippet.thumbnails.high.url,
-        "statistics": statistics[response.id],
+        "statistics": response.statistics,
         "date": new Date(response.snippet.publishedAt)
     }
 }
@@ -50,15 +43,6 @@ function toChannelImageUrlList(response) {
 function toTrendsList(response) {
     var finalList = []
     for (var i = 0; i < response.items.length; ++i)
-        finalList.push(response.items[i])
-    return finalList
-}
-
-function toStatisticsList(response) {
-    var finalList = {}
-    for (var i = 0; i < response.items.length; ++i) {
-        var stat = response.items[i]
-        finalList[stat.id] = stat.statistics
-    }
+        finalList.push(toTrendsObject(response.items[i]))
     return finalList
 }
