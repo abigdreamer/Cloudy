@@ -267,6 +267,8 @@ ApplicationWindow {
                 delegate: ItemDelegate {
                     width: parent.width
                     text: title
+                    font.pixelSize: 15
+                    font.weight: Font.Normal
                     highlighted: ListView.isCurrentItem
                     onClicked: {
                         if (stack)

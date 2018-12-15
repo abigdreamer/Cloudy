@@ -5,7 +5,7 @@ Item {
     y: 238
     x: 43
     id: todaysWeather
-    height: 250
+    height: 230
     anchors.top: parent.top
     anchors.left: parent.left
     anchors.right: parent.right

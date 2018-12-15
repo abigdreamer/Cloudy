@@ -41,7 +41,7 @@ ItemDelegate {
     
     RowLayout {
         clip: true
-        spacing: 8
+        spacing: 10
         anchors.left: banner.left
         anchors.right: banner.right
         anchors.top: banner.bottom
