@@ -11,5 +11,5 @@ ScrollView {
     anchors.top: player.bottom
     anchors.bottom: parent.bottom
     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-    ScrollBar.vertical.policy: ScrollBar.AsNeeded
+    ScrollBar.vertical.policy: ScrollBar.AlwaysOff
 }

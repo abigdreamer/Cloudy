@@ -6,5 +6,5 @@ BusyIndicator {
     height: 50
     width: 50
     anchors.centerIn: parent
-    running: true
+    running: false
 }

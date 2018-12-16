@@ -2,19 +2,26 @@
 .import YouTube 1.0 as YouTube
 
 function toTrendsUrl(countryCode) {
-    return  YouTube.Constants.apiUrl + 'videos' +
+    return YouTube.Constants.apiUrl + 'videos' +
         '?part=snippet,statistics,player&chart=mostPopular&maxResults=32' +
         '&key=' + YouTube.Constants.apiKey +
         '&regionCode=' + countryCode
 }
 
 function toChannelsUrl(responses) {
-    var res =  YouTube.Constants.apiUrl + 'channels' +
+    var res = YouTube.Constants.apiUrl + 'channels' +
         '?part=snippet,statistics' +
         '&key=' + YouTube.Constants.apiKey + '&id='
     for (var i = 0; i < responses.length; ++i)
         res += responses[i].channelId + ','
     return res.slice(0, -1)
+}
+
+function toCommentsUrl(videoId) {
+    return YouTube.Constants.apiUrl + 'commentThreads' +
+        '?part=snippet&maxResults=20&textFormat=plainText' +
+        '&key=' + YouTube.Constants.apiKey +
+        '&videoId=' + videoId
 }
 
 function toTrendsObject(response) {
@@ -32,8 +39,21 @@ function toTrendsObject(response) {
     }
 }
 
+function toCommentsObject(response) {
+    return {
+        "authorDisplayName": response.snippet.topLevelComment.snippet.authorDisplayName,
+        "authorProfileImageUrl": response.snippet.topLevelComment.snippet.authorProfileImageUrl.replace("s28-c", "s80-c"),
+        "authorChannelUrl": response.snippet.topLevelComment.snippet.authorChannelUrl,
+        "textDisplay": response.snippet.topLevelComment.snippet.textDisplay,
+        "likeCount": response.snippet.topLevelComment.snippet.likeCount,
+        "totalReplyCount": response.snippet.totalReplyCount,
+        "publishedAt": new Date(response.snippet.topLevelComment.snippet.publishedAt),
+        "updatedAt": new Date(response.snippet.topLevelComment.snippet.updatedAt)
+    }
+}
+
 function toChannelImageUrlList(response) {
-    var finalList = {}
+    var finalList = []
     for (var i = 0; i < response.items.length; ++i) {
         var entry = response.items[i]
         finalList[entry.id] = {
@@ -41,6 +61,13 @@ function toChannelImageUrlList(response) {
             "channelImageUrl" : entry.snippet.thumbnails.medium.url
         }
     }
+    return finalList
+}
+
+function toCommentsList(response) {
+    var finalList = []
+    for (var i = 0; i < response.items.length; ++i)
+        finalList.push(toCommentsObject(response.items[i]))
     return finalList
 }
 

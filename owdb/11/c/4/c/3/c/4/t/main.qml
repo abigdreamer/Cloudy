@@ -8,4 +8,19 @@ ListView {
     width: watchPane.width
     delegate: YouTubeCommentDelegate {}
     model: ListModel {}
+    height: model.count === 0
+            ? watchPane.height - channelContainer.height - titleContainer.height - player.height
+            : contentHeight
+    interactive: false
+    header: Label {
+        width: watchPane.width
+        height: 30
+        text: qsTr("Comments") + ' \u2022 '
+              + (watchPane.video
+                 ? Utils.likeString(watchPane.video.statistics.commentCount)
+                 : 0)
+        font.pixelSize: 15
+        leftPadding: 15
+        topPadding: 10
+    }
 }

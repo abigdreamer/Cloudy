@@ -8,99 +8,132 @@ import Application.Resources 1.0
 import YouTube 1.0
 import QtQuick.Window 2.2
 
-ItemDelegate {
+Item {
     id: delegate
-    height: 290
+    height: column.height + 20
     width: ListView.view.width
     clip: true
     property var listView: ListView.view
     
-    Cursor {}
-    
     Rectangle {
         height: 1
-        anchors.left: parent.left
+        anchors.left: channelImage.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.leftMargin: 10
         color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
         Behavior on color { SmoothColorAnimation {} }
     }
-        
-    Image {
-        id: banner
-        source: imageUrl
-        anchors.topMargin: 15
+    
+    Item {
+        id: channelImage
+        anchors.left: parent.left
         anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: 340
-        height: 190
-        fillMode: Image.PreserveAspectCrop
-        sourceSize: Qt.size(Screen.devicePixelRatio * 340,
-                            Screen.devicePixelRatio * 190)
+        anchors.leftMargin: 15
+        anchors.topMargin: 10
+        width: 40
+        height: 40
+        Image {
+            id: image
+            anchors.fill: parent
+            visible: false
+            fillMode: Image.PreserveAspectCrop
+            source: authorProfileImageUrl
+            sourceSize: Qt.size(width * Screen.devicePixelRatio,
+                                width * Screen.devicePixelRatio)
+        }
+        OpacityMask {
+            anchors.fill: image
+            source: image
+            maskSource: Rectangle {
+                width: image.width
+                height: image.width
+                radius: image.width
+            }
+        }
     }
     
-    RowLayout {
-        clip: true
-        spacing: 10
-        anchors.left: banner.left
-        anchors.right: banner.right
-        anchors.top: banner.bottom
-        anchors.topMargin: 15
-        
+    Column {
+        id: column
+        spacing: 6
+        anchors.left: channelImage.right
+        anchors.leftMargin: 10
+        anchors.top: channelImage.top
+        Label {
+            text: textDisplay
+            wrapMode: Label.WordWrap
+            width: delegate.width - column.x - 15
+            font.pixelSize: 13
+            maximumLineCount: 4
+            elide: Label.ElideRight
+        }
+        Label {
+            width: delegate.width - column.x - 15
+            wrapMode: Label.NoWrap
+            font.pixelSize: 12
+            maximumLineCount: 1
+            elide: Label.ElideRight
+            color: Settings.theme === 'Dark' ? "#949494" : "#848484"
+            Behavior on color { SmoothColorAnimation {} }
+            text: authorDisplayName + ' \u2022 '
+            + (updatedAt.getTime() !== publishedAt.getTime()
+               ? qsTr("Updated ") + Utils.fromNow(updatedAt)
+               : Utils.fromNow(publishedAt))
+        }
         Item {
-            width: 48
-            height: 48
-            Layout.preferredWidth: 48
-            Layout.preferredHeight: 48
-            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-            Image {
-                id: channelImage
-                anchors.fill: parent
-                visible: false
-                fillMode: Image.PreserveAspectCrop
-                source: channelImageUrl
-                sourceSize: Qt.size(width * Screen.devicePixelRatio,
-                                    width * Screen.devicePixelRatio)
+            clip: true
+            height: 16
+            width: 100
+            Row {
+                x: 0
+                y: 0
+                spacing: 3
+                TintImage {
+                    width: 16
+                    height: 16
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.source: Resource.images.other.comments
+                    tintColor: Settings.theme === 'Dark' ? "#949494" : "#848484"
+                    Behavior on tintColor { SmoothColorAnimation {} }
+                }
+                Label {
+                    font.pixelSize: 12
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: Utils.likeString(totalReplyCount)
+                    color: Settings.theme === 'Dark' ? "#949494" : "#848484"
+                    Behavior on color { SmoothColorAnimation {} }
+                }
             }
-            OpacityMask {
-                anchors.fill: channelImage
-                source: channelImage
-                maskSource: Rectangle {
-                    width: channelImage.width
-                    height: channelImage.width
-                    radius: channelImage.width
+            Row {
+                x: 50
+                y: 1
+                spacing: 3
+                TintImage {
+                    width: 15
+                    height: 15
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.source: Resource.images.other.like
+                    tintColor: Settings.theme === 'Dark' ? "#949494" : "#848484"
+                    Behavior on tintColor { SmoothColorAnimation {} }
+                }
+                Label {
+                    font.pixelSize: 12
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: Utils.likeString(likeCount)
+                    color: Settings.theme === 'Dark' ? "#949494" : "#848484"
+                    Behavior on color { SmoothColorAnimation {} }
                 }
             }
         }
-        
-        ColumnLayout {
-            spacing: 3
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Label {
-                text: title
-                wrapMode: Label.WordWrap
-                Layout.fillWidth: true
-                font.pixelSize: 15
-                maximumLineCount: 2
-                elide: Label.ElideRight
-            }
-            Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                wrapMode: Label.WordWrap
-                font.pixelSize: 13
-                maximumLineCount: 2
-                elide: Label.ElideRight
-                verticalAlignment: Label.AlignTop
-                color: Settings.theme === 'Dark' ? "#949494" : "#848484"
-                Behavior on color { SmoothColorAnimation {} }
-                text: channelTitle + ' \u2022 '
-                + Utils.viewString(statistics.viewCount) + ' \u2022 '
-                + Utils.fromNow(date)
-            }
-        }
     }
-    
-    onClicked: listView.videoOpened(listView.model.get(index))
+    //     return {
+    //     "authorDisplayName": response.snippet.topLevelComment.snippet.authorDisplayName,
+    //     "authorProfileImageUrl": response.snippet.topLevelComment.snippet.authorProfileImageUrl,
+    //     "authorChannelUrl": response.snippet.topLevelComment.snippet.authorChannelUrl,
+    //     "textDisplay": response.snippet.topLevelComment.snippet.textDisplay,
+    //     "likeCount": response.snippet.topLevelComment.snippet.likeCount,
+    //     "totalReplyCount": response.snippet.totalReplyCount,
+    //     "publishedAt": new Date(response.snippet.topLevelComment.snippet.publishedAt),
+    //     "updatedAt": new Date(response.snippet.topLevelComment.snippet.updatedAt)
+    // }
 }
