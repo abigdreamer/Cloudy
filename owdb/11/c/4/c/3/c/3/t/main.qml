@@ -2,13 +2,21 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 import Application 1.0
 
-Label {
+TextArea {
     id: description
+    background: Item {}
+    readOnly: true
     clip: true
-    height: titleContainer.showDescription ? contentHeight : 0
+    selectByMouse: true
+    height: titleContainer.showDescription ? contentHeight + 2 * padding : 0
     width: watchPane.width
     visible: height > 0
-    Behavior on height { NumberAnimation { } }
+    Behavior on height {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutExpo
+        }
+    }
     Rectangle {
         height: 1
         anchors.left: parent.left
@@ -17,6 +25,7 @@ Label {
         color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
         Behavior on color { SmoothColorAnimation {} }
     }
+    Cursor { cursorShape: Qt.IBeamCursor }
     wrapMode: Label.WordWrap
     font.pixelSize: 14
     color: Settings.theme === 'Dark' ? "#949494" : "#848484"
