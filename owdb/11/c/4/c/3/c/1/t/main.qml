@@ -5,10 +5,8 @@ import Application 1.0
 ItemDelegate {
     id: titleContainer
     clip: true
-    anchors.top: player.bottom
-    anchors.left: parent.left
-    anchors.right: parent.right
     height: view.y + view.height + title.x
+    width: watchPane.width
     Cursor {}
     Rectangle {
         height: 1

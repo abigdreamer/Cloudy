@@ -5,10 +5,8 @@ import Application 1.0
 Item {
     id: channelContainer
     clip: true
-    anchors.top: titleContainer.bottom
-    anchors.left: parent.left
-    anchors.right: parent.right
     height: 60
+    width: watchPane.width
     Rectangle {
         height: 1
         anchors.left: parent.left

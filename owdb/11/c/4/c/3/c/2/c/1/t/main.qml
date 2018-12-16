@@ -4,6 +4,8 @@ import Application.Resources 1.0
 import QtQuick.Window 2.3
 
 Item {
+    y: 13
+    x: 0
     id: channelImage
     width: 40
     height: 40

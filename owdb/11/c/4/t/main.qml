@@ -1,10 +1,15 @@
-import QtQuick 2.0
+import QtQuick 2.8
+import QtQuick.Controls 2.2
 
-Rectangle {
-    y: 399
-    x: 72
+ScrollView {
+    y: 192
+    x: 0
     id: container
-    height: 50
-    width: 50
-    border.color: "black"
+    clip: true
+    anchors.right: parent.right
+    anchors.left: parent.left
+    anchors.top: player.bottom
+    anchors.bottom: parent.bottom
+    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+    ScrollBar.vertical.policy: ScrollBar.AsNeeded
 }
