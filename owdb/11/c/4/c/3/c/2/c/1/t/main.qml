@@ -32,7 +32,6 @@ Item {
             radius: image.width
         }
     }
-    
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor

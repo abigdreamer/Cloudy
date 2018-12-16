@@ -30,6 +30,7 @@ function toTrendsObject(response) {
         "channelId": response.snippet.channelId,
         "channelStatistics": null,
         "channelImageUrl": null,
+        "channelDescription": null,
         "channelTitle": response.snippet.channelTitle,
         "title": response.snippet.localized.title,
         "description": response.snippet.localized.description,
@@ -57,6 +58,7 @@ function toChannelImageUrlList(response) {
     for (var i = 0; i < response.items.length; ++i) {
         var entry = response.items[i]
         finalList[entry.id] = {
+            "channelDescription": entry.snippet.description,
             "channelStatistics" : entry.statistics,
             "channelImageUrl" : entry.snippet.thumbnails.medium.url
         }

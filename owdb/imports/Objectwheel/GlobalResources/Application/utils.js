@@ -113,7 +113,7 @@ function fromNow(date) {
 }
 
 function viewString(viewCount) {
-    if (!viewCount || typeof viewCount === "undefined")
+    if (viewCount < 0 || typeof viewCount === "undefined")
         return '?'
     var val
     if (viewCount < 1000)
@@ -140,7 +140,7 @@ function viewString(viewCount) {
 }
 
 function subsString(subsCount) {
-    if (!subsCount || typeof subsCount === "undefined")
+    if (subsCount < 0 || typeof subsCount === "undefined")
         return '?'
     var val
     if (subsCount < 1000)
@@ -167,7 +167,7 @@ function subsString(subsCount) {
 }
 
 function likeString(likeCount) {
-    if (!likeCount || typeof likeCount === "undefined")
+    if (likeCount < 0 || typeof likeCount === "undefined")
         return '?'
     var val
     if (likeCount < 1000)

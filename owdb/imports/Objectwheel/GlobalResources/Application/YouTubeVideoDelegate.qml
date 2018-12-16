@@ -74,7 +74,7 @@ ItemDelegate {
         }
         
         ColumnLayout {
-            spacing: 3
+            spacing: 4
             Layout.fillWidth: true
             Layout.fillHeight: true
             Label {

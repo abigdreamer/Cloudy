@@ -15,14 +15,22 @@ Item {
     clip: true
     property var listView: ListView.view
     
+    Component.onCompleted: listView.backgroundClicked.connect(deselect)
+
+    function deselect() {
+        displayText.deselect()
+        authorText.deselect()
+    }
+
     Rectangle {
         height: 1
         anchors.left: channelImage.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.leftMargin: 10
-        color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
+        color: Settings.theme === 'Dark' ? "#cc404447" : "#cce2e2e2"
         Behavior on color { SmoothColorAnimation {} }
+        visible: index < listView.model.count - 1
     }
     
     Item {
@@ -50,6 +58,11 @@ Item {
                 height: image.width
                 radius: image.width
             }
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: watchPane.openUserDialog(listView.model.get(index))
+            }
         }
     }
     
@@ -59,31 +72,63 @@ Item {
         anchors.left: channelImage.right
         anchors.leftMargin: 10
         anchors.top: channelImage.top
-        Label {
+        TextArea {
+            id: displayText
             text: textDisplay
             wrapMode: Label.WordWrap
             width: delegate.width - column.x - 15
             font.pixelSize: 13
-            maximumLineCount: 4
-            elide: Label.ElideRight
+            height: lineCount < 5 ? paintedHeight + 5 : 60
+            background: Item { }
+            readOnly: true
+            clip: true
+            selectByMouse: true
+            leftPadding: 0
+            topPadding: 0
+            rightPadding: 0
+            bottomPadding: 0
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.IBeamCursor
+                onPressed: {
+                    mouse.accepted = false
+                    listView.backgroundClicked()
+                }
+            }
         }
-        Label {
+        TextArea {
+            id: authorText
             width: delegate.width - column.x - 15
             wrapMode: Label.NoWrap
             font.pixelSize: 12
-            maximumLineCount: 1
-            elide: Label.ElideRight
+            height: 13
             color: Settings.theme === 'Dark' ? "#949494" : "#848484"
             Behavior on color { SmoothColorAnimation {} }
             text: authorDisplayName + ' \u2022 '
             + (updatedAt.getTime() !== publishedAt.getTime()
                ? qsTr("Updated ") + Utils.fromNow(updatedAt)
                : Utils.fromNow(publishedAt))
+            background: Item {}
+            readOnly: true
+            clip: true
+            selectByMouse: true
+            leftPadding: 0
+            topPadding: 0
+            rightPadding: 0
+            bottomPadding: 0
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.IBeamCursor
+                onPressed: {
+                    mouse.accepted = false
+                    listView.backgroundClicked()
+                }
+            }
         }
         Item {
             clip: true
             height: 16
-            width: 100
+            width: 120
             Row {
                 x: 0
                 y: 0
@@ -105,12 +150,12 @@ Item {
                 }
             }
             Row {
-                x: 50
+                x: 60
                 y: 1
                 spacing: 3
                 TintImage {
-                    width: 15
-                    height: 15
+                    width: 14
+                    height: 14
                     anchors.verticalCenter: parent.verticalCenter
                     icon.source: Resource.images.other.like
                     tintColor: Settings.theme === 'Dark' ? "#949494" : "#848484"
@@ -126,14 +171,4 @@ Item {
             }
         }
     }
-    //     return {
-    //     "authorDisplayName": response.snippet.topLevelComment.snippet.authorDisplayName,
-    //     "authorProfileImageUrl": response.snippet.topLevelComment.snippet.authorProfileImageUrl,
-    //     "authorChannelUrl": response.snippet.topLevelComment.snippet.authorChannelUrl,
-    //     "textDisplay": response.snippet.topLevelComment.snippet.textDisplay,
-    //     "likeCount": response.snippet.topLevelComment.snippet.likeCount,
-    //     "totalReplyCount": response.snippet.totalReplyCount,
-    //     "publishedAt": new Date(response.snippet.topLevelComment.snippet.publishedAt),
-    //     "updatedAt": new Date(response.snippet.topLevelComment.snippet.updatedAt)
-    // }
 }

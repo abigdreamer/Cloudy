@@ -11,12 +11,7 @@ TextArea {
     height: titleContainer.showDescription ? contentHeight + 2 * padding : 0
     width: watchPane.width
     visible: height > 0
-    Behavior on height {
-        NumberAnimation {
-            duration: 500
-            easing.type: Easing.OutExpo
-        }
-    }
+    Behavior on height { NumberAnimation { duration: 300 } }
     Rectangle {
         height: 1
         anchors.left: parent.left

@@ -9,7 +9,7 @@ ListView {
     delegate: YouTubeVideoDelegate {}
     model: ListModel {}
     onContentYChanged: {
-        if (contentY < -150)
+        if (contentY < -100)
             refresh()
     }
     signal refresh()

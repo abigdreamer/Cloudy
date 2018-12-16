@@ -23,4 +23,12 @@ ListView {
         leftPadding: 15
         topPadding: 10
     }
+    
+    MouseArea {
+        anchors.fill: parent
+        onClicked: backgroundClicked()
+        z: -1
+    }
+
+    signal backgroundClicked()
 }
