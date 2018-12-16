@@ -5,10 +5,10 @@ import QtQuick.Window 2.3
 
 Item {
     id: channelImage
-    width: 48
-    height: 48
+    width: 40
+    height: 40
     anchors.left: parent.left
-    anchors.leftMargin: 5
+    anchors.leftMargin: 10
     anchors.verticalCenter: parent.verticalCenter
     Image {
         id: image
@@ -29,5 +29,12 @@ Item {
             height: image.width
             radius: image.width
         }
+    }
+    
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: Qt.openUrlExternally('https://www.youtube.com/channel/%1'
+                                        .arg(watchPane.video.channelId))
     }
 }

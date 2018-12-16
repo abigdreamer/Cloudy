@@ -10,7 +10,7 @@ function toTrendsUrl(countryCode) {
 
 function toChannelsUrl(responses) {
     var res =  YouTube.Constants.apiUrl + 'channels' +
-        '?part=snippet' +
+        '?part=snippet,statistics' +
         '&key=' + YouTube.Constants.apiKey + '&id='
     for (var i = 0; i < responses.length; ++i)
         res += responses[i].channelId + ','
@@ -21,6 +21,7 @@ function toTrendsObject(response) {
     return {
         "id": response.id,
         "channelId": response.snippet.channelId,
+        "channelStatistics": null,
         "channelImageUrl": null,
         "channelTitle": response.snippet.channelTitle,
         "title": response.snippet.localized.title,
@@ -35,7 +36,10 @@ function toChannelImageUrlList(response) {
     var finalList = {}
     for (var i = 0; i < response.items.length; ++i) {
         var entry = response.items[i]
-        finalList[entry.id] = entry.snippet.thumbnails.medium.url
+        finalList[entry.id] = {
+            "channelStatistics" : entry.statistics,
+            "channelImageUrl" : entry.snippet.thumbnails.medium.url
+        }
     }
     return finalList
 }

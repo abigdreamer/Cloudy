@@ -139,6 +139,33 @@ function viewString(viewCount) {
     return console.trace()
 }
 
+function subsString(subsCount) {
+    if (!subsCount || typeof subsCount === "undefined")
+        return '?'
+    var val
+    if (subsCount < 1000)
+        return subsCount + ' ' + QT_TRANSLATE_NOOP("Utils", "subscribers")
+    if (subsCount < 1000000) {
+        val = subsCount / 1000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K subscribers")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K subscribers")
+    }
+    if (subsCount < 1000000000) {
+        val = subsCount / 1000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M subscribers")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M subscribers")
+    }
+    if (subsCount < 1000000000000) {
+        val = subsCount / 1000000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B subscribers")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B subscribers")
+    }
+    return console.trace()
+}
+
 function likeString(likeCount) {
     if (!likeCount || typeof likeCount === "undefined")
         return '?'

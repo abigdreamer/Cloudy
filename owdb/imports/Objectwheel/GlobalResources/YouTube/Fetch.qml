@@ -47,8 +47,10 @@ QtObject {
                     if (!val || err)
                         return callback(null, err)
                     
-                    for (var i = 0; i < trendsResponses.length; ++i)
-                        trendsResponses[i].channelImageUrl = val[trendsResponses[i].channelId]
+                    for (var i = 0; i < trendsResponses.length; ++i) {
+                        trendsResponses[i].channelImageUrl = val[trendsResponses[i].channelId].channelImageUrl
+                        trendsResponses[i].channelStatistics = val[trendsResponses[i].channelId].channelStatistics
+                    }
                     
                     callback(trendsResponses)
                 })
