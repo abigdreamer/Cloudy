@@ -18,8 +18,10 @@ Item {
     Component.onCompleted: listView.backgroundClicked.connect(deselect)
 
     function deselect() {
-        displayText.deselect()
-        authorText.deselect()
+        if (displayText && authorText) {
+            displayText.deselect()
+            authorText.deselect()
+        }
     }
 
     Rectangle {
@@ -78,7 +80,10 @@ Item {
             wrapMode: Label.WordWrap
             width: delegate.width - column.x - 15
             font.pixelSize: 13
-            height: lineCount < 5 ? paintedHeight + 5 : 60
+            height: d.showMore
+                    ? paintedHeight
+                    : (lineCount < 5 ? paintedHeight + 5 : 60)
+            Behavior on height { NumberAnimation { duration: 300 } }
             background: Item { }
             readOnly: true
             clip: true
@@ -96,12 +101,34 @@ Item {
                 }
             }
         }
+        Label {
+            id: showMoreLabel
+            width: delegate.width - column.x - 15
+            height: paintedHeight
+            font.pixelSize: 13
+            visible: displayText.lineCount > 4
+            text: d.showMore ? qsTr("Show less") : qsTr("Show more")
+            font.weight: Font.Medium
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    d.showMore = !d.showMore
+                    if (!d.showMore) {
+                        container.ScrollBar.vertical.position =
+                                (((commentsList.y + commentsList.headerItem.height + delegate.y) /
+                                 (container.contentHeight - container.height)) *
+                                (1 - container.ScrollBar.vertical.size))
+                    }
+                }
+            }
+        }
         TextArea {
             id: authorText
             width: delegate.width - column.x - 15
             wrapMode: Label.NoWrap
             font.pixelSize: 12
-            height: 13
+            height: paintedHeight
             color: Settings.theme === 'Dark' ? "#949494" : "#848484"
             Behavior on color { SmoothColorAnimation {} }
             text: authorDisplayName + ' \u2022 '
@@ -170,5 +197,10 @@ Item {
                 }
             }
         }
+    }
+    
+    QtObject {
+        id: d
+        property bool showMore: false
     }
 }
