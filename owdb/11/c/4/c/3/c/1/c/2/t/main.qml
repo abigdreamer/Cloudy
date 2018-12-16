@@ -3,8 +3,8 @@ import Application 1.0
 
 Canvas {
     id: arrowDown
-    width: 12
-    height: 8
+    width: 10
+    height: 6
     anchors.right: parent.right
     anchors.top: parent.top
     anchors.topMargin: 15

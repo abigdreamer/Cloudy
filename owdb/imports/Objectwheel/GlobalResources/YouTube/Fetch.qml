@@ -63,8 +63,8 @@ QtObject {
         xhttp.send()
     }
     
-    function getComments(videoId, callback) {
-        var url = Utils.toCommentsUrl(videoId)
+    function getComments(videoId, orderByTime, callback) {
+        var url = Utils.toCommentsUrl(videoId, orderByTime)
         var xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {

@@ -3,8 +3,9 @@ import QtQuick.Controls 2.2
 
 BusyIndicator {
     id: commentsBusyIndicator
+    y: 60
     height: 50
     width: 50
-    anchors.centerIn: parent
     running: false
+    anchors.horizontalCenter: parent.horizontalCenter
 }
