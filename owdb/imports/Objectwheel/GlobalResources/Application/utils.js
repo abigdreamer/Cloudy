@@ -113,26 +113,55 @@ function fromNow(date) {
 }
 
 function viewString(viewCount) {
+    if (!viewCount || typeof viewCount === "undefined")
+        return '?'
     var val
     if (viewCount < 1000)
         return viewCount + ' ' + QT_TRANSLATE_NOOP("Utils", "views")
     if (viewCount < 1000000) {
         val = viewCount / 1000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " K views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " K views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K views")
     }
     if (viewCount < 1000000000) {
         val = viewCount / 1000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " M views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " M views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M views")
     }
     if (viewCount < 1000000000000) {
         val = viewCount / 1000000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", " B views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", " B views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B views")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B views")
+    }
+    return console.trace()
+}
+
+function likeString(likeCount) {
+    if (!likeCount || typeof likeCount === "undefined")
+        return '?'
+    var val
+    if (likeCount < 1000)
+        return likeCount
+    if (likeCount < 1000000) {
+        val = likeCount / 1000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K")
+    }
+    if (likeCount < 1000000000) {
+        val = likeCount / 1000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M")
+    }
+    if (likeCount < 1000000000000) {
+        val = likeCount / 1000000000.0
+        if (val < 10 && (val % 1.0 > 0.1))
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B")
+         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B")
     }
     return console.trace()
 }

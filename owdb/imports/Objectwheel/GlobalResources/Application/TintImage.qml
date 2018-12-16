@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtGraphicalEffects 1.0
+import QtQuick.Window 2.3
 
 Item {
     Image {
@@ -22,7 +23,8 @@ Item {
         anchors.fill: parent
         anchors.margins: borderWidth
         fillMode: Image.PreserveAspectFit
-        sourceSize: Qt.size(width, height)
+        sourceSize: Qt.size(width * Screen.devicePixelRatio,
+                            height * Screen.devicePixelRatio)
     }
     ColorOverlay {
         id: overlay

@@ -28,6 +28,8 @@ QtObject {
             "50n": Qt.resolvedUrl('./images/weather-condition/50n.png')
         },
         "other": {
+            "like": Qt.resolvedUrl('./images/other/like.png'),
+            "dislike": Qt.resolvedUrl('./images/other/dislike.png'),
             "watch": Qt.resolvedUrl('./images/other/watch.png'),
             "trends": Qt.resolvedUrl('./images/other/trends.png'),
             "search": Qt.resolvedUrl('./images/other/search.png'),
@@ -59,7 +61,7 @@ QtObject {
             "jump": Qt.resolvedUrl('./images/other/jump.png'),
             "colorful": Qt.resolvedUrl('./images/other/colorful.png'),
             "check": Qt.resolvedUrl('./images/other/check.png'),
-            "news": Qt.resolvedUrl('./images/other/news.png'),
+            "channel": Qt.resolvedUrl('./images/other/channel.png'),
             "newsOff": Qt.resolvedUrl('./images/other/newsOff.gif')
         },
         "flag": {

@@ -25,7 +25,7 @@ function trendsList_onRefresh() {
     })
 }
 
-function trendsList_onVideoOpened(modelData) {
+function trendsList_onVideoOpened(listElement) {
     applicationWindow.videosBar.currentIndex = 2
-    watchPane.video = modelData
+    watchPane.video = listElement
 }
