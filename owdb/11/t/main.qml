@@ -65,9 +65,17 @@ Page {
     }
     
     function openUserDialog(listElement) {
-        userDialog.title = listElement.authorDisplayName
-        userImage.source = listElement.authorProfileImageUrl.replace("s80-c", "s512-c")
-        moreButton.url = listElement.authorChannelUrl
+        if (listElement) {
+            userDialog.title = listElement.authorDisplayName
+            userImage.source = listElement.authorProfileImageUrl.replace("s80-c", "s512-c")
+            moreButton.url = listElement.authorChannelUrl
+        } else {
+            userDialog.title = watchPane.video.channelTitle
+            userImage.source = watchPane.video.channelImageUrl
+            moreButton.url = 'https://www.youtube.com/channel/%1'
+                                        .arg(watchPane.video.channelId)
+        }
+
         userDialog.open()
     }
     

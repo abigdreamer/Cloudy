@@ -17,12 +17,13 @@ function toChannelsUrl(responses) {
     return res.slice(0, -1)
 }
 
-function toCommentsUrl(videoId, orderByTime) {
+function toCommentsUrl(videoId, orderByTime, pageToken) {
     return YouTube.Constants.apiUrl + 'commentThreads' +
-        '?part=snippet&maxResults=20&textFormat=plainText' +
+        '?part=snippet&maxResults=32&textFormat=plainText' +
         '&key=' + YouTube.Constants.apiKey +
         '&videoId=' + videoId +
-        '&order=' + (orderByTime ? 'time' : 'relevance')
+        '&order=' + (orderByTime ? 'time' : 'relevance') +
+        (pageToken ? ('&pageToken=' + pageToken) : '')
 }
 
 function toTrendsObject(response) {

@@ -2,8 +2,6 @@ import QtQuick 2.8
 import QtQuick.Controls 2.2
 
 ScrollView {
-    y: 192
-    x: 0
     id: container
     clip: true
     anchors.right: parent.right

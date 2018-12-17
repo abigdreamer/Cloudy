@@ -4,25 +4,32 @@
 .import QtQuick.Controls 2.8 as QC
 
 function watchPane_onCompleted() {
-    commentsList.orderByTimeChanged.connect(refreshComments)
-    watchPane.videoChanged.connect(refreshComments)
+    commentsList.orderByTimeChanged.connect(fetchComments)
     watchPane.videoChanged.connect(watchPane_onVideoChanged)
+    commentsList.loadMoreComments.connect(commentsList_onLoadMoreComments)
 }
 
 function watchPane_onVideoChanged() {
     container.QC.ScrollBar.vertical.position = 0
     titleContainer.showDescription = false
+    fetchComments()
 }
 
-function refreshComments() {
+function commentsList_onLoadMoreComments() {
+    fetchComments(commentsList.nextPageToken)
+}
+
+function fetchComments(nextPageToken) {
     commentsBusyIndicator.running = true
     commentsList.enabled = false
     
-    YouTube.Fetch.getComments(watchPane.video.id, commentsList.orderByTime,
-                              function(value, err) {
+    YouTube.Fetch.getComments(watchPane.video.id, commentsList.orderByTime, nextPageToken,
+                              function(value, npt, err) {
         commentsList.enabled = true
         commentsBusyIndicator.running = false
-        commentsList.model.clear()
+        commentsList.nextPageToken = npt
+        if (!nextPageToken)
+            commentsList.model.clear()
         if (err) {
             console.log(err)
             return

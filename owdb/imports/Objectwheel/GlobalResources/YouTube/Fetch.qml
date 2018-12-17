@@ -63,25 +63,25 @@ QtObject {
         xhttp.send()
     }
     
-    function getComments(videoId, orderByTime, callback) {
-        var url = Utils.toCommentsUrl(videoId, orderByTime)
+    function getComments(videoId, orderByTime, pageToken, callback) {
+        var url = Utils.toCommentsUrl(videoId, orderByTime, pageToken)
         var xhttp = new XMLHttpRequest()
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 if (!xhttp.responseText
                         || xhttp.responseText === ""
                         || typeof xhttp.responseText === "undefined") {
-                    return callback(null, "Server error")
+                    return callback(null, null, "Server error")
                 }
 
                 var response = JSON.parse(xhttp.responseText)
                 if (response.kind !== 'youtube#commentThreadListResponse')
-                    return callback(null, "Server returned empty data")
+                    return callback(null, null, "Server returned empty data")
                 
-                callback(Utils.toCommentsList(response))
+                callback(Utils.toCommentsList(response), response.nextPageToken)
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
-                callback(null, "Server rejected")
+                callback(null, null, "Server rejected")
         }
         xhttp.open("GET", url, true)
         xhttp.send()

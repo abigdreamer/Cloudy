@@ -70,6 +70,20 @@ ListView {
         }
     }
     
+    footer: Label {
+        text: qsTr("LOAD MORE")
+        font.weight: Font.Medium
+        anchors.horizontalCenter: parent.horizontalCenter
+        visible: commentsList.count > 0
+                 && commentsList.count < watchPane.video.statistics.commentCount
+        height: 18
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+            onClicked: loadMoreComments()
+        }
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: backgroundClicked()
@@ -82,5 +96,8 @@ ListView {
     }
 
     property bool orderByTime: d.timeItem.checked
+    property string nextPageToken
+    
+    signal loadMoreComments()
     signal backgroundClicked()
 }

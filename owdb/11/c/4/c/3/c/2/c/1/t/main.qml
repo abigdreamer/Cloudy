@@ -4,8 +4,6 @@ import Application.Resources 1.0
 import QtQuick.Window 2.3
 
 Item {
-    y: 13
-    x: 0
     id: channelImage
     width: 40
     height: 40
@@ -35,7 +33,6 @@ Item {
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: Qt.openUrlExternally('https://www.youtube.com/channel/%1'
-                                        .arg(watchPane.video.channelId))
+        onClicked: watchPane.openUserDialog()
     }
 }
