@@ -16,6 +16,15 @@ function toSearchUrl(searchTerm, pageToken) {
         (pageToken ? ('&pageToken=' + pageToken) : '')
 }
 
+function toStatisticsUrl(responses) {
+    var res = YouTubeInfo.Constants.apiUrl + 'videos' +
+        '?part=statistics' +
+        '&key=' + YouTubeInfo.Constants.apiKey + '&id='
+    for (var i = 0; i < responses.length; ++i)
+        res += responses[i].id + ','
+    return res.slice(0, -1)
+}
+
 function toChannelsUrl(responses) {
     var res = YouTubeInfo.Constants.apiUrl + 'channels' +
         '?part=snippet,statistics' +
@@ -50,6 +59,22 @@ function toVideoObject(response) {
     }
 }
 
+function toSearchObject(response) {
+    return {
+        "id": response.id.videoId,
+        "channelId": response.snippet.channelId,
+        "channelStatistics": null,
+        "channelImageUrl": null,
+        "channelDescription": null,
+        "statistics": null,
+        "channelTitle": response.snippet.channelTitle,
+        "title": response.snippet.title,
+        "description": response.snippet.description,
+        "imageUrl": response.snippet.thumbnails.high.url,
+        "date": new Date(response.snippet.publishedAt)
+    }
+}
+
 function toCommentsObject(response) {
     return {
         "authorDisplayName": response.snippet.topLevelComment.snippet.authorDisplayName,
@@ -64,7 +89,7 @@ function toCommentsObject(response) {
 }
 
 function toChannelImageUrlList(response) {
-    var finalList = []
+    var finalList = {}
     for (var i = 0; i < response.items.length; ++i) {
         var entry = response.items[i]
         finalList[entry.id] = {
@@ -72,6 +97,15 @@ function toChannelImageUrlList(response) {
             "channelStatistics" : entry.statistics,
             "channelImageUrl" : entry.snippet.thumbnails.medium.url
         }
+    }
+    return finalList
+}
+
+function toStatisticsList(response) {
+    var finalList = {}
+    for (var i = 0; i < response.items.length; ++i) {
+        var entry = response.items[i]
+        finalList[entry.id] = entry.statistics
     }
     return finalList
 }
@@ -87,5 +121,12 @@ function toVideoList(response) {
     var finalList = []
     for (var i = 0; i < response.items.length; ++i)
         finalList.push(toVideoObject(response.items[i]))
+    return finalList
+}
+
+function toSearchList(response) {
+    var finalList = []
+    for (var i = 0; i < response.items.length; ++i)
+        finalList.push(toSearchObject(response.items[i]))
     return finalList
 }

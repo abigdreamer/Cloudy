@@ -16,7 +16,10 @@ function watchPane_onVideoChanged() {
 }
 
 function commentsList_onLoadMoreComments() {
-    fetchComments(commentsList.nextPageToken)
+    var npt = commentsList.nextPageToken
+    if (npt && typeof npt !== "undefined")
+        fetchComments(npt)
+    else console.trace()
 }
 
 function fetchComments(nextPageToken) {
@@ -27,7 +30,11 @@ function fetchComments(nextPageToken) {
                               function(value, npt, err) {
         commentsList.enabled = true
         commentsBusyIndicator.running = false
-        commentsList.nextPageToken = npt
+        if (npt && typeof npt !== "undefined")
+            commentsList.nextPageToken = npt
+        else
+            commentsList.nextPageToken = null
+        
         if (!nextPageToken)
             commentsList.model.clear()
         if (err) {

@@ -4,10 +4,10 @@
 .import YouTubeInfo 1.0 as YouTubeInfo
 
 function searchPane_onCompleted() {
+    searchField.textEdited.connect(searchField_onTextEdited)
     cleanSearchFieldButton.clicked.connect(cleanSearchFieldButton_onClicked)
-    searchField.textEdited.connect(fetchSearchResults)
     videoSearchList.videoOpened.connect(videoSearchList_onVideoOpened)
-    videoSearchList.loadMoreSearchResults.connect(videoSearchList_onLoadMoreComments)
+    videoSearchList.loadMoreSearchResults.connect(videoSearchList_onLoadMoreSearchResults)
 }
 
 function videoSearchList_onVideoOpened(listElement) {
@@ -15,23 +15,31 @@ function videoSearchList_onVideoOpened(listElement) {
     watchPane.video = listElement
 }
 
+function searchField_onTextEdited() {
+    fetchSearchResults()
+}
+
 function cleanSearchFieldButton_onClicked() {
     searchField.text = ""
     fetchSearchResults()
 }
 
-function videoSearchList_onLoadMoreComments() {
-    fetchSearchResults(videoSearchList.nextPageToken)
+function videoSearchList_onLoadMoreSearchResults() {
+    var npt = videoSearchList.nextPageToken
+    if (npt && typeof npt !== "undefined")
+        fetchSearchResults(npt)
+    else console.trace()
 }
 
 function fetchSearchResults(nextPageToken) {    
     noResultLabel.visible = false
     busyIndicator.running = true
-    videoSearchList.model.clear()
+    
+    if (!nextPageToken)
+        videoSearchList.model.clear()
     
     App.Utils.suppressCall(1000, searchField, function() {
         var searchTerm = searchField.text
-        var pageToken = videoSearchList.nextPageToken
         
         if (!nextPageToken)
             videoSearchList.model.clear()
@@ -44,11 +52,16 @@ function fetchSearchResults(nextPageToken) {
         
         searchField.enabled = false
 
-        YouTubeInfo.Fetch.getSearchResults(searchTerm, pageToken,
+        YouTubeInfo.Fetch.getSearchResults(searchTerm, nextPageToken,
                                            function(value, npt, err) {        
             searchField.enabled = true
             busyIndicator.running = false
-            videoSearchList.nextPageToken = npt
+                                               
+            if (npt && typeof npt !== "undefined")
+                videoSearchList.nextPageToken = npt
+            else
+                videoSearchList.nextPageToken = null
+        
             if (err) {
                 console.log(err)
                 noResultLabel.visible = true

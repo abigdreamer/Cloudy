@@ -76,6 +76,7 @@ ListView {
         anchors.horizontalCenter: parent.horizontalCenter
         visible: commentsList.count > 0
                  && commentsList.count < watchPane.video.statistics.commentCount
+                 && nextPageToken
         height: 18
         MouseArea {
             anchors.fill: parent
@@ -96,7 +97,7 @@ ListView {
     }
 
     property bool orderByTime: d.timeItem.checked
-    property string nextPageToken
+    property string nextPageToken: ""
     
     signal loadMoreComments()
     signal backgroundClicked()
