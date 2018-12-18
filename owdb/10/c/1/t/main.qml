@@ -14,5 +14,5 @@ ListView {
             refresh()
     }
     signal refresh()
-    signal videoOpened(var modelData)
+    signal videoOpened(var listElement)
 }

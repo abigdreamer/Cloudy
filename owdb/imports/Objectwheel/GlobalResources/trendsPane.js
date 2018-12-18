@@ -1,6 +1,6 @@
 // trendsPane.js
 .import QtQuick 2.0 as QQ
-.import YouTube 1.0 as YouTube
+.import YouTubeInfo 1.0 as YouTubeInfo
 .import Application 1.0 as App
 
 function trendsPane_onCompleted() {
@@ -12,7 +12,7 @@ function trendsList_onRefresh() {
     trendsPane.enabled = false
     busyIndicator.running = true
     
-    YouTube.Fetch.getTrends(App.Settings.countryCode(), function(value, err) {
+    YouTubeInfo.Fetch.getTrends(App.Settings.countryCode(), function(value, err) {
         trendsPane.enabled = true
         busyIndicator.running = false
         trendsList.model.clear()

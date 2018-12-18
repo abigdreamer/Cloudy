@@ -7,4 +7,6 @@ Page {
     width: 342
     height: 608
     Component.onCompleted: SearchPaneJS.searchPane_onCompleted()
+    signal refresh()
+    signal videoOpened(var listElement)
 }

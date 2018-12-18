@@ -1,6 +1,6 @@
 // watchPane.js
 
-.import YouTube 1.0 as YouTube
+.import YouTubeInfo 1.0 as YouTubeInfo
 .import QtQuick.Controls 2.8 as QC
 
 function watchPane_onCompleted() {
@@ -23,7 +23,7 @@ function fetchComments(nextPageToken) {
     commentsBusyIndicator.running = true
     commentsList.enabled = false
     
-    YouTube.Fetch.getComments(watchPane.video.id, commentsList.orderByTime, nextPageToken,
+    YouTubeInfo.Fetch.getComments(watchPane.video.id, commentsList.orderByTime, nextPageToken,
                               function(value, npt, err) {
         commentsList.enabled = true
         commentsBusyIndicator.running = false

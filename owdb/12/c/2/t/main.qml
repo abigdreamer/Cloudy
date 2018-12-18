@@ -11,4 +11,9 @@ ListView {
     anchors.topMargin: 10
     delegate: YouTubeSearchDelegate {}
     model: ListModel {}
+    
+    property string nextPageToken
+    
+    signal loadMoreSearchResults()
+    signal videoOpened(var listElement)
 }

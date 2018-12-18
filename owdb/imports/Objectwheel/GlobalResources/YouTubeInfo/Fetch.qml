@@ -42,18 +42,18 @@ QtObject {
                 if (response.kind !== 'youtube#videoListResponse')
                     return callback(null, "Server returned broken data")
 
-                var trendsResponses = Utils.toTrendsList(response)
-                var channelImageUrls = getChannelImageUrls(trendsResponses, function(val, err) {
+                var videoResponses = Utils.toVideoList(response)
+                var channelImageUrls = getChannelImageUrls(videoResponses, function(val, err) {
                     if (!val || err)
                         return callback(null, err)
                     
-                    for (var i = 0; i < trendsResponses.length; ++i) {
-                        trendsResponses[i].channelDescription = val[trendsResponses[i].channelId].channelDescription
-                        trendsResponses[i].channelImageUrl = val[trendsResponses[i].channelId].channelImageUrl
-                        trendsResponses[i].channelStatistics = val[trendsResponses[i].channelId].channelStatistics
+                    for (var i = 0; i < videoResponses.length; ++i) {
+                        videoResponses[i].channelDescription = val[videoResponses[i].channelId].channelDescription
+                        videoResponses[i].channelImageUrl = val[videoResponses[i].channelId].channelImageUrl
+                        videoResponses[i].channelStatistics = val[videoResponses[i].channelId].channelStatistics
                     }
                     
-                    callback(trendsResponses)
+                    callback(videoResponses)
                 })
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
@@ -79,6 +79,42 @@ QtObject {
                     return callback(null, null, "Server returned empty data")
                 
                 callback(Utils.toCommentsList(response), response.nextPageToken)
+            }
+            if (xhttp.readyState === 4 && xhttp.status !== 200)
+                callback(null, null, "Server rejected")
+        }
+        xhttp.open("GET", url, true)
+        xhttp.send()
+    }
+    
+    function getSearchResults(searchTerm, pageToken, callback) {
+        var url = Utils.toSearchUrl(searchTerm, pageToken)
+        var xhttp = new XMLHttpRequest()
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                if (!xhttp.responseText
+                        || xhttp.responseText === ""
+                        || typeof xhttp.responseText === "undefined") {
+                    return callback(null, null, "Server error")
+                }
+
+                var response = JSON.parse(xhttp.responseText)
+                if (response.kind !== 'youtube#searchListResponse')
+                    return callback(null, null, "Server returned empty data")
+                
+                var videoResponses = Utils.toVideoList(response)
+                var channelImageUrls = getChannelImageUrls(videoResponses, function(val, err) {
+                    if (!val || err)
+                        return callback(null, err)
+                    
+                    for (var i = 0; i < videoResponses.length; ++i) {
+                        videoResponses[i].channelDescription = val[videoResponses[i].channelId].channelDescription
+                        videoResponses[i].channelImageUrl = val[videoResponses[i].channelId].channelImageUrl
+                        videoResponses[i].channelStatistics = val[videoResponses[i].channelId].channelStatistics
+                    }
+                    
+                    callback(videoResponses, response.nextPageToken)
+                })
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
                 callback(null, null, "Server rejected")

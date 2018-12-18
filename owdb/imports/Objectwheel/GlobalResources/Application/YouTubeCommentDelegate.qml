@@ -5,7 +5,7 @@ import QtQuick.Controls.Material 2.2
 import QtQuick.Layouts 1.3
 import Application 1.0
 import Application.Resources 1.0
-import YouTube 1.0
+import YouTubeInfo 1.0
 import QtQuick.Window 2.2
 
 Item {
