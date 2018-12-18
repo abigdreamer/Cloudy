@@ -6,8 +6,9 @@ ListView {
     id: trendsList
     clip: true
     anchors.fill: parent
-    delegate: YouTubeVideoDelegate {}
+    delegate: YouTubeTrendDelegate {}
     model: ListModel {}
+    cacheBuffer: 9000
     onContentYChanged: {
         if (contentY < -100)
             refresh()

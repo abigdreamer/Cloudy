@@ -17,7 +17,6 @@ Label {
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: Qt.openUrlExternally('https://www.youtube.com/channel/%1'
-                                        .arg(watchPane.video.channelId))
+        onClicked: watchPane.openUserDialog()
     }
 }

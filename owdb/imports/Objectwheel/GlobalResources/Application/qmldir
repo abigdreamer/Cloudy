@@ -10,6 +10,7 @@ Tip 1.0 Tip.qml
 SettingItem 1.0 SettingItem.qml
 TintImage 1.0 TintImage.qml
 NewsBubble 1.0 NewsBubble.qml
-YouTubeVideoDelegate 1.0 YouTubeVideoDelegate.qml
+YouTubeTrendDelegate 1.0 YouTubeTrendDelegate.qml
 YouTubeCommentDelegate 1.0 YouTubeCommentDelegate.qml
+YouTubeSearchDelegate 1.0 YouTubeSearchDelegate.qml
 Utils 1.0 utils.js

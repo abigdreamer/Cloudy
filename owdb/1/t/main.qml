@@ -170,6 +170,7 @@ ApplicationWindow {
                     text: qsTr("Watch")
                     icon.source: Resource.images.other.watch
                     icon.color: "transparent"
+                    enabled: typeof watchPane.video !== "undefined"
                     Cursor {}
                 }
             }
