@@ -5,7 +5,7 @@ NewsSectionJS 1.0 newsSection.js
 SettingsPaneJS 1.0 settingsPane.js
 AboutDialogJS 1.0 aboutDialog.js
 CityPaneJS 1.0 cityPane.js
-VideosSectionJS 1.0 videosSection.js
+VideoSectionJS 1.0 videoSection.js
 WeatherSectionJS 1.0 weatherSection.js
 TrendsPaneJS 1.0 trendsPane.js
 WatchPaneJS 1.0 watchPane.js

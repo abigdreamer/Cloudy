@@ -27,10 +27,7 @@ ListView {
         }
     }
         
-    ScrollBar.horizontal: ScrollBar
-    { policy: ScrollBar.AlwaysOff }
-    ScrollBar.vertical: ScrollBar
-    { policy: ScrollBar.AsNeeded; interactive: false }
+    ScrollIndicator.vertical: ScrollIndicator { }
     
     property string nextPageToken
     

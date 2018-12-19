@@ -10,7 +10,7 @@ SwipeDelegate {
     id: delegate
     height: 75
     width: listView.width
-    clip: false
+    clip: true
     property var listView: ListView.view
     property bool weRemoveIt: false
     

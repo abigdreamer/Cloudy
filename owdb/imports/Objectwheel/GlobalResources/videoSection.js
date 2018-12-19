@@ -1,6 +1,6 @@
-// videosSection.js
+// videoSection.js
 
-function videosSection_onCompleted() {
+function videoSection_onCompleted() {
     swipeView.addItem(trendsPane)
     swipeView.addItem(searchPane)
     swipeView.addItem(watchPane)

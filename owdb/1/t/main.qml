@@ -218,7 +218,7 @@ ApplicationWindow {
             }
             TabButton {
                 icon.source: Resource.images.other.playButton
-                text: qsTr("Videos")
+                text: qsTr("Video")
                 icon.color: "transparent"
                 Cursor {}
             }
@@ -278,7 +278,7 @@ ApplicationWindow {
                 property string emptyString: ""
                 delegate: ItemDelegate {
                     width: parent.width
-                    text: title
+                    text: qsTr(title)
                     icon.source: Resource.images.other[iconSource]
                     icon.color: "transparent"
                     font.pixelSize: 15
@@ -320,7 +320,7 @@ ApplicationWindow {
                         iconSource: "weather"
                     }
                     ListElement {
-                        title: QT_TR_NOOP("Videos")
+                        title: QT_TR_NOOP("Video")
                         index: 2
                         stack: false
                         iconSource: "playButton"

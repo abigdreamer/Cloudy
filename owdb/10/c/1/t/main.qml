@@ -6,6 +6,7 @@ ListView {
     id: trendsList
     clip: true
     anchors.fill: parent
+    anchors.margins: 10
     delegate: YouTubeTrendDelegate {}
     model: ListModel {}
     cacheBuffer: 9000
@@ -14,10 +15,7 @@ ListView {
             refresh()
     }
     
-    ScrollBar.horizontal: ScrollBar
-    { policy: ScrollBar.AlwaysOff }
-    ScrollBar.vertical: ScrollBar
-    { policy: ScrollBar.AsNeeded; interactive: false }
+    ScrollIndicator.vertical: ScrollIndicator { }
     
     signal refresh()
     signal videoOpened(var listElement)

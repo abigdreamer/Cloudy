@@ -96,20 +96,20 @@ function fromNow(date) {
     var nowSec = (new Date()).getTime() / 1000.0
     var diff = Math.abs(Math.floor(firstSec - nowSec))
     if (diff < 10)
-        return QT_TRANSLATE_NOOP("Utils", "Just now")
+        return qsTr("Just now")
     if (diff < 60)
-        return diff + ' ' + QT_TRANSLATE_NOOP("Utils", "seconds ago")
+        return diff + ' ' + qsTr("seconds ago")
     if (diff < (60 * 60))
-        return Math.floor(diff / 60.0) + ' ' + QT_TRANSLATE_NOOP("Utils", "minutes ago")
+        return Math.floor(diff / 60.0) + ' ' + qsTr("minutes ago")
     if (diff < (60 * 60 * 24))
-        return Math.floor(diff / (60 * 60.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "hours ago")
+        return Math.floor(diff / (60 * 60.0)) + ' ' + qsTr("hours ago")
     if (diff < (60 * 60 * 24 * 7))
-        return Math.floor(diff / (60 * 60 * 24.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "days ago")
+        return Math.floor(diff / (60 * 60 * 24.0)) + ' ' + qsTr("days ago")
     if (diff < (60 * 60 * 24 * 30))
-        return Math.floor(diff / (60 * 60 * 24 * 7.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "weeks ago")
+        return Math.floor(diff / (60 * 60 * 24 * 7.0)) + ' ' + qsTr("weeks ago")
     if (diff < (60 * 60 * 24 * 30 * 12))
-        return Math.floor(diff / (60 * 60 * 24 * 30.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "months ago")
-    return Math.floor(diff / (60 * 60 * 24 * 30 * 12.0)) + ' ' + QT_TRANSLATE_NOOP("Utils", "years ago")
+        return Math.floor(diff / (60 * 60 * 24 * 30.0)) + ' ' + qsTr("months ago")
+    return Math.floor(diff / (60 * 60 * 24 * 30 * 12.0)) + ' ' + qsTr("years ago")
 }
 
 function viewString(viewCount) {
@@ -117,24 +117,24 @@ function viewString(viewCount) {
         return '?'
     var val
     if (viewCount < 1000)
-        return viewCount + ' ' + QT_TRANSLATE_NOOP("Utils", "views")
+        return viewCount + ' ' + qsTr("views")
     if (viewCount < 1000000) {
         val = viewCount / 1000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("K views")
+         return Math.floor(val) + qsTr("K views")
     }
     if (viewCount < 1000000000) {
         val = viewCount / 1000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("M views")
+         return Math.floor(val) + qsTr("M views")
     }
     if (viewCount < 1000000000000) {
         val = viewCount / 1000000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B views")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B views")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("B views")
+         return Math.floor(val) + qsTr("B views")
     }
     return console.trace()
 }
@@ -144,24 +144,24 @@ function subsString(subsCount) {
         return '?'
     var val
     if (subsCount < 1000)
-        return subsCount + ' ' + QT_TRANSLATE_NOOP("Utils", "subscribers")
+        return subsCount + ' ' + qsTr("subscribers")
     if (subsCount < 1000000) {
         val = subsCount / 1000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K subscribers")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K subscribers")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("K subscribers")
+         return Math.floor(val) + qsTr("K subscribers")
     }
     if (subsCount < 1000000000) {
         val = subsCount / 1000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M subscribers")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M subscribers")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("M subscribers")
+         return Math.floor(val) + qsTr("M subscribers")
     }
     if (subsCount < 1000000000000) {
         val = subsCount / 1000000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B subscribers")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B subscribers")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("B subscribers")
+         return Math.floor(val) + qsTr("B subscribers")
     }
     return console.trace()
 }
@@ -175,20 +175,20 @@ function likeString(likeCount) {
     if (likeCount < 1000000) {
         val = likeCount / 1000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "K")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "K")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("K")
+         return Math.floor(val) + qsTr("K")
     }
     if (likeCount < 1000000000) {
         val = likeCount / 1000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "M")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "M")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("M")
+         return Math.floor(val) + qsTr("M")
     }
     if (likeCount < 1000000000000) {
         val = likeCount / 1000000000.0
         if (val < 10 && (val % 1.0 > 0.1))
-            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + QT_TRANSLATE_NOOP("Utils", "B")
-         return Math.floor(val) + QT_TRANSLATE_NOOP("Utils", "B")
+            return Number(val).toLocaleString(Qt.locale(), 'f', 1) + qsTr("B")
+         return Math.floor(val) + qsTr("B")
     }
     return console.trace()
 }

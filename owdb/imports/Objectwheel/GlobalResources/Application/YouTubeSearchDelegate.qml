@@ -51,7 +51,7 @@ ItemDelegate {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Label {
-                text: title
+                text: qsTr(title)
                 wrapMode: Label.WordWrap
                 Layout.fillWidth: true
                 font.pixelSize: 12

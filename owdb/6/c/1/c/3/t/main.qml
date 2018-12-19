@@ -21,10 +21,7 @@ ListView {
     }
     model: ListModel {}
     
-    ScrollBar.horizontal: ScrollBar
-    { policy: ScrollBar.AlwaysOff }
-    ScrollBar.vertical: ScrollBar
-    { policy: ScrollBar.AsNeeded; interactive: false }
+    ScrollIndicator.vertical: ScrollIndicator { }
     
     property real longestWidth: 0
     signal cityAdded(var listElement)
