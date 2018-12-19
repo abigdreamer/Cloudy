@@ -8,4 +8,5 @@ ScrollView {
     anchors.fill: parent
     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
     ScrollBar.vertical.policy: ScrollBar.AsNeeded
+    ScrollBar.vertical.interactive: false
 }

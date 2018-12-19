@@ -1,5 +1,5 @@
-import QtQuick 2.7
-import QtQuick.Controls 2.2
+import QtQuick 2.9
+import QtQuick.Controls 2.3
 import Application 1.0
 
 ListView {
@@ -13,6 +13,12 @@ ListView {
         if (contentY < -100)
             refresh()
     }
+    
+    ScrollBar.horizontal: ScrollBar
+    { policy: ScrollBar.AlwaysOff }
+    ScrollBar.vertical: ScrollBar
+    { policy: ScrollBar.AsNeeded; interactive: false }
+    
     signal refresh()
     signal videoOpened(var listElement)
 }

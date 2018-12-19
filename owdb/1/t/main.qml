@@ -205,7 +205,7 @@ ApplicationWindow {
             anchors.right: parent.right
             anchors.top: parent.top
             TabButton {
-                icon.source: Resource.images.other.home
+                icon.source: Resource.images.other.news
                 text: qsTr("News")
                 icon.color: "transparent"
                 Cursor {}
@@ -245,10 +245,21 @@ ApplicationWindow {
             ToolBar {
                 id: tbar
                 Layout.fillWidth: true
+                TintImage {
+                    width: 24
+                    height: 24
+                    anchors.right: menuLabel.left
+                    anchors.verticalCenter: menuLabel.verticalCenter
+                    anchors.rightMargin: 5
+                    icon.source: Resource.images.other.menu2
+                    tintColor: "white"
+                }
                 Label {
+                    id: menuLabel
                     anchors.centerIn: parent
                     text: qsTr("Menu")
                     font.pixelSize: 18
+                    color: "white"
                 }
                 SmoothColorAnimation on Material.background { id: accentAnimDrawerToolbar }
                 function changeAccent(accentName) {
@@ -264,13 +275,28 @@ ApplicationWindow {
                 currentIndex: tabbar.currentIndex
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                
+                property string emptyString: ""
                 delegate: ItemDelegate {
                     width: parent.width
                     text: title
+                    icon.source: Resource.images.other[iconSource]
+                    icon.color: "transparent"
                     font.pixelSize: 15
                     font.weight: Font.Normal
                     highlighted: ListView.isCurrentItem
+                    leftPadding: ListView.isCurrentItem ? 25 : undefined
+                    
+                    Rectangle {
+                        visible: highlighted
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        width: 5
+                        color: Material.accent
+                    }
+                    
+                    Cursor {}
+                    
                     onClicked: {
                         if (stack)
                             stackView.push(settingsPane)
@@ -278,14 +304,33 @@ ApplicationWindow {
                             tabBar.currentIndex = index
                         drawer.close()
                     }
-                    Cursor {}
                 }
                 
                 model: ListModel {
-                    ListElement { title: qsTr("News"); index: 0; stack: false }
-                    ListElement { title: qsTr("Weather"); index: 1; stack: false }
-                    ListElement { title: qsTr("Videos"); index: 2; stack: false }
-                    ListElement { title: qsTr("Settings"); index: 0; stack: true }
+                    ListElement {
+                        title: QT_TR_NOOP("News")
+                        index: 0
+                        stack: false
+                        iconSource: "news"
+                    }
+                    ListElement {
+                        title: QT_TR_NOOP("Weather")
+                        index: 1
+                        stack: false
+                        iconSource: "weather"
+                    }
+                    ListElement {
+                        title: QT_TR_NOOP("Videos")
+                        index: 2
+                        stack: false
+                        iconSource: "playButton"
+                    }
+                    ListElement {
+                        title: QT_TR_NOOP("Settings")
+                        index: 0
+                        stack: true
+                        iconSource: "settings"
+                    }
                 }
                 
                 ScrollIndicator.vertical: ScrollIndicator { }

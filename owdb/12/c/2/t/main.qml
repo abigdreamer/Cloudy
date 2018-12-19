@@ -26,6 +26,11 @@ ListView {
             onClicked: loadMoreSearchResults()
         }
     }
+        
+    ScrollBar.horizontal: ScrollBar
+    { policy: ScrollBar.AlwaysOff }
+    ScrollBar.vertical: ScrollBar
+    { policy: ScrollBar.AsNeeded; interactive: false }
     
     property string nextPageToken
     

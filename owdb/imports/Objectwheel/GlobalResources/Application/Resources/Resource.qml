@@ -28,6 +28,8 @@ QtObject {
             "50n": Qt.resolvedUrl('./images/weather-condition/50n.png')
         },
         "other": {
+            "menu2": Qt.resolvedUrl('./images/other/menu2.png'),
+            "news": Qt.resolvedUrl('./images/other/news.png'),
             "best": Qt.resolvedUrl('./images/other/best.png'),
             "time": Qt.resolvedUrl('./images/other/time.png'),
             "comments": Qt.resolvedUrl('./images/other/comments.png'),
@@ -49,7 +51,6 @@ QtObject {
             "cloudiness": Qt.resolvedUrl('./images/other/cloudiness.png'),
             "drawer": Qt.resolvedUrl('./images/other/drawer.png'),
             "gps": Qt.resolvedUrl('./images/other/gps.png'),
-            "home": Qt.resolvedUrl('./images/other/home.png'),
             "humidity": Qt.resolvedUrl('./images/other/humidity.png'),
             "marker": Qt.resolvedUrl('./images/other/marker.png'),
             "menu": Qt.resolvedUrl('./images/other/menu.png'),

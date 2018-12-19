@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import Application 1.0
 
 ListView {
@@ -13,5 +14,11 @@ ListView {
         Behavior on color { SmoothColorAnimation {} }
     }
     model: ListModel {}
+    
+    ScrollBar.horizontal: ScrollBar
+    { policy: ScrollBar.AlwaysOff }
+    ScrollBar.vertical: ScrollBar
+    { policy: ScrollBar.AsNeeded; interactive: false }
+    
     signal jumpToCity(var listElement)
 }
