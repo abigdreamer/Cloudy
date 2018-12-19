@@ -42,7 +42,7 @@ ItemDelegate {
                 maskSource: Rectangle {
                     width: banner.width
                     height: banner.width
-                    radius: 4
+                    radius: 3
                 }
             }
         }

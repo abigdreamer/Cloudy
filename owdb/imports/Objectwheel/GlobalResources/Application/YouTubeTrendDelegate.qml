@@ -25,26 +25,40 @@ ItemDelegate {
         color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
         Behavior on color { SmoothColorAnimation {} }
     }
-        
-    Image {
-        id: banner
-        source: imageUrl
+
+    Item {
+        id: bannerContainer
         anchors.topMargin: 15
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         width: 340
         height: 190
-        fillMode: Image.PreserveAspectCrop
-        sourceSize: Qt.size(Screen.devicePixelRatio * 340,
-                            Screen.devicePixelRatio * 190)
+        Image {
+            id: banner
+            source: imageUrl
+            anchors.fill: parent
+            visible: false
+            fillMode: Image.PreserveAspectCrop
+            sourceSize: Qt.size(width * Screen.devicePixelRatio,
+                                width * Screen.devicePixelRatio)
+        }
+        OpacityMask {
+            anchors.fill: banner
+            source: banner
+            maskSource: Rectangle {
+                width: banner.width
+                height: banner.width
+                radius: 3
+            }
+        }
     }
     
     RowLayout {
         clip: true
         spacing: 10
-        anchors.left: banner.left
-        anchors.right: banner.right
-        anchors.top: banner.bottom
+        anchors.left: bannerContainer.left
+        anchors.right: bannerContainer.right
+        anchors.top: bannerContainer.bottom
         anchors.topMargin: 15
         
         Item {

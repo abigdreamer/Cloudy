@@ -75,7 +75,8 @@ ListView {
         font.weight: Font.Medium
         anchors.horizontalCenter: parent.horizontalCenter
         visible: commentsList.count > 0 && nextPageToken
-        height: 18
+        height: 20
+        font.pixelSize: 12
         MouseArea {
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
