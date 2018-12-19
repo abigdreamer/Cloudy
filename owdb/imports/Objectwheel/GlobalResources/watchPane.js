@@ -23,6 +23,11 @@ function commentsList_onLoadMoreComments() {
 }
 
 function fetchComments(nextPageToken) {
+    if (!watchPane.video
+            || typeof watchPane.video === "undefined") {
+        return
+    }
+
     commentsBusyIndicator.running = true
     commentsList.enabled = false
     

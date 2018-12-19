@@ -51,10 +51,12 @@ function fetchSearchResults(nextPageToken) {
         }
         
         searchField.enabled = false
+        videoSearchList.enabled = false
 
         YouTubeInfo.Fetch.getSearchResults(searchTerm, nextPageToken,
                                            function(value, npt, err) {        
             searchField.enabled = true
+            videoSearchList.enabled = true
             busyIndicator.running = false
                                                
             if (npt && typeof npt !== "undefined")

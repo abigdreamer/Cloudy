@@ -10,92 +10,65 @@ import QtQuick.Window 2.2
 
 ItemDelegate {
     id: delegate
-    height: 290
+    height: 90
     width: ListView.view.width
     clip: true
     property var listView: ListView.view
     
     Cursor {}
     
-    Rectangle {
-        height: 1
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-        color: Settings.theme === 'Dark' ? "#404447" : "#e2e2e2"
-        Behavior on color { SmoothColorAnimation {} }
-    }
-        
-    Image {
-        id: banner
-        source: imageUrl
-        anchors.topMargin: 15
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: 340
-        height: 190
-        fillMode: Image.PreserveAspectCrop
-        sourceSize: Qt.size(Screen.devicePixelRatio * 340,
-                            Screen.devicePixelRatio * 190)
-    }
-    
     RowLayout {
         clip: true
         spacing: 10
-        anchors.left: banner.left
-        anchors.right: banner.right
-        anchors.top: banner.bottom
-        anchors.topMargin: 15
-        
+        width: delegate.width - 20
+        height: banner.height
+        anchors.centerIn: parent
         Item {
-            width: 48
-            height: 48
-            Layout.preferredWidth: 48
-            Layout.preferredHeight: 48
+            Layout.preferredWidth: 133
+            Layout.preferredHeight: 75
             Layout.alignment: Qt.AlignTop | Qt.AlignLeft
             Image {
-                id: channelImage
+                id: banner
+                source: imageUrl
                 anchors.fill: parent
                 visible: false
                 fillMode: Image.PreserveAspectCrop
-                source: channelImageUrl
                 sourceSize: Qt.size(width * Screen.devicePixelRatio,
                                     width * Screen.devicePixelRatio)
             }
             OpacityMask {
-                anchors.fill: channelImage
-                source: channelImage
+                anchors.fill: banner
+                source: banner
                 maskSource: Rectangle {
-                    width: channelImage.width
-                    height: channelImage.width
-                    radius: channelImage.width
+                    width: banner.width
+                    height: banner.width
+                    radius: 4
                 }
             }
         }
-        
         ColumnLayout {
-            spacing: 4
+            spacing: 2
             Layout.fillWidth: true
             Layout.fillHeight: true
             Label {
                 text: title
                 wrapMode: Label.WordWrap
                 Layout.fillWidth: true
-                font.pixelSize: 15
-                maximumLineCount: 2
+                font.pixelSize: 12
+                maximumLineCount: 3
                 elide: Label.ElideRight
             }
             Label {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                wrapMode: Label.WordWrap
-                font.pixelSize: 13
+                wrapMode: Label.NoWrap
+                font.pixelSize: 11
                 maximumLineCount: 2
                 elide: Label.ElideRight
                 verticalAlignment: Label.AlignTop
                 color: Settings.theme === 'Dark' ? "#949494" : "#848484"
                 Behavior on color { SmoothColorAnimation {} }
-                text: channelTitle + ' \u2022 '
+                text: channelTitle + '\n'
                 + Utils.viewString(statistics.viewCount) + ' \u2022 '
                 + Utils.fromNow(date)
             }

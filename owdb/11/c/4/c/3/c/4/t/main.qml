@@ -74,9 +74,7 @@ ListView {
         text: qsTr("LOAD MORE")
         font.weight: Font.Medium
         anchors.horizontalCenter: parent.horizontalCenter
-        visible: commentsList.count > 0
-                 && commentsList.count < watchPane.video.statistics.commentCount
-                 && nextPageToken
+        visible: commentsList.count > 0 && nextPageToken
         height: 18
         MouseArea {
             anchors.fill: parent
