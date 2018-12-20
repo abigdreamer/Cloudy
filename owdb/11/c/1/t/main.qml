@@ -9,34 +9,19 @@ Rectangle {
     anchors.right: parent.right
     anchors.top: parent.top
     height: Math.floor(width / 1.777)
-    color: "black"
-    
-    
-  MouseArea {
-      id: touchArea
-      anchors.fill: parent
-      onClicked: pieMenu.popup(touchArea.mouseX, touchArea.mouseY)
-  }
-
-  PieMenu {
-      id: pieMenu
-
-      triggerMode: TriggerMode.TriggerOnRelease
-
-      MenuItem {
-          text: "Action 1"
-          onTriggered: print("Action 1")
-      }
-      MenuItem {
-          text: "Action 2"
-          onTriggered: print("Action 2")
-      }
-      MenuItem {
-          text: "Action 3"
-          onTriggered: print("Action 3")
-      }
-  }
+    color: "red"
   
+    VideoPlayer {
+        id: video
+        anchors.centerIn: parent
+        width: player.width
+        height: Math.floor(player.width / 1.777)
+        player.source: "file:///Users/omergoktas/Desktop/Kara Kutu/BigBuckBunny.mp4"
+        player.autoPlay: true
+        player.muted: true
+        dock.dragEnabled: false
+    }
+
   property var videos: ({})
   property url audioUrl
 }
