@@ -13,6 +13,7 @@ function watchPane_onVideoChanged() {
     container.QC.ScrollBar.vertical.position = 0
     titleContainer.showDescription = false
     fetchComments()
+    fetchVideoInfo()
 }
 
 function commentsList_onLoadMoreComments() {
@@ -49,4 +50,49 @@ function fetchComments(nextPageToken) {
         for (var i = 0; i < value.length; ++i)
             commentsList.model.append(value[i])
     })
+}
+
+function fetchVideoInfo() {
+    if (!watchPane.video
+            || typeof watchPane.video === "undefined") {
+        return
+    }
+    
+    playerBusyIndicator.running = true
+    player.enabled = false
+    
+    YouTubeInfo.Fetch.getVideoInfo(watchPane.video.id, function(value, err) {
+        player.enabled = true
+        playerBusyIndicator.running = false
+
+        if (err) {
+            player.videos = {}
+            player.audioUrl = ""
+            console.log(err)
+            return
+        }
+        
+        player.videos = toVideoUrls(value)
+        player.audioUrl = toAudioUrl(value)
+    })
+}
+
+function toVideoUrls(response) {
+    var videos = {}
+    for (var i = 0; i < response.length; ++i) {
+        var video = response[i]
+        if (video.ext !== "mp4")
+            continue
+        if (video.format.match(/\d+p/g))
+            videos[video.format] = video.url
+    }
+    return videos
+}
+
+function toAudioUrl(response) {
+    for (var i = 0; i < response.length; ++i) {
+        var audio = response[i]
+        if (audio.format.match(/[a|A]udio/g))
+            return audio.url
+    }
 }

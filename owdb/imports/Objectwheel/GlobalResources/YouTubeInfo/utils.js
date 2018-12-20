@@ -34,6 +34,11 @@ function toChannelsUrl(responses) {
     return res.slice(0, -1)
 }
 
+function toVideoInfoUrl(videoId) {
+    return YouTubeInfo.Constants.videoApiUrl +
+        '?videoId=' + videoId
+}
+
 function toCommentsUrl(videoId, orderByTime, pageToken) {
     return YouTubeInfo.Constants.apiUrl + 'commentThreads' +
         '?part=snippet&maxResults=20&textFormat=plainText' +
