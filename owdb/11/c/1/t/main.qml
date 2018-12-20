@@ -9,8 +9,7 @@ Rectangle {
     anchors.right: parent.right
     anchors.top: parent.top
     height: Math.floor(width / 1.777)
-    color: "red"
-  
+
     VideoPlayer {
         id: video
         anchors.centerIn: parent
@@ -19,7 +18,6 @@ Rectangle {
         player.source: "file:///Users/omergoktas/Desktop/Kara Kutu/BigBuckBunny.mp4"
         player.autoPlay: true
         player.muted: true
-        dock.dragEnabled: false
     }
 
   property var videos: ({})

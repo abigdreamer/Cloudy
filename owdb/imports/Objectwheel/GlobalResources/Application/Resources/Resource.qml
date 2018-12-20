@@ -7,6 +7,17 @@ QtObject {
     }
  
     readonly property var images: {
+        "player": {
+            "stop": Qt.resolvedUrl('./images/player/stop.png'),
+            "backward": Qt.resolvedUrl('./images/player/backward.png'),
+            "forward": Qt.resolvedUrl('./images/player/forward.png'),
+            "fullScreen": Qt.resolvedUrl('./images/player/full-screen.png'),
+            "normalScreen": Qt.resolvedUrl('./images/player/normal-screen.png'),
+            "pause": Qt.resolvedUrl('./images/player/pause.png'),
+            "play": Qt.resolvedUrl('./images/player/play.png'),
+            "quality": Qt.resolvedUrl('./images/player/quality.png'),
+            "volumeMax": Qt.resolvedUrl('./images/player/volume-max.png')  
+        },
         "weatherCondition": {
             "01d": Qt.resolvedUrl('./images/weather-condition/01d.png'),
             "01n": Qt.resolvedUrl('./images/weather-condition/01n.png'),

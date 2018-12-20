@@ -2,10 +2,11 @@ import QtQuick 2.9
 import QtMultimedia 5.8
 import QtGraphicalEffects 1.12
 
-// Set videoPlayer to Video
+// videoPlayer: Video
 // anchor.fill videoPlayer
 Item {
     id: root
+    anchors.fill: videoPlayer
 
     FastBlur {
         id: blur
@@ -19,12 +20,16 @@ Item {
         id: mask
         anchors.fill: blur
         visible: false
-        Rectangle {
-            x: dockItem.x
-            y: dockItem.y
-            width: dockItem.width
-            height: dockItem.height
-            radius: dockItem.radius
+        Repeater {
+            model: contentItem.children
+            Rectangle {
+                x: contentItem.children[index].x
+                y: contentItem.children[index].y
+                width: contentItem.children[index].width
+                height: contentItem.children[index].height
+                radius: contentItem.children[index].radius
+                color: contentItem.children[index].visible ? "white" : "transparent"
+            }
         }
     }
 
@@ -32,46 +37,15 @@ Item {
         anchors.fill: blur
         source: blur
         maskSource: mask
+        id: op
+        cached: false
     }
 
-    Rectangle {
-        id: dockItem
-        x: 8
-        y: root.height - height - 8
-        width: videoPlayer.width - 16
-        height: 35
-        radius: 5
-        color: "#55091118"
-
-        MouseArea {
-            anchors.fill: parent
-            enabled: dragEnabled
-            drag.target: parent
-            cursorShape: pressed
-                         ? Qt.ClosedHandCursor
-                         : Qt.ArrowCursor
-        }
-
-        onXChanged: {
-            if (dragEnabled) {
-                if (x < 0)
-                    x = 0
-                if (x > root.width - width)
-                    x = root.width - width
-            }
-        }
-
-        onYChanged: {
-            if (dragEnabled) {
-                if (y < 0)
-                    y = 0
-                if (y > root.height - height)
-                    y = root.height - height
-            }
-        }
+    Item {
+        id: contentItem
+        anchors.fill: parent
     }
 
-    property bool dragEnabled: true
     property var videoPlayer: null
-    default property alias contentData: dockItem.data
+    default property alias contentData: contentItem.data
 }
