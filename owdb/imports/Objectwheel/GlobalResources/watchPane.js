@@ -92,7 +92,7 @@ function toVideoUrls(response) {
 function toAudioUrl(response) {
     for (var i = 0; i < response.length; ++i) {
         var audio = response[i]
-        if (audio.format.match(/[a|A]udio/g))
+        if (audio.format.match(/[a|A]udio/g) && audio.ext === "m4a")
             return audio.url
     }
 }

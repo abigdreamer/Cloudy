@@ -50,7 +50,7 @@ Item {
             y: parent.height - height - 8
             width: parent.width - 16
             height: 30
-            enabled: video.isAvailable()
+            //enabled: video.isAvailable()
             RowLayout {
                 spacing: 10
                 anchors.fill: parent
@@ -167,10 +167,10 @@ Item {
                 PlayerSlider {
                     Layout.fillWidth: true
                     videoPlayer: video
-                    value: video.position / video.duration
+                    //value: video.position / video.duration
                 }
                 Button {
-                    id: volumeControl
+                    id: volumeButton
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
@@ -195,13 +195,13 @@ Item {
                     }
                     onClicked: video.muted = !video.muted
                     onPressed: NumberAnimation {
-                        target: volumeControl
+                        target: volumeButton
                         duration: 50
                         property: "scale"
                         to: 0.7
                     }
                     onReleased: NumberAnimation {
-                        target: volumeControl
+                        target: volumeButton
                         duration: 50
                         property: "scale"
                         to: 1.0
@@ -209,6 +209,7 @@ Item {
                     property alias containsMouse: cursor.containsMouse
                 }
                 Button {
+                    id: qualityButton
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
@@ -231,11 +232,11 @@ Item {
         }
         // Volume slider
         DockItem {
-            x: volumeControl.parent.mapToItem(parent, volumeControl.x, 0).x
-               + (volumeControl.width - width) / 2.0
+            x: volumeButton.parent.mapToItem(parent, volumeButton.x, 0).x
+               + (volumeButton.width - width) / 2.0
             y: dockContainer.y - height - 5
             visible: !video.muted
-                     && (volumeControl.containsMouse || ma.containsMouse)
+                     && (volumeButton.containsMouse || ma.containsMouse)
             width: 25
             height: 80
             PlayerSlider {
@@ -254,6 +255,45 @@ Item {
                 cursorShape: Qt.PointingHandCursor
             }
         }
+        // Quality selection container
+        DockItem {
+            x: qualityButton.parent.mapToItem(parent, qualityButton.x, 0).x
+               - width + qualityButton.width
+            y: dockContainer.y - height - 5
+            visible: qualityButton.checked
+            width: column.width + 10
+            height: column.height + 6
+            Column {
+                id: column
+                anchors.centerIn: parent
+                Repeater {
+                    model: qualities
+                    delegate: CheckBox {
+                        text: qualities[qualities.length - index - 1]
+                        height: 20
+                        leftPadding: 0
+                        rightPadding: 0
+                        topPadding: 0
+                        bottomPadding: 0
+                        anchors.right: column.right
+                        indicator: Label {
+                            x: 0
+                            y: parent.height / 2.0 - height / 2.0
+                            visible: checked
+                            text: "✓"
+                        }
+                    }
+                }
+            }
+            MouseArea {
+                id: ma2
+                anchors.fill: parent
+                hoverEnabled: true
+                onPressed: mouse.accepted = false
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
     }
+    property var qualities: []
     property alias player: video
 }

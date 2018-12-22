@@ -20,9 +20,12 @@ Slider {
         
         Rectangle {
             x: 0
-            y: horizontal ? 0 : parent.height - control.value * parent.height
-            height: horizontal ? parent.height : control.value * parent.height
-            width: horizontal ? control.value * parent.width : parent.width
+            y: horizontal ? 0 : parent.height
+               - control.value * (parent.height - handle.height) - handle.height / 2.0
+            height: horizontal ? parent.height :
+               control.value * (parent.height - handle.height) + handle.height / 2.0
+            width: horizontal ? control.value * (parent.width - handle.width)
+               + handle.height / 2.0: parent.width
             radius: horizontal ? height / 2.0 : width / 2.0
             color: "#60ffffff"
         }
