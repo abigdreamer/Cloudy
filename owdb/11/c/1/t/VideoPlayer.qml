@@ -13,6 +13,9 @@ Item {
         id: video
         notifyInterval: 400
         anchors.fill: parent
+        playbackRate: Utils.toPlaybackRate(playerOptions.speed)
+        source: info.length ? Utils.getVideo(info, playerOptions.quality).url : ""
+        onPositionChanged: playerSlider.value = video.position / video.duration
         function isAvailable() {
             return availability === MediaPlayer.Available
                  && error === MediaPlayer.NoError
@@ -41,6 +44,27 @@ Item {
         }
     }
 
+    Audio {
+        id: audio
+        muted: video.muted
+        volume: video.volume
+        playbackRate: video.playbackRate
+        source: info.length > 0 ? Utils.getAudio(info).url : ""
+        Component.onCompleted: {
+            video.playbackStateChanged.connect(function() {
+                if (video.playerState() === 'playing')
+                    return audio.play()
+                if (video.playerState() === 'paused')
+                    return audio.pause()
+                if (video.playerState() === 'stopped')
+                    return audio.stop()
+            })
+            video.bufferProgressChanged.connect(function() {
+                if (video.playerState() === 'playing')
+                    return audio.play()
+            })
+        }
+    }
     Dock {
         id: dock
         videoPlayer: video
@@ -51,7 +75,7 @@ Item {
             y: parent.height - height - 8
             width: parent.width - 16
             height: 30
-            //enabled: video.isAvailable()
+            enabled: video.isAvailable()
             RowLayout {
                 spacing: 10
                 anchors.fill: parent
@@ -166,9 +190,18 @@ Item {
                     }
                 }
                 PlayerSlider {
+                    id: playerSlider
+                    Layout.fillHeight: true
                     Layout.fillWidth: true
+                    from: 0.0
+                    to: 1.0
                     videoPlayer: video
-                    //value: video.position / video.duration
+                    onMoved: {
+                        video.seek(value * video.duration)
+                        audio.seek(value * video.duration)
+                        console.log(value, video.duration)
+                    }
+                    Cursor {}
                 }
                 Button {
                     id: volumeButton
@@ -290,7 +323,7 @@ Item {
             PlayerOptions {
                 id: playerOptions
                 anchors.centerIn: parent
-                maxHeight: root.height - dockContainer.height - 20
+                maxHeight: root.height - dockContainer.height - 30
                 qualities: Utils.getQualities(info)
             }
         }
@@ -298,5 +331,6 @@ Item {
 
     onInfoChanged: qualityButton.checked = false
     property var info: null
-    property alias player: video
+    property alias quality: playerOptions.quality
+    property alias core: video
 }

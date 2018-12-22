@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Application 1.0
 import Application.Resources 1.0
+import YouTubeInfo 1.0
 
 StackView {
     id: root
@@ -39,7 +40,7 @@ StackView {
                 }
                 Item { Layout.fillWidth: true }
                 Text {
-                    text: qsTr(speed)
+                    text: speed
                     color: "white"
                     font.pixelSize: 11
                     Layout.alignment: Qt.AlignVCenter
@@ -58,6 +59,7 @@ StackView {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
+                onClicked: root.push(speedComponent)
             }
         }
         Rectangle {
@@ -81,7 +83,7 @@ StackView {
                     spacing: 2
                     Layout.alignment: Qt.AlignVCenter
                     Text {
-                        text: qsTr(quality)
+                        text: quality
                         color: "white"
                         font.pixelSize: 11
                         Layout.alignment: Qt.AlignVCenter
@@ -118,7 +120,7 @@ StackView {
         ColumnLayout {
             width: 90
             spacing: 2
-            height: listView.contentHeight + title.height + spacing
+            height: listView.height + title.height + spacing
             Item {
                 id: title
                 clip: true
@@ -192,6 +194,7 @@ StackView {
                         radius: 4
                         RowLayout {
                             anchors.fill: parent
+                            anchors.rightMargin: 10
                             spacing: 2
                             Item { Layout.fillWidth: true }
                             Text {
@@ -215,7 +218,7 @@ StackView {
                                 font.pixelSize: 10
                                 font.weight: Font.Medium
                                 Layout.alignment: Qt.AlignTop
-                                Layout.preferredWidth: 20
+                                Layout.preferredWidth: 10
                             }
                         }
                         MouseArea {
@@ -231,18 +234,120 @@ StackView {
         }
     }
     
-    property var speeds: [
-        QT_TRANSLATE_NOOP("PlayerOptions", "0.25"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "0.5"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "0.75"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "Normal"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "1.25"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "1.5"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "1.75"),
-        QT_TRANSLATE_NOOP("PlayerOptions", "2"),
-    ]
+    Component {
+        id: speedComponent
+        ColumnLayout {
+            width: 70
+            spacing: 2
+            height: listView.height + title.height + spacing
+            Item {
+                id: title
+                clip: true
+                height: 22
+                Layout.fillWidth: true
+                Rectangle {
+                    height: 1
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    color: "#40ffffff"
+                }
+                RowLayout {
+                    spacing: 5
+                    anchors.fill: parent
+                    TintImage {
+                        width: 13
+                        height: 13
+                        tintColor: "white"
+                        icon.source: Resource.images.other.back
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                    Text {
+                        text: qsTr("Speed")
+                        font.weight: Font.DemiBold
+                        color: "white"
+                        font.pixelSize: 12
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                    Item { Layout.fillWidth: true }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: root.pop()
+                }
+            }
+            ListView {
+                id: listView
+                clip: true
+                model: Constants.speeds
+                Layout.fillWidth: true
+                height: Math.min(maxHeight - title.height - parent.spacing,
+                                 contentHeight)
+                ScrollIndicator.vertical: ScrollIndicator {
+                    contentItem: Rectangle {
+                        implicitWidth: 2
+                        implicitHeight: 20
+                        color: "#30ffffff"
+                        visible: listView.height < listView.contentHeight
+                    }
+                }
+                delegate: AbstractButton {
+                    id: delegate
+                    width: ListView.view.width
+                    height: 18
+                    autoExclusive: true
+                    checked: speedText.text === speed
+                    onClicked: {
+                        speed = speedText.text
+                        Utils.delayCall(200, delegate, root.pop)
+                    }
+                    leftPadding: 0
+                    rightPadding: 0
+                    topPadding: 0
+                    bottomPadding: 0
+                    Rectangle {
+                        anchors.fill: parent
+                        color: mouseArea2.containsMouse
+                               ? "#15ffffff" : "transparent"
+                        radius: 4
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.rightMargin: 10
+                            spacing: 2
+                            Item { Layout.fillWidth: true }
+                            Text {
+                                visible: delegate.checked
+                                text: "\u2713"
+                                Layout.alignment: Qt.AlignVCenter
+                                color: "white"
+                                font.pixelSize: 12
+                            }
+                            Item { Layout.fillWidth: true }
+                            Text {
+                                id: speedText
+                                text: Constants.speeds[index]
+                                color: "white"
+                                font.pixelSize: 12
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+                        }
+                        MouseArea {
+                            id: mouseArea2
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onPressed: mouse.accepted = false
+                        }
+                    }
+                }
+            }
+        }
+    }
+        
     property string speed: "Normal"
-    property string quality: "360p"
+    property string quality: Utils.defaultVideoQuality(qualities)
     property var qualities: []
     property real maxHeight: 0
 }

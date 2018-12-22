@@ -50,6 +50,21 @@ ItemDelegate {
                 height: banner.width
                 radius: 3
             }
+            Rectangle {
+                anchors.right: parent.right
+                anchors.bottom: parent.bottom
+                anchors.margins: 8
+                color: "#a0000000"
+                radius: 3
+                width: durationText.width + 6
+                height: durationText.height + 4
+                Text {
+                    id: durationText
+                    anchors.centerIn: parent
+                    text: Utils.toProperDurationString(duration)
+                    color: "white"
+                }
+            }
         }
     }
     

@@ -11,17 +11,17 @@ QtObject {
                 if (!xhttp.responseText
                         || xhttp.responseText === ""
                         || typeof xhttp.responseText === "undefined") {
-                    return callback(null, "Server error")
+                    return callback(null, null, "Server error")
                 }
 
                 var response = JSON.parse(xhttp.responseText)
                 if (response.kind !== 'youtube#channelListResponse')
-                    return callback(null, "Server returned empty data")
+                    return callback(null, null, "Server returned empty data")
                 
-                callback(Utils.toChannelImageUrlList(response))
+                callback(responses, Utils.toChannelImageUrlList(response))
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
-                callback(null, "Server rejected")
+                callback(null, null, "Server rejected")
         }
         xhttp.open("GET", url, true)
         xhttp.send()
@@ -43,17 +43,17 @@ QtObject {
                     return callback(null, "Server returned broken data")
 
                 var videoResponses = Utils.toVideoList(response)
-                getChannelImageUrls(videoResponses, function(val, err) {
+                getChannelImageUrls(videoResponses, function(vR, val, err) {
                     if (!val || err)
                         return callback(null, err)
                     
-                    for (var i = 0; i < videoResponses.length; ++i) {
-                        videoResponses[i].channelDescription = val[videoResponses[i].channelId].channelDescription
-                        videoResponses[i].channelImageUrl = val[videoResponses[i].channelId].channelImageUrl
-                        videoResponses[i].channelStatistics = val[videoResponses[i].channelId].channelStatistics
+                    for (var i = 0; i < vR.length; ++i) {
+                        vR[i].channelDescription = val[vR[i].channelId].channelDescription
+                        vR[i].channelImageUrl = val[vR[i].channelId].channelImageUrl
+                        vR[i].channelStatistics = val[vR[i].channelId].channelStatistics
                     }
                     
-                    callback(videoResponses)
+                    callback(vR)
                 })
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
@@ -95,17 +95,17 @@ QtObject {
                 if (!xhttp.responseText
                         || xhttp.responseText === ""
                         || typeof xhttp.responseText === "undefined") {
-                    return callback(null, "Server error")
+                    return callback(null, null, "Server error")
                 }
 
                 var response = JSON.parse(xhttp.responseText)
                 if (response.kind !== 'youtube#videoListResponse')
-                    return callback(null, "Server returned empty data")
+                    return callback(null, null, "Server returned empty data")
                 
-                callback(Utils.toStatisticsList(response))
+                callback(responses, Utils.toStatisticsList(response))
             }
             if (xhttp.readyState === 4 && xhttp.status !== 200)
-                callback(null, "Server rejected")
+                callback(null, null, "Server rejected")
         }
         xhttp.open("GET", url, true)
         xhttp.send()
@@ -127,22 +127,25 @@ QtObject {
                     return callback(null, null, "Server returned empty data")
                 
                 var videoResponses = Utils.toSearchList(response)
-                getChannelImageUrls(videoResponses, function(val, err) {
+                getChannelImageUrls(videoResponses, function(vRR, val, err) {
                     if (!val || err)
                         return callback(null, err)
-                    
-                    for (var i = 0; i < videoResponses.length; ++i) {
-                        videoResponses[i].channelDescription = val[videoResponses[i].channelId].channelDescription
-                        videoResponses[i].channelImageUrl = val[videoResponses[i].channelId].channelImageUrl
-                        videoResponses[i].channelStatistics = val[videoResponses[i].channelId].channelStatistics
+
+                    for (var i = 0; i < vRR.length; ++i) {
+                        vRR[i].channelDescription = val[vRR[i].channelId].channelDescription
+                        vRR[i].channelImageUrl = val[vRR[i].channelId].channelImageUrl
+                        vRR[i].channelStatistics = val[vRR[i].channelId].channelStatistics
                     }
                     
-                    getStatistics(videoResponses, function(val, err) {
-                        if (!val || err)
+                    getStatistics(vRR, function(vR, val, err) {
+                        if (!val || typeof val === "undefined" || err)
                             return callback(null, err)
-                        for (var i = 0; i < videoResponses.length; ++i)
-                            videoResponses[i].statistics = val[videoResponses[i].id]
-                        callback(videoResponses, response.nextPageToken)
+
+                        for (var i = 0; i < vR.length; ++i) {
+                            vR[i].duration = val[vR[i].id].duration
+                            vR[i].statistics = val[vR[i].id].statistics
+                        }
+                        callback(vR, response.nextPageToken)
                     })
                 })
             }

@@ -64,7 +64,7 @@ function fetchSearchResults(nextPageToken) {
             else
                 videoSearchList.nextPageToken = null
         
-            if (err) {
+            if (err || !value) {
                 console.log(err)
                 noResultLabel.visible = true
                 return

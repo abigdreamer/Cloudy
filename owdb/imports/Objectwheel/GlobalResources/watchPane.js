@@ -58,14 +58,15 @@ function fetchVideoInfo() {
         return
     }
     
+    player.core.stop()
     playerBusyIndicator.running = true
     player.enabled = false
     
     YouTubeInfo.Fetch.getVideoInfo(watchPane.video.id, function(value, err) {
         player.enabled = true
-        playerBusyIndicator.running = false
 
         if (err) {
+            playerBusyIndicator.running = false
             player.info = {}
             console.log(err)
             return

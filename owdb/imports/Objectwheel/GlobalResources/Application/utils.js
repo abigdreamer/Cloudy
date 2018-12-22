@@ -194,6 +194,8 @@ function likeString(likeCount) {
 }
 
 function getQualities(info) {
+    if (!info || typeof info === "undefined")
+        return
     var qualities = []
     for (var i = 0; i < info.length; ++i) {
         var video = info[i]
@@ -219,6 +221,20 @@ function getAudio(info) {
     }
 }
 
+function defaultVideoQuality(qualities) {
+    if (qualities && typeof qualities !== "undefined") {
+        if (qualities.length > 3)
+            return qualities[3]
+        if (qualities.length > 2)
+            return qualities[2]
+        if (qualities.length > 1)
+            return qualities[1]
+        if (qualities.length > 0)
+            return qualities[0]
+    }
+    return '460p'
+}
+
 function qualityBadge(quality) {
     if (quality.match("4320p"))
         return '8K'
@@ -231,4 +247,80 @@ function qualityBadge(quality) {
     if (quality.match("720p"))
         return 'HD'
     return ''
+}
+
+function toPlaybackRate(speed) {
+    if (speed === 'Normal')
+        return 1.0
+    return parseInt(speed)
+}
+
+function toProperDurationString(duration) {
+    var date = parseDuration(duration)
+    var ret = ''
+
+    if (date.day > 0)
+        ret += date.day + (date.day > 1 ? ' days + ' : ' day + ')
+    
+    if (date.hour > 0) {
+        if (ret !== '')
+            ret += date.hour.toString().padStart(2, '0')
+        else
+            ret += date.hour
+    } else if (ret !== '') {
+        ret += '00'
+    }
+
+    if (date.minute > 0) {
+        if (ret !== '')
+            ret += ':' + date.minute.toString().padStart(2, '0')
+        else
+            ret += date.minute
+    } else if (ret !== '') {
+        ret += ':00'
+    } else {
+        ret += '0'
+    }
+    
+    ret += ':' + date.second.toString().padStart(2, '0')
+    
+    return ret
+}
+
+function parseDuration (duration) {
+    let durationRegex = /^(-)?P(?:(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?|(\d+)W)$/;
+
+    let parsed;
+    duration && duration.replace(durationRegex, (_, sign, ...units) => {
+            sign = sign ? -1 : 1;
+            // parse number for each unit
+            let [year, month, day, hour, minute, second, week] = units.map((num) => parseInt(num, 10) * sign || 0);
+            parsed = {year, month, week, day, hour, minute, second};
+    });
+    // no regexp match
+    if (!parsed) { throw new Error(`Invalid duration "${duration}"`); }
+
+    return Object.assign(parsed, {
+            /**
+             * Sum or substract parsed duration to date
+             *
+             * @param {Date} date: Any valid date
+             * @throws {TypeError} When date is not valid
+             * @returns {Date} New date with duration difference
+             */
+            add(date) {
+                    if (Object.prototype.toString.call(date) !== '[object Date]' || isNaN(date.valueOf())) {
+                            throw new TypeError('Invalide date');
+                    }
+                    return new Date(Date.UTC(
+                            date.getUTCFullYear() + parsed.year,
+                            date.getUTCMonth() + parsed.month,
+                            date.getUTCDate() + parsed.day + parsed.week * 7,
+                            date.getUTCHours() + parsed.hour,
+                            date.getUTCMinutes() + parsed.minute,
+                            date.getUTCSeconds() + parsed.second,
+                            date.getUTCMilliseconds()
+                    ));
+            }
+    });
 }

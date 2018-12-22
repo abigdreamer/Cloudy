@@ -6,6 +6,8 @@ import Application 1.0
 import Application.Resources 1.0
     
 Row {
+    y: 38.5408
+    x: 264.781
     id: stats
     clip: true
     anchors.right: arrowDown.right

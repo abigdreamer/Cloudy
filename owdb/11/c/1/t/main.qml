@@ -10,43 +10,35 @@ Rectangle {
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: parent.top
-    height: Math.floor(width / 1.777)
+    height: Math.min(calculatedHeight(), width)
+    Behavior on height { NumberAnimation {} }
     color: "black"
     
     VideoPlayer {
         id: video
         anchors.centerIn: parent
         width: player.width
-        height: Math.floor(player.width / 1.777)
+        core.autoPlay: true
+        core.muted: false
         info: player.info
-        player.autoPlay: false
-        player.muted: true
-    }
-
-    Audio {
-        id: audio
-        muted: video.player.muted
-        volume: video.player.volume
-        source: Utils.getAudio(info).url
-        Component.onCompleted: {
-            video.player.playbackStateChanged.connect(function() {
-                if (video.player.playerState() === 'playing')
-                    return audio.play()
-                if (video.player.playerState() === 'paused')
-                    return audio.pause()
-                if (video.player.playerState() === 'stopped')
-                    return audio.stop()
-            })
-            video.player.positionChanged.connect(function() {
-                if (audio.position - video.player.position > 0.2)
-                    audio.seek(video.player.position)
-            })
-            video.player.bufferProgressChanged.connect(function() {
-                if (video.player.playerState() === 'playing')
-                    return audio.play()
-            })
+        height: player.height
+        core.onStatusChanged: {
+            if (video.core.status === MediaPlayer.Buffering
+                    || video.core.status === MediaPlayer.Loading) {
+                return playerBusyIndicator.running = true
+            }
+            playerBusyIndicator.running = false
         }
     }
 
+    function calculatedHeight() {
+        var v = Utils.getVideo(info, video.quality)
+        if (!v || typeof v === "undefined")
+            return video.width / 1.777
+        var ratio = v.width / video.width
+        return v.height / ratio
+    }
+    
+    property alias core: video.core
     property var info: []
 }

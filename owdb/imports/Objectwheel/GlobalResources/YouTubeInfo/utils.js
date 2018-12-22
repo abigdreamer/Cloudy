@@ -3,14 +3,14 @@
 
 function toTrendsUrl(countryCode) {
     return YouTubeInfo.Constants.apiUrl + 'videos' +
-        '?part=snippet,statistics&chart=mostPopular&maxResults=42' +
+        '?part=snippet,statistics,contentDetails&chart=mostPopular&maxResults=42' +
         '&key=' + YouTubeInfo.Constants.apiKey +
         '&regionCode=' + countryCode
 }
 
 function toSearchUrl(searchTerm, pageToken) {
     return YouTubeInfo.Constants.apiUrl + 'search' +
-        '?part=snippet&maxResults=20' +
+        '?part=snippet&type=video&maxResults=20' +
         '&key=' + YouTubeInfo.Constants.apiKey +
         '&q=' + encodeURI(searchTerm) +
         (pageToken ? ('&pageToken=' + pageToken) : '')
@@ -18,7 +18,7 @@ function toSearchUrl(searchTerm, pageToken) {
 
 function toStatisticsUrl(responses) {
     var res = YouTubeInfo.Constants.apiUrl + 'videos' +
-        '?part=statistics' +
+        '?part=statistics,contentDetails' +
         '&key=' + YouTubeInfo.Constants.apiKey + '&id='
     for (var i = 0; i < responses.length; ++i)
         res += responses[i].id + ','
@@ -60,6 +60,7 @@ function toVideoObject(response) {
         "description": response.snippet.description,
         "imageUrl": response.snippet.thumbnails.high.url,
         "statistics": response.statistics,
+        "duration": response.contentDetails.duration,
         "date": new Date(response.snippet.publishedAt)
     }
 }
@@ -72,6 +73,7 @@ function toSearchObject(response) {
         "channelImageUrl": null,
         "channelDescription": null,
         "statistics": null,
+        "duration": null,
         "channelTitle": response.snippet.channelTitle,
         "title": response.snippet.title,
         "description": response.snippet.description,
@@ -110,7 +112,10 @@ function toStatisticsList(response) {
     var finalList = {}
     for (var i = 0; i < response.items.length; ++i) {
         var entry = response.items[i]
-        finalList[entry.id] = entry.statistics
+        finalList[entry.id] = {
+            "statistics" : entry.statistics,
+            "duration" : entry.contentDetails.duration
+        }
     }
     return finalList
 }

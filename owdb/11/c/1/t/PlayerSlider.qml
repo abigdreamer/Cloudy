@@ -24,7 +24,7 @@ Slider {
             height: horizontal ? parent.height :
                control.value * (parent.height - handle.height) + handle.height / 2.0
             width: horizontal ? control.value * (parent.width - handle.width)
-               + handle.height / 2.0: parent.width
+               + handle.width / 2.0 : parent.width
             radius: horizontal ? height / 2.0 : width / 2.0
             color: "#60ffffff"
         }
@@ -37,8 +37,8 @@ Slider {
            ? (control.height - height) / 2.0
            : control.height - control.value * (control.height - height) - height
         color: control.pressed ? "#f0f0f0" : "#ffffff"
-        height: horizontal ? width : 10
-        width: horizontal ? 10 : height
+        height: 10
+        width: 10
         radius: 5
     }
     property var videoPlayer: null
