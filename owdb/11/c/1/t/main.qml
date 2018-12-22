@@ -9,14 +9,15 @@ Rectangle {
     anchors.right: parent.right
     anchors.top: parent.top
     height: Math.floor(width / 1.777)
-
+    color: "black"
+    
     VideoPlayer {
         id: video
         anchors.centerIn: parent
         width: player.width
         height: Math.floor(player.width / 1.777)
-        player.source: "file:///Users/omergoktas/Desktop/Kara Kutu/BigBuckBunny.mp4"
-        player.autoPlay: true
+        player.source: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
+        player.autoPlay: false
         player.muted: true
     }
 

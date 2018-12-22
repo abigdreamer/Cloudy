@@ -10,6 +10,7 @@ Item {
 
     Video {
         id: video
+        notifyInterval: 400
         anchors.fill: parent
         function isAvailable() {
             return availability === MediaPlayer.Available
@@ -28,26 +29,35 @@ Item {
             if (playbackState === MediaPlayer.PausedState)
                 return 'paused'
         }
+        function volumeIcon() {
+            if (video.muted)
+                return Resource.images.player.muted
+            if (video.volume > 0.65)
+                return Resource.images.player.volumeHigh
+            if (video.volume > 0.35)
+                return Resource.images.player.volumeMid
+            return Resource.images.player.volumeLow
+        }
     }
 
     Dock {
         id: dock
         videoPlayer: video
         // Dock controls
-        Rectangle {
+        DockItem {
             id: dockContainer
             x: 8
             y: parent.height - height - 8
             width: parent.width - 16
-            height: 35
-            radius: 10
-            color: "#55091118"
+            height: 30
+            enabled: video.isAvailable()
             RowLayout {
                 spacing: 10
                 anchors.fill: parent
                 anchors.leftMargin: 10
                 anchors.rightMargin: 10
                 Button {
+                    id: backwardButton
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
@@ -65,12 +75,25 @@ Item {
                     onClicked: video.seek(video.position > 15000
                                           ? video.position - 15000
                                           : 0)
+                    
+                    onPressed: NumberAnimation {
+                        target: backwardButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.7
+                    }
+                    onReleased: NumberAnimation {
+                        target: backwardButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                 }
                 Button {
+                    id: playButton
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
-                    enabled: video.isAvailable()
                     icon.color: "white"
                     icon.source: {
                         if (video.playerState() === 'playing')
@@ -95,12 +118,24 @@ Item {
                             return video.play()
                         if (video.playerState() === 'stopped') {
                             video.stop()
-                            video.seek(0)
                             video.play()
                         }
                     }
+                    onPressed: NumberAnimation {
+                        target: playButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.7
+                    }
+                    onReleased: NumberAnimation {
+                        target: playButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                 }
                 Button {
+                    id: forwardButton
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
@@ -116,19 +151,31 @@ Item {
                     background: Item {}
                     Cursor {}
                     onClicked: video.seek(video.position + 15000)
+                    onPressed: NumberAnimation {
+                        target: forwardButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.7
+                    }
+                    onReleased: NumberAnimation {
+                        target: forwardButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                 }
                 PlayerSlider {
                     Layout.fillWidth: true
                     videoPlayer: video
+                    value: video.position / video.duration
                 }
                 Button {
                     id: volumeControl
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
-                    enabled: video.seekable
                     icon.color: "white"
-                    icon.source: Resource.images.player.volumeMax
+                    icon.source: video.volumeIcon()
                     icon.width: width
                     icon.height: height
                     leftPadding: 0
@@ -136,18 +183,38 @@ Item {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {
+                    MouseArea {
                         id: cursor
+                        x: -3
+                        y: -20
+                        width: parent.width + 6
+                        height: parent.height + 20
                         hoverEnabled: true
+                        onPressed: mouse.accepted = false
+                        cursorShape: Qt.PointingHandCursor
                     }
-                    onClicked: video.seek(video.position + 15000)
+                    onClicked: video.muted = !video.muted
+                    onPressed: NumberAnimation {
+                        target: volumeControl
+                        duration: 50
+                        property: "scale"
+                        to: 0.7
+                    }
+                    onReleased: NumberAnimation {
+                        target: volumeControl
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                     property alias containsMouse: cursor.containsMouse
                 }
                 Button {
                     Layout.alignment: Qt.AlignVCenter
                     width: 19
                     height: 19
-                    enabled: video.seekable
+                    checkable: true
+                    rotation: checked ? 45 : 0
+                    Behavior on rotation { NumberAnimation { duration: 100 } }
                     icon.color: "white"
                     icon.source: Resource.images.player.quality
                     icon.width: width
@@ -158,24 +225,33 @@ Item {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    onClicked: video.seek(video.position + 15000)
+                    //onClicked: video.seek(video.position + 15000)
                 }
             }
         }
         // Volume slider
-         Rectangle {
-            x: dockContainer.mapToItem(parent, volumeControl.x, 0).x + 
-               Math.floor(Math.abs(volumeControl.width - width) / 2.0)
-            y: dockContainer.y - height - 8
-            visible: volumeControl.containsMouse
-            width: 28
+        DockItem {
+            x: volumeControl.parent.mapToItem(parent, volumeControl.x, 0).x
+               + (volumeControl.width - width) / 2.0
+            y: dockContainer.y - height - 5
+            visible: !video.muted
+                     && (volumeControl.containsMouse || ma.containsMouse)
+            width: 25
             height: 80
-            radius: 8
-            color: "#55091118"
-            Slider {
+            PlayerSlider {
                 anchors.fill: parent
+                anchors.topMargin: 8
+                anchors.bottomMargin: 8
                 value: video.volume
                 orientation: Qt.Vertical
+                onValueChanged: video.volume = value
+            }
+            MouseArea {
+                id: ma
+                anchors.fill: parent
+                hoverEnabled: true
+                onPressed: mouse.accepted = false
+                cursorShape: Qt.PointingHandCursor
             }
         }
     }

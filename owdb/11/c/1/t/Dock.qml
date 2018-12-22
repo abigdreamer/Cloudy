@@ -28,7 +28,8 @@ Item {
                 width: contentItem.children[index].width
                 height: contentItem.children[index].height
                 radius: contentItem.children[index].radius
-                color: contentItem.children[index].visible ? "white" : "transparent"
+                color: contentItem.children[index].visible
+                       ? "white" : "transparent"
             }
         }
     }

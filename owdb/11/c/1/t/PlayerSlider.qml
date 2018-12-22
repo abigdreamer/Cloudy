@@ -4,37 +4,41 @@ import QtQuick.Controls 2.2
 Slider {
     id: control
     value: 0.5
+    padding: 0
     leftPadding: 0
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
     
     background: Rectangle {
-        x: control.leftPadding
-        y: control.topPadding + control.availableHeight / 2 - height / 2
-        implicitWidth: 200
-        implicitHeight: 4
-        width: control.availableWidth
-        height: implicitHeight
-        radius: 2
-        color: "#bdbebf"
+        x: horizontal ? 0 : (control.width - width) / 2.0
+        y: horizontal ? (control.height - height) / 2.0 : 0
+        width: horizontal ? control.width : 5
+        height: horizontal ? 5 : control.height
+        radius: 2.5
+        color: "#35ffffff"
         
         Rectangle {
-            width: control.visualPosition * parent.width
-            height: parent.height
-            color: "#21be2b"
-            radius: 2
+            x: 0
+            y: horizontal ? 0 : parent.height - control.value * parent.height
+            height: horizontal ? parent.height : control.value * parent.height
+            width: horizontal ? control.value * parent.width : parent.width
+            radius: horizontal ? height / 2.0 : width / 2.0
+            color: "#60ffffff"
         }
     }
     
     handle: Rectangle {
-        x: control.leftPadding + control.visualPosition * (control.availableWidth - width)
-        y: control.topPadding + control.availableHeight / 2 - height / 2
-        implicitWidth: 26
-        implicitHeight: 26
-        radius: 13
-        color: control.pressed ? "#f0f0f0" : "#f6f6f6"
-        border.color: "#bdbebf"
+        x: horizontal
+           ? control.value * (control.width - width)
+           : (control.width - width) / 2.0
+        y: horizontal
+           ? (control.height - height) / 2.0
+           : control.height - control.value * (control.height - height) - height
+        color: control.pressed ? "#f0f0f0" : "#ffffff"
+        height: horizontal ? width : 10
+        width: horizontal ? 10 : height
+        radius: 5
     }
     
     property var videoPlayer: null
