@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import QtMultimedia 5.8
 import Application 1.0
 import Application.Resources 1.0
+import QtQuick.Window 2.3
 
 Item {
     id: root
@@ -59,8 +60,8 @@ Item {
                 Button {
                     id: backwardButton
                     Layout.alignment: Qt.AlignVCenter
-                    width: 19
-                    height: 19
+                    Layout.preferredWidth: 19
+                    Layout.preferredHeight: 19
                     enabled: video.seekable
                     icon.color: "white"
                     icon.source: Resource.images.player.backward
@@ -92,8 +93,8 @@ Item {
                 Button {
                     id: playButton
                     Layout.alignment: Qt.AlignVCenter
-                    width: 19
-                    height: 19
+                    Layout.preferredWidth: 19
+                    Layout.preferredHeight: 19
                     icon.color: "white"
                     icon.source: {
                         if (video.playerState() === 'playing')
@@ -137,8 +138,8 @@ Item {
                 Button {
                     id: forwardButton
                     Layout.alignment: Qt.AlignVCenter
-                    width: 19
-                    height: 19
+                    Layout.preferredWidth: 19
+                    Layout.preferredHeight: 19
                     enabled: video.seekable
                     icon.color: "white"
                     icon.source: Resource.images.player.forward
@@ -172,8 +173,8 @@ Item {
                 Button {
                     id: volumeButton
                     Layout.alignment: Qt.AlignVCenter
-                    width: 19
-                    height: 19
+                    Layout.preferredWidth: 19
+                    Layout.preferredHeight: 19
                     icon.color: "white"
                     icon.source: video.volumeIcon()
                     icon.width: width
@@ -214,20 +215,33 @@ Item {
                 Button {
                     id: qualityButton
                     Layout.alignment: Qt.AlignVCenter
-                    width: 19
-                    height: 19
+                    Layout.preferredWidth: 19
+                    Layout.preferredHeight: 19
                     checkable: true
-                    rotation: checked ? 45 : 0
-                    Behavior on rotation { NumberAnimation { duration: 100 } }
-                    icon.color: "white"
-                    icon.source: Resource.images.player.quality
-                    icon.width: width
-                    icon.height: height
                     leftPadding: 0
                     rightPadding: 0
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
+                    TintImage {
+                        rotation: parent.checked ? 45 : 0
+                        Behavior on rotation { NumberAnimation { duration: 100 } }
+                        tintColor: "white"
+                        icon.source: Resource.images.player.quality
+                        anchors.fill: parent
+                    }
+                    Image {
+                        width: 13
+                        height: 9
+                        sourceSize: Qt.size(13 * Screen.devicePixelRatio,
+                                            9 * Screen.devicePixelRatio)
+                        source: Resource.images.player.hd
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+                        fillMode: Image.PreserveAspectFit
+                        visible: Utils.qualityBadge(playerOptions.quality)
+                    }
+
                     Cursor {}
                 }
             }
@@ -238,9 +252,11 @@ Item {
             x: volumeButton.parent.mapToItem(parent, volumeButton.x, 0).x
                + (volumeButton.width - width) / 2.0
             y: dockContainer.y - height - 5
-            visible: !video.muted
+            opacity: (!video.muted
                      && (volumeButton.containsMouse || ma.containsMouse)
-                     && !qualityButton.checked
+                     && !qualityButton.checked) ? 1 : 0
+            visible: opacity > 0
+            Behavior on opacity { NumberAnimation { duration: 170 } }
             width: 25
             height: 80
             PlayerSlider {
@@ -265,7 +281,9 @@ Item {
             x: qualityButton.parent.mapToItem(parent, qualityButton.x, 0).x
                - width + qualityButton.width
             y: dockContainer.y - height - 5
-            visible: qualityButton.checked
+            opacity: qualityButton.checked ? 1 : 0
+            visible: opacity > 0
+            Behavior on opacity { NumberAnimation { duration: 170 } }
             width: playerOptions.width + 10
             height: playerOptions.height + 10
             onVisibleChanged: if (!visible) playerOptions.pop()
