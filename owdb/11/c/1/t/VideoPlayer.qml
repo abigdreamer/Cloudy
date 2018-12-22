@@ -261,39 +261,16 @@ Item {
                - width + qualityButton.width
             y: dockContainer.y - height - 5
             visible: qualityButton.checked
-            width: column.width + 10
-            height: column.height + 6
-            Column {
-                id: column
-                anchors.centerIn: parent
-                Repeater {
-                    model: qualities
-                    delegate: CheckBox {
-                        text: qualities[qualities.length - index - 1]
-                        height: 20
-                        leftPadding: 0
-                        rightPadding: 0
-                        topPadding: 0
-                        bottomPadding: 0
-                        anchors.right: column.right
-                        indicator: Label {
-                            x: 0
-                            y: parent.height / 2.0 - height / 2.0
-                            visible: checked
-                            text: "✓"
-                        }
-                    }
-                }
-            }
-            MouseArea {
-                id: ma2
-                anchors.fill: parent
-                hoverEnabled: true
-                onPressed: mouse.accepted = false
-                cursorShape: Qt.PointingHandCursor
+            width: playerOptions.width + 16
+            height: Math.min(root.height - dockContainer.height - 20,
+                             playerOptions.height + 16)
+            PlayerOptions {
+                id: playerOptions
             }
         }
     }
-    property var qualities: []
+    property var info: null
+    property string quality
+    property var qualities: Utils.getQualities(info)
     property alias player: video
 }

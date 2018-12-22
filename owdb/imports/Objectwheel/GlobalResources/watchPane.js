@@ -66,33 +66,11 @@ function fetchVideoInfo() {
         playerBusyIndicator.running = false
 
         if (err) {
-            player.videos = {}
-            player.audioUrl = ""
+            player.info = {}
             console.log(err)
             return
         }
         
-        player.videos = toVideoUrls(value)
-        player.audioUrl = toAudioUrl(value)
+        player.info = value
     })
-}
-
-function toVideoUrls(response) {
-    var videos = {}
-    for (var i = 0; i < response.length; ++i) {
-        var video = response[i]
-        if (video.ext !== "mp4")
-            continue
-        if (video.format.match(/\d+p/g))
-            videos[video.format] = video.url
-    }
-    return videos
-}
-
-function toAudioUrl(response) {
-    for (var i = 0; i < response.length; ++i) {
-        var audio = response[i]
-        if (audio.format.match(/[a|A]udio/g) && audio.ext === "m4a")
-            return audio.url
-    }
 }

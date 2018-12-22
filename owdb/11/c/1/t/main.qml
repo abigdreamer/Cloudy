@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Extras 1.4
 import QtQuick.Controls 1.4
 import QtMultimedia 5.9
+import Application 1.0
 
 Rectangle {
     id: player
@@ -17,16 +18,17 @@ Rectangle {
         anchors.centerIn: parent
         width: player.width
         height: Math.floor(player.width / 1.777)
-        player.source: videos["144p"]
+        quality: "360p"
+        info: player.info
         player.autoPlay: false
         player.muted: true
-        qualities: Object.keys(videos)
     }
 
     Audio {
         id: audio
         muted: video.player.muted
         volume: video.player.volume
+        source: Utils.getAudio(info).url
         Component.onCompleted: {
             video.player.playbackStateChanged.connect(function() {
                 if (video.player.playerState() === 'playing')
@@ -48,6 +50,5 @@ Rectangle {
     }
 
     
-    property var videos: ({})
-    property alias audioUrl: audio.source
+    property var info: []
 }

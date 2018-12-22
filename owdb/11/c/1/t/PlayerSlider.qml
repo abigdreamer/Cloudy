@@ -9,7 +9,6 @@ Slider {
     rightPadding: 0
     bottomPadding: 0
     topPadding: 0
-    
     background: Rectangle {
         x: horizontal ? 0 : (control.width - width) / 2.0
         y: horizontal ? (control.height - height) / 2.0 : 0
@@ -30,7 +29,6 @@ Slider {
             color: "#60ffffff"
         }
     }
-    
     handle: Rectangle {
         x: horizontal
            ? control.value * (control.width - width)
@@ -43,6 +41,5 @@ Slider {
         width: horizontal ? 10 : height
         radius: 5
     }
-    
     property var videoPlayer: null
 }

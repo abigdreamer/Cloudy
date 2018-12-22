@@ -192,3 +192,29 @@ function likeString(likeCount) {
     }
     return console.trace()
 }
+
+function getQualities(info) {
+    var qualities = []
+    for (var i = 0; i < info.length; ++i) {
+        var video = info[i]
+        if (!video.format.match(/[a|A]udio/g))
+            qualities.push(video.format)
+    }
+    return qualities
+}
+
+function getVideo(info, quality) {
+    for (var i = 0; i < info.length; ++i) {
+        var video = info[i]
+        if (video.format === quality)
+            return video
+    }
+}
+
+function getAudio(info) {
+    for (var i = 0; i < info.length; ++i) {
+        var audio = info[i]
+        if (audio.format.match(/[a|A]udio/g))
+            return audio
+    }
+}
