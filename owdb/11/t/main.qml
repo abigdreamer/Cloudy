@@ -63,7 +63,7 @@ Page {
             }
         }
     }
-    
+
     function openUserDialog(listElement) {
         if (listElement) {
             userDialog.title = listElement.authorDisplayName

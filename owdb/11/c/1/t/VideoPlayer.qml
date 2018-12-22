@@ -193,7 +193,10 @@ Item {
                         onPressed: mouse.accepted = false
                         cursorShape: Qt.PointingHandCursor
                     }
-                    onClicked: video.muted = !video.muted
+                    onClicked: {
+                        qualityButton.checked = false
+                        video.muted = !video.muted
+                    }
                     onPressed: NumberAnimation {
                         target: volumeButton
                         duration: 50
@@ -226,17 +229,18 @@ Item {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    //onClicked: video.seek(video.position + 15000)
                 }
             }
         }
         // Volume slider
         DockItem {
+            id: volumeSliderDockItem
             x: volumeButton.parent.mapToItem(parent, volumeButton.x, 0).x
                + (volumeButton.width - width) / 2.0
             y: dockContainer.y - height - 5
             visible: !video.muted
                      && (volumeButton.containsMouse || ma.containsMouse)
+                     && !qualityButton.checked
             width: 25
             height: 80
             PlayerSlider {
@@ -257,20 +261,24 @@ Item {
         }
         // Quality selection container
         DockItem {
+            id: qualitySelectionDockItem
             x: qualityButton.parent.mapToItem(parent, qualityButton.x, 0).x
                - width + qualityButton.width
             y: dockContainer.y - height - 5
             visible: qualityButton.checked
-            width: playerOptions.width + 16
-            height: Math.min(root.height - dockContainer.height - 20,
-                             playerOptions.height + 16)
+            width: playerOptions.width + 10
+            height: playerOptions.height + 10
+            onVisibleChanged: if (!visible) playerOptions.pop()
             PlayerOptions {
                 id: playerOptions
+                anchors.centerIn: parent
+                maxHeight: root.height - dockContainer.height - 20
+                qualities: Utils.getQualities(info)
             }
         }
     }
+
+    onInfoChanged: qualityButton.checked = false
     property var info: null
-    property string quality
-    property var qualities: Utils.getQualities(info)
     property alias player: video
 }

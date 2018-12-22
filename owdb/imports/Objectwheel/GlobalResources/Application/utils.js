@@ -218,3 +218,17 @@ function getAudio(info) {
             return audio
     }
 }
+
+function qualityBadge(quality) {
+    if (quality.match("4320p"))
+        return '8K'
+    if (quality.match("2160p"))
+        return '4K'
+    if (quality.match("1440p"))
+        return 'HD'
+    if (quality.match("1080p"))
+        return 'HD'
+    if (quality.match("720p"))
+        return 'HD'
+    return ''
+}

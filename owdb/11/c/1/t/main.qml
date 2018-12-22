@@ -18,7 +18,6 @@ Rectangle {
         anchors.centerIn: parent
         width: player.width
         height: Math.floor(player.width / 1.777)
-        quality: "360p"
         info: player.info
         player.autoPlay: false
         player.muted: true
@@ -49,6 +48,5 @@ Rectangle {
         }
     }
 
-    
     property var info: []
 }

@@ -10,6 +10,7 @@ Row {
     clip: true
     anchors.right: arrowDown.right
     anchors.verticalCenter: view.verticalCenter
+    anchors.verticalCenterOffset: 4
     spacing: 8
     Column {
         spacing: 2
