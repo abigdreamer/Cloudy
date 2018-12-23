@@ -36,24 +36,28 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.WordWrap
             color: "#A4A4A4"
-            text: qsTr("This video is now playing in picture-in-picture mode")
+            text: qsTr("This video is now playing picture-in-picture mode")
         }
     }
 
     Window {
         id: window
-        flags: Qt.Tool | Qt.FramelessWindowHint
-        color: player.color
+        color: "black"
+        flags: Qt.Window
+            | Qt.FramelessWindowHint
+            | Qt.BypassWindowManagerHint
+            | Qt.X11BypassWindowManagerHint
+            | Qt.WindowStaysOnTopHint
+            | Qt.NoDropShadowWindowHint
+        FrameBorder { anchors.fill: parent }
     }
 
     VideoPlayer {
         id: video
-        anchors.centerIn: parent
-        width: player.width
+        anchors.fill: parent
         core.autoPlay: true
         core.muted: false
         info: player.info
-        height: player.height
         core.onStatusChanged: {
             if (video.core.status === MediaPlayer.Buffering
                     || video.core.status === MediaPlayer.Loading) {
@@ -61,8 +65,19 @@ Rectangle {
             }
             playerBusyIndicator.running = false
         }
-        onStaysOnTop: {
-            if (yes) {
+        onFullScreenChanged: {
+            if (fullScreen) {
+                d.wasDetached = detached
+                detached = true
+                window.showFullScreen()
+            } else {
+                window.showNormal()
+                if (!d.wasDetached)
+                    Utils.delayCall(1000, video, () => detached = false)
+            }
+        }
+        onStaysOnTopChanged: {
+            if (staysOnTop) {
                 window.flags |= (Qt.WindowStaysOnTopHint | Qt.NoDropShadowWindowHint)
                 window.show()
             } else {
@@ -70,8 +85,8 @@ Rectangle {
                 window.show()
             }
         }
-        onDetach: {
-            if (yes) {
+        onDetachedChanged: {
+            if (detached) {
                 window.width = video.width
                 window.height = video.height
                 var pos = player.mapToGlobal(0, 0)
@@ -86,11 +101,16 @@ Rectangle {
         }
     }
 
+    QtObject {
+        id: d
+        property bool wasDetached: false
+    }
+
     function calculatedHeight() {
         var v = Utils.getVideo(info, video.quality)
         if (!v || typeof v === "undefined")
-            return video.width / 1.777
-        var ratio = v.width / video.width
+            return player.width / 1.777
+        var ratio = v.width / player.width
         return v.height / ratio
     }
     

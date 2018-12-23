@@ -97,7 +97,6 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    onCheckedChanged: fullScreen(checked)
                     onPressed: NumberAnimation {
                         target: fullScreenButton
                         duration: 50
@@ -115,6 +114,7 @@ Rectangle {
                     id: attachButton
                     width: 19
                     height: 19
+                    enabled: !fullScreenButton.checked
                     checkable: true
                     icon.color: "white"
                     icon.source: checked
@@ -128,7 +128,6 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    onCheckedChanged: detach(checked)
                     onPressed: NumberAnimation {
                         target: attachButton
                         duration: 50
@@ -151,17 +150,18 @@ Rectangle {
             y: 8
             width: 30
             height: 30
-            visible: attachButton.checked
+            visible: attachButton.checked && !fullScreenButton.checked
             Button {
                 id: staysOnTopButton
                 anchors.centerIn: parent
                 width: 19
                 height: 19
+                checked: true
                 checkable: true
                 icon.color: "white"
                 icon.source: checked
-                             ? Resource.images.player.balloon
-                             : Resource.images.player.noBalloon
+                             ? Resource.images.player.noBalloon
+                             : Resource.images.player.balloon
                 icon.width: width
                 icon.height: height
                 leftPadding: 0
@@ -170,7 +170,6 @@ Rectangle {
                 topPadding: 0
                 background: Item {}
                 Cursor {}
-                onCheckedChanged: staysOnTop(checked)
                 onPressed: NumberAnimation {
                     target: staysOnTopButton
                     duration: 50
@@ -462,8 +461,7 @@ Rectangle {
     property var info: null
     property alias quality: playerOptions.quality
     property alias core: video
-    
-    signal staysOnTop(bool yes)
-    signal detach(bool yes)
-    signal fullScreen(bool yes)
+    property alias staysOnTop: staysOnTopButton.checked
+    property alias detached: attachButton.checked
+    property alias fullScreen: fullScreenButton.checked
 }
