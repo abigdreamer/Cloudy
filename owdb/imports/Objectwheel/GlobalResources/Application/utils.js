@@ -255,6 +255,61 @@ function toPlaybackRate(speed) {
     return parseInt(speed)
 }
 
+function toDurationMs(duration) {
+    var date = parseDuration(duration)
+    var ret = 0
+    if (date.day > 0)
+        ret = date.day * 24 * 60 * 60 * 1000
+    if (date.hour > 0)
+        ret += date.hour * 60 * 60 * 1000
+    if (date.minute > 0)
+        ret += date.minute * 60 * 1000
+    if (date.second > 0)
+        ret += date.second * 1000
+    return ret
+}
+
+function durationMsToString(duration) {
+    var mk = duration % (60 * 1000)
+    var hk = duration % (60 * 60 * 1000)
+    var dk = duration % (24 * 60 * 60 * 1000)
+    var ret = ''
+    
+    var date = {
+        day: Math.floor(duration / (24 * 60 * 60 * 1000)),
+        hour: Math.floor(dk / (60 * 60 * 1000)),
+        minute: Math.floor(hk / (60 * 1000)),
+        second: Math.floor(mk / 1000)
+    }
+    
+    if (date.day > 0)
+        ret += date.day
+    
+    if (date.hour > 0) {
+        if (ret !== '')
+            ret += ':' + date.hour.toString().padStart(2, '0')
+        else
+            ret += date.hour
+    } else if (ret !== '') {
+        ret += ':00'
+    }
+
+    if (date.minute > 0) {
+        if (ret !== '')
+            ret += ':' + date.minute.toString().padStart(2, '0')
+        else
+            ret += date.minute
+    } else if (ret !== '') {
+        ret += ':00'
+    } else {
+        ret += '0'
+    }
+    
+    ret += ':' + date.second.toString().padStart(2, '0')
+    
+    return ret
+}
+
 function toProperDurationString(duration) {
     var date = parseDuration(duration)
     var ret = ''

@@ -15,7 +15,8 @@ Item {
         anchors.fill: parent
         playbackRate: Utils.toPlaybackRate(playerOptions.speed)
         source: info.length ? Utils.getVideo(info, playerOptions.quality).url : ""
-        onPositionChanged: playerSlider.value = video.position / video.duration
+        onPositionChanged: playerSlider.value
+          = video.position / Utils.toDurationMs(watchPane.video.duration)
         function isAvailable() {
             return availability === MediaPlayer.Available
                  && error === MediaPlayer.NoError
@@ -189,6 +190,13 @@ Item {
                         to: 1.0
                     }
                 }
+                Text {
+                    id: leftDuration
+                    text: !watchPane.video || typeof watchPane.video === "undefined"
+                          ? "--:--"
+                          : Utils.durationMsToString(video.position)
+                    color: "white"
+                }
                 PlayerSlider {
                     id: playerSlider
                     Layout.fillHeight: true
@@ -197,11 +205,17 @@ Item {
                     to: 1.0
                     videoPlayer: video
                     onMoved: {
-                        video.seek(value * video.duration)
-                        audio.seek(value * video.duration)
-                        console.log(value, video.duration)
+                        video.seek(value * Utils.toDurationMs(watchPane.video.duration))
+                        audio.seek(value * Utils.toDurationMs(watchPane.video.duration))
                     }
                     Cursor {}
+                }
+                Text {
+                    id: rightDuration
+                    text: !watchPane.video || typeof watchPane.video === "undefined"
+                          ? "--:--"
+                          : Utils.durationMsToString(Utils.toDurationMs(watchPane.video.duration))
+                    color: "white"
                 }
                 Button {
                     id: volumeButton
