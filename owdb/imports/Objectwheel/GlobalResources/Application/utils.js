@@ -67,6 +67,10 @@ function suppressCall(interval, parent, callback) {
     timerMap[parent] = timerObj
 }
 
+function isMobilePlatform() {
+    return Qt.platform.os === "ios" || Qt.platform.os === "android"
+}
+
 function showMessage(parent, properties) {
     var dialog = Qt.createQmlObject('import Qt.labs.platform 1.0; MessageDialog{}', parent)
     if (!dialog)

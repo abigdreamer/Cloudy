@@ -8,6 +8,11 @@ QtObject {
  
     readonly property var images: {
         "player": {
+            "pip": Qt.resolvedUrl('./images/player/pip.png'),
+            "noBalloon": Qt.resolvedUrl('./images/player/no-balloon.png'),
+            "balloon": Qt.resolvedUrl('./images/player/balloon.png'),
+            "attach": Qt.resolvedUrl('./images/player/attach.png'),
+            "detach": Qt.resolvedUrl('./images/player/detach.png'),
             "hd": Qt.resolvedUrl('./images/player/hd.png'),
             "volumeHigh": Qt.resolvedUrl('./images/player/volume-high.png'),
             "volumeMid": Qt.resolvedUrl('./images/player/volume-mid.png'),

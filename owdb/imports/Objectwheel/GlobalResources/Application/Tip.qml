@@ -1,10 +1,11 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.3
+import Application 1.0
 
 MouseArea {
     hoverEnabled: true
     onPressed: {
-        if (Qt.platform.os == "ios" || Qt.platform.os == "android")
+        if (Utils.isMobilePlatform())
             show = !show
         mouse.accepted = false
     }

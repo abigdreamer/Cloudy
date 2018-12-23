@@ -5,7 +5,7 @@
 .import Objectwheel.Core 1.0 as OC
 
 function application_onCompleted() {
-    if (Qt.platform.os !== "ios" && Qt.platform.os !== "android") {
+    if (!App.Utils.isMobilePlatform()) {
         maximumWidth = 370
         maximumHeight = 650
         minimumWidth = 370

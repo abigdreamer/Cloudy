@@ -6,9 +6,10 @@ import Application 1.0
 import Application.Resources 1.0
 import QtQuick.Window 2.3
 
-Item {
+Rectangle {
     id: root
-
+    color: "black"
+    
     Video {
         id: video
         notifyInterval: 400
@@ -69,6 +70,121 @@ Item {
     Dock {
         id: dock
         videoPlayer: video
+        // Fullscreen controls
+        DockItem {
+            id: fullScreenContainer
+            x: 8
+            y: 8
+            width: 70
+            height: 30
+            Row {
+                spacing: 10
+                anchors.centerIn: parent
+                Button {
+                    id: fullScreenButton
+                    width: 19
+                    height: 19
+                    checkable: true
+                    icon.color: "white"
+                    icon.source: checked
+                                 ? Resource.images.player.normalScreen
+                                 : Resource.images.player.fullScreen
+                    icon.width: width
+                    icon.height: height
+                    leftPadding: 0
+                    rightPadding: 0
+                    bottomPadding: 0
+                    topPadding: 0
+                    background: Item {}
+                    Cursor {}
+                    onCheckedChanged: fullScreen(checked)
+                    onPressed: NumberAnimation {
+                        target: fullScreenButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.9
+                    }
+                    onReleased: NumberAnimation {
+                        target: fullScreenButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
+                }
+                Button {
+                    id: attachButton
+                    width: 19
+                    height: 19
+                    checkable: true
+                    icon.color: "white"
+                    icon.source: checked
+                                 ? Resource.images.player.attach
+                                 : Resource.images.player.detach
+                    icon.width: width
+                    icon.height: height
+                    leftPadding: 0
+                    rightPadding: 0
+                    bottomPadding: 0
+                    topPadding: 0
+                    background: Item {}
+                    Cursor {}
+                    onCheckedChanged: detach(checked)
+                    onPressed: NumberAnimation {
+                        target: attachButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.9
+                    }
+                    onReleased: NumberAnimation {
+                        target: attachButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
+                }
+            }
+        }
+        // Fullscreen controls
+        DockItem {
+            id: staysOnTopContainer
+            x: parent.width - width - 8
+            y: 8
+            width: 30
+            height: 30
+            visible: attachButton.checked
+            Button {
+                id: staysOnTopButton
+                anchors.centerIn: parent
+                width: 19
+                height: 19
+                checkable: true
+                icon.color: "white"
+                icon.source: checked
+                             ? Resource.images.player.balloon
+                             : Resource.images.player.noBalloon
+                icon.width: width
+                icon.height: height
+                leftPadding: 0
+                rightPadding: 0
+                bottomPadding: 0
+                topPadding: 0
+                background: Item {}
+                Cursor {}
+                onCheckedChanged: staysOnTop(checked)
+                onPressed: NumberAnimation {
+                    target: staysOnTopButton
+                    duration: 50
+                    property: "scale"
+                    to: 0.9
+                }
+                onReleased: NumberAnimation {
+                    target: staysOnTopButton
+                    duration: 50
+                    property: "scale"
+                    to: 1.0
+                }
+            }
+        }
         // Dock controls
         DockItem {
             id: dockContainer
@@ -106,7 +222,7 @@ Item {
                         target: backwardButton
                         duration: 50
                         property: "scale"
-                        to: 0.7
+                        to: 0.9
                     }
                     onReleased: NumberAnimation {
                         target: backwardButton
@@ -151,7 +267,7 @@ Item {
                         target: playButton
                         duration: 50
                         property: "scale"
-                        to: 0.7
+                        to: 0.9
                     }
                     onReleased: NumberAnimation {
                         target: playButton
@@ -181,7 +297,7 @@ Item {
                         target: forwardButton
                         duration: 50
                         property: "scale"
-                        to: 0.7
+                        to: 0.9
                     }
                     onReleased: NumberAnimation {
                         target: forwardButton
@@ -249,7 +365,7 @@ Item {
                         target: volumeButton
                         duration: 50
                         property: "scale"
-                        to: 0.7
+                        to: 0.9
                     }
                     onReleased: NumberAnimation {
                         target: volumeButton
@@ -288,7 +404,6 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         visible: Utils.qualityBadge(playerOptions.quality)
                     }
-
                     Cursor {}
                 }
             }
@@ -347,4 +462,8 @@ Item {
     property var info: null
     property alias quality: playerOptions.quality
     property alias core: video
+    
+    signal staysOnTop(bool yes)
+    signal detach(bool yes)
+    signal fullScreen(bool yes)
 }
