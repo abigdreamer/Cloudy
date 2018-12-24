@@ -16,8 +16,13 @@ Rectangle {
         anchors.fill: parent
         playbackRate: Utils.toPlaybackRate(playerOptions.speed)
         source: info.length ? Utils.getVideo(info, playerOptions.quality).url : ""
-        onPositionChanged: playerSlider.value
-          = video.position / Utils.toDurationMs(watchPane.video.duration)
+        onPositionChanged: {
+            playerSlider.value
+                    = video.position / Utils.toDurationMs(watchPane.video.duration)
+        }
+        onPlaybackRateChanged: qualityButton.checked = false
+        onPlaybackStateChanged: qualityButton.checked = false
+        
         function isAvailable() {
             return availability === MediaPlayer.Available
                  && error === MediaPlayer.NoError
@@ -70,6 +75,8 @@ Rectangle {
     Dock {
         id: dock
         videoPlayer: video
+        onDockHid: if (yes) qualityButton.checked = false
+
         // Fullscreen controls
         DockItem {
             id: fullScreenContainer
@@ -97,6 +104,7 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
+                    onClicked: qualityButton.checked = false
                     onPressed: NumberAnimation {
                         target: fullScreenButton
                         duration: 50
@@ -127,6 +135,7 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
+                    onClicked: qualityButton.checked = false
                     Cursor {}
                     onPressed: NumberAnimation {
                         target: attachButton
@@ -172,6 +181,7 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
+                    onClicked: qualityButton.checked = false
                     onPressed: NumberAnimation {
                         target: staysOnTopButton
                         duration: 50
@@ -204,6 +214,7 @@ Rectangle {
                                      ? Qt.ClosedHandCursor
                                      : Qt.PointingHandCursor
                         onPressed: {
+                            qualityButton.checked = false
                             clickPos  = Qt.point(mouse.x,mouse.y)
                         }
                         onPositionChanged: {
@@ -258,9 +269,11 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    onClicked: video.seek(video.position > 15000
-                                          ? video.position - 15000
-                                          : 0)
+                    onClicked: {
+                        audio.seek(video.position - 15000)
+                        video.seek(video.position - 15000)
+                        qualityButton.checked = false
+                    }
                     
                     onPressed: NumberAnimation {
                         target: backwardButton
@@ -336,7 +349,11 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     Cursor {}
-                    onClicked: video.seek(video.position + 15000)
+                    onClicked: {
+                        qualityButton.checked = false
+                        audio.seek(video.position + 15000)
+                        video.seek(video.position + 15000)
+                    }
                     onPressed: NumberAnimation {
                         target: forwardButton
                         duration: 50
@@ -368,6 +385,7 @@ Rectangle {
                     onMoved: {
                         video.seek(value * Utils.toDurationMs(watchPane.video.duration))
                         audio.seek(value * Utils.toDurationMs(watchPane.video.duration))
+                        qualityButton.checked = false
                     }
                     Cursor {}
                 }
