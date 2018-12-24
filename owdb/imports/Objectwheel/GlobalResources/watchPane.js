@@ -7,6 +7,7 @@ function watchPane_onCompleted() {
     commentsList.orderByTimeChanged.connect(fetchComments)
     watchPane.videoChanged.connect(watchPane_onVideoChanged)
     commentsList.loadMoreComments.connect(commentsList_onLoadMoreComments)
+    player.core.data.push(playerBusyIndicator)
 }
 
 function watchPane_onVideoChanged() {

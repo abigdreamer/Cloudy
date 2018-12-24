@@ -18,6 +18,7 @@ Rectangle {
     color: "black"
     
     ColumnLayout {
+        id: pipContainer
         anchors.centerIn: parent
         width: 200
         height: 130
@@ -49,7 +50,7 @@ Rectangle {
             | Qt.X11BypassWindowManagerHint
             | Qt.WindowStaysOnTopHint
             | Qt.NoDropShadowWindowHint
-        FrameBorder { anchors.fill: parent }
+        FrameBorder { z: 1000; anchors.fill: parent }
     }
 
     VideoPlayer {

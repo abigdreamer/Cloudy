@@ -15,7 +15,7 @@ Slider {
         width: horizontal ? control.width : 5
         height: horizontal ? 5 : control.height
         radius: 2.5
-        color: "#35ffffff"
+        color: enabled ? "#35ffffff" : "#20ffffff"
         
         Rectangle {
             x: 0
@@ -26,7 +26,7 @@ Slider {
             width: horizontal ? control.value * (parent.width - handle.width)
                + handle.width / 2.0 : parent.width
             radius: horizontal ? height / 2.0 : width / 2.0
-            color: "#60ffffff"
+            color: enabled ? "#60ffffff" : "#35ffffff"
         }
     }
     handle: Rectangle {
@@ -36,7 +36,7 @@ Slider {
         y: horizontal
            ? (control.height - height) / 2.0
            : control.height - control.value * (control.height - height) - height
-        color: control.pressed ? "#f0f0f0" : "#ffffff"
+        color: enabled ? (control.pressed ? "#f0f0f0" : "#ffffff") : "#707070"
         height: 10
         width: 10
         radius: 5

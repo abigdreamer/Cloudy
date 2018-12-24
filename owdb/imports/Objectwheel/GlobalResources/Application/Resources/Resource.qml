@@ -8,6 +8,7 @@ QtObject {
  
     readonly property var images: {
         "player": {
+            "drag": Qt.resolvedUrl('./images/player/drag.png'),
             "pip": Qt.resolvedUrl('./images/player/pip.png'),
             "noBalloon": Qt.resolvedUrl('./images/player/no-balloon.png'),
             "balloon": Qt.resolvedUrl('./images/player/balloon.png'),

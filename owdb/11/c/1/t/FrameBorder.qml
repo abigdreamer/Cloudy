@@ -13,18 +13,6 @@ Item {
     }
     
     MouseArea {
-        anchors.fill: parent
-        cursorShape: pressed ? Qt.ClosedHandCursor : Qt.ArrowCursor
-        onPressed: clickPos  = Qt.point(mouse.x,mouse.y)
-        onPositionChanged: {
-            var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-            Window.window.x += delta.x
-            Window.window.y += delta.y
-        }
-        property point clickPos: Qt.point(1 , 1)
-    }
-    
-    MouseArea {
         id: leftArea
         anchors.left: parent.left
         anchors.top: parent.top

@@ -85,7 +85,7 @@ Rectangle {
                     width: 19
                     height: 19
                     checkable: true
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: checked
                                  ? Resource.images.player.normalScreen
                                  : Resource.images.player.fullScreen
@@ -116,7 +116,7 @@ Rectangle {
                     height: 19
                     enabled: !fullScreenButton.checked
                     checkable: true
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: checked
                                  ? Resource.images.player.attach
                                  : Resource.images.player.detach
@@ -148,39 +148,84 @@ Rectangle {
             id: staysOnTopContainer
             x: parent.width - width - 8
             y: 8
-            width: 30
+            width: 70
             height: 30
             visible: attachButton.checked && !fullScreenButton.checked
-            Button {
-                id: staysOnTopButton
+            Row {
+                spacing: 10
                 anchors.centerIn: parent
-                width: 19
-                height: 19
-                checked: true
-                checkable: true
-                icon.color: "white"
-                icon.source: checked
-                             ? Resource.images.player.noBalloon
-                             : Resource.images.player.balloon
-                icon.width: width
-                icon.height: height
-                leftPadding: 0
-                rightPadding: 0
-                bottomPadding: 0
-                topPadding: 0
-                background: Item {}
-                Cursor {}
-                onPressed: NumberAnimation {
-                    target: staysOnTopButton
-                    duration: 50
-                    property: "scale"
-                    to: 0.9
+                Button {
+                    id: staysOnTopButton
+                    width: 19
+                    height: 19
+                    checked: true
+                    checkable: true
+                    icon.color: enabled ? "white" : "#707070"
+                    icon.source: checked
+                                 ? Resource.images.player.noBalloon
+                                 : Resource.images.player.balloon
+                    icon.width: width
+                    icon.height: height
+                    leftPadding: 0
+                    rightPadding: 0
+                    bottomPadding: 0
+                    topPadding: 0
+                    background: Item {}
+                    Cursor {}
+                    onPressed: NumberAnimation {
+                        target: staysOnTopButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.9
+                    }
+                    onReleased: NumberAnimation {
+                        target: staysOnTopButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                 }
-                onReleased: NumberAnimation {
-                    target: staysOnTopButton
-                    duration: 50
-                    property: "scale"
-                    to: 1.0
+                Button {
+                    id: dragWindowButton
+                    width: 19
+                    height: 19
+                    icon.color: enabled ? "white" : "#707070"
+                    icon.source: Resource.images.player.drag
+                    icon.width: width
+                    icon.height: height
+                    leftPadding: 0
+                    rightPadding: 0
+                    bottomPadding: 0
+                    topPadding: 0
+                    background: Item {}
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: pressed
+                                     ? Qt.ClosedHandCursor
+                                     : Qt.PointingHandCursor
+                        onPressed: {
+                            clickPos  = Qt.point(mouse.x,mouse.y)
+                        }
+                        onPositionChanged: {
+                            var delta = Qt.point(mouse.x - clickPos.x,
+                                                 mouse.y - clickPos.y)
+                            Window.window.x += delta.x
+                            Window.window.y += delta.y
+                        }
+                        property point clickPos: Qt.point(1 , 1)
+                    }
+                    onPressed: NumberAnimation {
+                        target: dragWindowButton
+                        duration: 50
+                        property: "scale"
+                        to: 0.9
+                    }
+                    onReleased: NumberAnimation {
+                        target: dragWindowButton
+                        duration: 50
+                        property: "scale"
+                        to: 1.0
+                    }
                 }
             }
         }
@@ -203,7 +248,7 @@ Rectangle {
                     Layout.preferredWidth: 19
                     Layout.preferredHeight: 19
                     enabled: video.seekable
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: Resource.images.player.backward
                     icon.width: width
                     icon.height: height
@@ -235,7 +280,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: 19
                     Layout.preferredHeight: 19
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: {
                         if (video.playerState() === 'playing')
                             return Resource.images.player.pause
@@ -281,7 +326,7 @@ Rectangle {
                     Layout.preferredWidth: 19
                     Layout.preferredHeight: 19
                     enabled: video.seekable
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: Resource.images.player.forward
                     icon.width: width
                     icon.height: height
@@ -310,12 +355,13 @@ Rectangle {
                     text: !watchPane.video || typeof watchPane.video === "undefined"
                           ? "--:--"
                           : Utils.durationMsToString(video.position)
-                    color: "white"
+                    color: enabled ? "white" : "#707070"
                 }
                 PlayerSlider {
                     id: playerSlider
-                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.fillWidth: true
+                    Layout.preferredHeight: 12
                     from: 0.0
                     to: 1.0
                     videoPlayer: video
@@ -330,14 +376,14 @@ Rectangle {
                     text: !watchPane.video || typeof watchPane.video === "undefined"
                           ? "--:--"
                           : Utils.durationMsToString(Utils.toDurationMs(watchPane.video.duration))
-                    color: "white"
+                    color: enabled ? "white" : "#707070"
                 }
                 Button {
                     id: volumeButton
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: 19
                     Layout.preferredHeight: 19
-                    icon.color: "white"
+                    icon.color: enabled ? "white" : "#707070"
                     icon.source: video.volumeIcon()
                     icon.width: width
                     icon.height: height
@@ -388,7 +434,7 @@ Rectangle {
                     TintImage {
                         rotation: parent.checked ? 45 : 0
                         Behavior on rotation { NumberAnimation { duration: 100 } }
-                        tintColor: "white"
+                        tintColor: enabled ? "white" : "#707070"
                         icon.source: Resource.images.player.quality
                         anchors.fill: parent
                     }
