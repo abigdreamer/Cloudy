@@ -1,7 +1,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import QtMultimedia 5.8
+import QtMultimedia 5.9
 import Application 1.0
 import Application.Resources 1.0
 import QtQuick.Window 2.3
@@ -10,9 +10,21 @@ Rectangle {
     id: root
     color: "black"
     
+    focus: true
+    Keys.onSpacePressed: video.playbackState === MediaPlayer.PlayingState ? video.pause() : video.play()
+    Keys.onLeftPressed: {
+        audio.seek(video.position - 15000)
+        video.seek(video.position - 15000)
+    }
+    Keys.onRightPressed: {
+        audio.seek(video.position + 15000)
+        video.seek(video.position + 15000)
+    }
+    Keys.onEscapePressed: if(fullScreenButton.checked) fullScreenButton.checked = false
+    
     Video {
         id: video
-        notifyInterval: 400
+        notifyInterval: 100
         anchors.fill: parent
         playbackRate: Utils.toPlaybackRate(playerOptions.speed)
         source: info.length ? Utils.getVideo(info, playerOptions.quality).url : ""
@@ -53,12 +65,16 @@ Rectangle {
 
     Audio {
         id: audio
-        muted: video.muted
+        muted: video.muted && buffered
         volume: video.volume
+        notifyInterval: 100
         playbackRate: video.playbackRate
         source: info.length > 0 ? Utils.getAudio(info).url : ""
+        property bool buffered: false
         Component.onCompleted: {
             video.playbackStateChanged.connect(function() {
+                if (!buffered)
+                    return
                 if (video.playerState() === 'playing')
                     return audio.play()
                 if (video.playerState() === 'paused')
@@ -66,12 +82,90 @@ Rectangle {
                 if (video.playerState() === 'stopped')
                     return audio.stop()
             })
-            video.bufferProgressChanged.connect(function() {
-                if (video.playerState() === 'playing')
-                    return audio.play()
+            video.statusChanged.connect(function() {
+                if (video.status === MediaPlayer.Buffered) {
+                    buffered = true
+                    if (video.playerState() === 'playing')
+                        return audio.play()
+                }
+            })
+            video.sourceChanged.connect(function() {
+                buffered = false
+            })
+            video.positionChanged.connect(function() {
+                if (!buffered)
+                    return
+                if (Math.abs(audio.position - video.position) > 250) {
+                    playerBusyIndicator.running = true
+                    video.pause()
+                    audio.pause()
+                    audio.seek(video.position)
+                    Utils.delayCall(2000, audio, function() {
+                        playerBusyIndicator.running = false
+                        video.play()
+                        audio.play()
+                    })
+                }
             })
         }
     }
+    
+    Rectangle {
+        id: playPauseCircle
+        anchors.centerIn: parent
+        radius: height / 2
+        color: "black"
+        visible: opacity > 0
+        opacity: 0
+        width: 80
+        height: 80
+        scale: 0.2
+        SequentialAnimation {
+            id: animatePlayPause
+            PropertyAction {
+                target: playPauseCircle
+                property: "opacity"
+                value: 1
+            }
+            PropertyAction {
+                target: playPauseCircle
+                property: "scale"
+                value: 0.2
+            }
+            ParallelAnimation {
+                NumberAnimation {
+                    target: playPauseCircle
+                    duration: 1000
+                    property: "opacity"
+                    to: 0
+                    easing.type: Easing.OutSine
+                }
+                NumberAnimation {
+                    target: playPauseCircle
+                    duration: 1000
+                    property: "scale"
+                    to: 1
+                    easing.type: Easing.OutSine
+                }
+            }
+        }
+        TintImage {
+            anchors.centerIn: parent
+            width: 38
+            height: 38
+            icon.source:  {
+                if (video.playerState() === 'playing')
+                    return Resource.images.player.play
+                return Resource.images.player.pause
+            }
+            tintColor: "white"
+        }
+        Component.onCompleted: video.playbackStateChanged.connect(function() {
+            if (!playerBusyIndicator.running)
+               animatePlayPause.restart()
+        })
+    }
+
     Dock {
         id: dock
         videoPlayer: video
@@ -385,9 +479,14 @@ Rectangle {
                 }
                 Text {
                     id: leftDuration
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: Math.max(30, contentWidth)
+                    horizontalAlignment: Text.AlignHCenter
+                    maximumLineCount: 1
+                    textFormat: Text.RichText
                     text: !watchPane.video || typeof watchPane.video === "undefined"
-                          ? "--:--"
-                          : Utils.durationMsToString(video.position)
+                          ? "<pre>--:--</pre>"
+                          : '<pre>' + Utils.durationMsToString(video.position) + '</pre>'
                     color: enabled ? "white" : "#707070"
                     Cursor {
                         cursorShape: Qt.ArrowCursor
@@ -401,10 +500,10 @@ Rectangle {
                     Layout.preferredHeight: 12
                     from: 0.0
                     to: 1.0
-                    videoPlayer: video
                     onMoved: {
-                        video.seek(value * Utils.toDurationMs(watchPane.video.duration))
-                        audio.seek(value * Utils.toDurationMs(watchPane.video.duration))
+                        var seekVal = (value * Utils.toDurationMs(watchPane.video.duration)).toFixed(3)
+                        video.seek(seekVal)
+                        audio.seek(seekVal)
                         qualityButton.checked = false
                     }
                     Cursor {
@@ -413,9 +512,14 @@ Rectangle {
                 }
                 Text {
                     id: rightDuration
+                    Layout.preferredWidth: Math.max(30, contentWidth)
+                    Layout.alignment: Qt.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    maximumLineCount: 1
+                    textFormat: Text.RichText
                     text: !watchPane.video || typeof watchPane.video === "undefined"
-                          ? "--:--"
-                          : Utils.durationMsToString(Utils.toDurationMs(watchPane.video.duration))
+                          ? "<pre>--:--</pre>"
+                          : '<pre>' + Utils.durationMsToString(Utils.toDurationMs(watchPane.video.duration)) + '</pre>'
                     color: enabled ? "white" : "#707070"
                     Cursor {
                         cursorShape: Qt.ArrowCursor

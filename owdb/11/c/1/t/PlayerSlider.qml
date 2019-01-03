@@ -41,5 +41,4 @@ Slider {
         width: 10
         radius: 5
     }
-    property var videoPlayer: null
 }
