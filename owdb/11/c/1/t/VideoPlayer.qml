@@ -103,7 +103,9 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: fullScreenContainer.containsMouse = containsMouse
+                    }
                     onClicked: qualityButton.checked = false
                     onPressed: NumberAnimation {
                         target: fullScreenButton
@@ -136,7 +138,9 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     onClicked: qualityButton.checked = false
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: fullScreenContainer.containsMouse = containsMouse
+                    }
                     onPressed: NumberAnimation {
                         target: attachButton
                         duration: 50
@@ -180,7 +184,9 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: staysOnTopContainer.containsMouse = containsMouse
+                    }
                     onClicked: qualityButton.checked = false
                     onPressed: NumberAnimation {
                         target: staysOnTopButton
@@ -209,10 +215,8 @@ Rectangle {
                     topPadding: 0
                     background: Item {}
                     MouseArea {
+                        id: draggerArea
                         anchors.fill: parent
-                        cursorShape: pressed
-                                     ? Qt.ClosedHandCursor
-                                     : Qt.PointingHandCursor
                         onPressed: {
                             qualityButton.checked = false
                             clickPos  = Qt.point(mouse.x,mouse.y)
@@ -224,6 +228,12 @@ Rectangle {
                             Window.window.y += delta.y
                         }
                         property point clickPos: Qt.point(1 , 1)
+                    }
+                    Cursor {
+                        cursorShape: draggerArea.pressed
+                                     ? Qt.ClosedHandCursor
+                                     : Qt.PointingHandCursor
+                        onContainsMouseChanged: staysOnTopContainer.containsMouse = containsMouse
                     }
                     onPressed: NumberAnimation {
                         target: dragWindowButton
@@ -268,7 +278,9 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                     onClicked: {
                         audio.seek(video.position - 15000)
                         video.seek(video.position - 15000)
@@ -309,7 +321,9 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                     onClicked: {
                         if (video.playerState() === 'playing')
                             return video.pause()
@@ -348,7 +362,9 @@ Rectangle {
                     bottomPadding: 0
                     topPadding: 0
                     background: Item {}
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                     onClicked: {
                         qualityButton.checked = false
                         audio.seek(video.position + 15000)
@@ -373,6 +389,10 @@ Rectangle {
                           ? "--:--"
                           : Utils.durationMsToString(video.position)
                     color: enabled ? "white" : "#707070"
+                    Cursor {
+                        cursorShape: Qt.ArrowCursor
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                 }
                 PlayerSlider {
                     id: playerSlider
@@ -387,7 +407,9 @@ Rectangle {
                         audio.seek(value * Utils.toDurationMs(watchPane.video.duration))
                         qualityButton.checked = false
                     }
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                 }
                 Text {
                     id: rightDuration
@@ -395,6 +417,10 @@ Rectangle {
                           ? "--:--"
                           : Utils.durationMsToString(Utils.toDurationMs(watchPane.video.duration))
                     color: enabled ? "white" : "#707070"
+                    Cursor {
+                        cursorShape: Qt.ArrowCursor
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                 }
                 Button {
                     id: volumeButton
@@ -419,6 +445,7 @@ Rectangle {
                         hoverEnabled: true
                         onPressed: mouse.accepted = false
                         cursorShape: Qt.PointingHandCursor
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
                     }
                     onClicked: {
                         qualityButton.checked = false
@@ -467,7 +494,9 @@ Rectangle {
                         fillMode: Image.PreserveAspectFit
                         visible: Utils.qualityBadge(playerOptions.quality)
                     }
-                    Cursor {}
+                    Cursor {
+                        onContainsMouseChanged: dockContainer.containsMouse = containsMouse
+                    }
                 }
             }
         }
@@ -499,6 +528,7 @@ Rectangle {
                 onPressed: mouse.accepted = false
                 cursorShape: Qt.PointingHandCursor
             }
+            containsMouse: visible
         }
         // Quality selection container
         DockItem {
@@ -518,6 +548,7 @@ Rectangle {
                 maxHeight: root.height - dockContainer.height - 30
                 qualities: Utils.getQualities(info)
             }
+            containsMouse: visible
         }
     }
 

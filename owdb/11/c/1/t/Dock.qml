@@ -13,22 +13,26 @@ Item {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        preventStealing: true
-        propagateComposedEvents: true
         onEntered: {
             d.fadeInFast()
             hidetimer.restart()
         }
         onExited: {
-            var preventHiding = false
-            for (var i = 0; i < mask.children.length; ++i) {
-                if (Utils.contains(mask.children[i], Qt.point(
-                                       mouseArea.mouseX, mouseArea.mouseY)))
-                    preventHiding = true
-            }
-
-            if (!preventHiding)
-                d.fadeOutFast()
+            // First the exited signal is executed in the object we are leaving,
+            // then entered is called in the object we are entering. So, we are
+            // waiting until the event loop to finish, hence entering object will
+            // get an entered signal and it will update its containsMouse property
+            Qt.callLater(function() {
+                var preventHiding = false
+                for (var i = 0; i < contentItem.children.length; ++i) {
+                    var item = contentItem.children[i]
+                    if (item.containsMouse)
+                        preventHiding = true
+                }
+    
+                if (!preventHiding)
+                    d.fadeOutFast()
+            })
             hidetimer.stop()
         }
         onPositionChanged: {

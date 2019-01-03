@@ -19,14 +19,6 @@ function toTitleCase(str) {
     )
 }
 
-function contains(item, pos) {
-    var rect = Qt.rect(item.x, item.y, item.width, item.height)
-    return pos.x >= rect.x
-            && pos.x <= rect.x + rect.width
-            && pos.y >= rect.y
-            && pos.y <= rect.y + rect.height
-}
-
 // Min, max both should be integer
 function getRandomInteger(min, max) { // Min, max both included
     return Math.floor(Math.random() * (max - min + 1)) + min;
