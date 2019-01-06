@@ -36,33 +36,39 @@ Item {
             hidetimer.stop()
         }
         onPositionChanged: {
-            if (containsMouse) {
+            if (containsMouse && !d.isVisible()) {
                 d.fadeInFast()
                 hidetimer.restart()
             }
         }
         onClicked: {
-            if (!video.isAvailable())
+            if (!videoPlayer.isAvailable())
                 return
-            if (video.playerState() === 'playing')
-                return video.pause()
-            if (video.playerState() === 'paused')
-                return video.play()
-            if (video.playerState() === 'stopped')
-                return video.play()
+            if (videoPlayer.playerState() === 'playing') {
+                audioPlayer.pause()
+                return videoPlayer.pause()
+            } if (videoPlayer.playerState() === 'paused') {
+                videoPlayer.play()
+                return audioPlayer.play()
+            } if (videoPlayer.playerState() === 'stopped') {
+                audioPlayer.stop()
+                videoPlayer.stop()
+                videoPlayer.play()
+                audioPlayer.play()
+            }
         }
         Component.onCompleted: {
-            video.statusChanged.connect(function() {
-                if (video.status === MediaPlayer.EndOfMedia
-                        || video.status === MediaPlayer.Buffered) {
+            videoPlayer.statusChanged.connect(function() {
+                if (videoPlayer.status === MediaPlayer.EndOfMedia
+                        || videoPlayer.status === MediaPlayer.Buffered) {
                     d.fadeInFast()
                 }
-                if (video.playerState() === 'playing'
-                        && video.status === MediaPlayer.Buffered) {
+                if (videoPlayer.playerState() === 'playing'
+                        && videoPlayer.status === MediaPlayer.Buffered) {
                     hidetimer.restart()
                 }
             })
-            video.playbackStateChanged.connect(function() {
+            videoPlayer.playbackStateChanged.connect(function() {
                 d.fadeInFast()
             })
         }
@@ -145,9 +151,13 @@ Item {
             contentItem.opacity = yes ? 1 : 0
             dockHid(!yes)
         }
+        function isVisible() {
+            return opacityMask.opacity === 1
+        }
     }
     
     signal dockHid(bool yes)
+    property var audioPlayer: null
     property var videoPlayer: null
     default property alias contentData: contentItem.data
 }

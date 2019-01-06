@@ -11,26 +11,44 @@ Rectangle {
     color: "black"
     
     focus: true
-    Keys.onSpacePressed: video.playbackState === MediaPlayer.PlayingState ? video.pause() : video.play()
+    Keys.onSpacePressed: playButton.clicked()
     Keys.onLeftPressed: {
-        audio.seek(video.position - 15000)
         video.seek(video.position - 15000)
     }
     Keys.onRightPressed: {
-        audio.seek(video.position + 15000)
         video.seek(video.position + 15000)
     }
     Keys.onEscapePressed: if(fullScreenButton.checked) fullScreenButton.checked = false
     
+    onInfoChanged: {
+        qualityButton.checked = false
+        playerOptions.qualities = Utils.getQualities(info)
+        if (playerOptions.quality === "" 
+                || !playerOptions.qualities.includes(playerOptions.quality)) {
+            playerOptions.quality = Utils.defaultVideoQuality(playerOptions.qualities)
+        }
+        if (playerOptions.quality !== "" && info.length > 0) {
+            video.source = Utils.getVideo(info, playerOptions.quality).url
+            video.play()
+        }
+    }
+
     Video {
         id: video
         notifyInterval: 100
         anchors.fill: parent
-        playbackRate: Utils.toPlaybackRate(playerOptions.speed)
-        source: info.length ? Utils.getVideo(info, playerOptions.quality).url : ""
-        onPositionChanged: {
-            playerSlider.value
+        Timer {
+            repeat: true
+            interval: 500
+            running: true
+            onTriggered: {
+                if (!watchPane.video || typeof watchPane.video == "undefined")
+                    return
+                playerSlider.value
                     = video.position / Utils.toDurationMs(watchPane.video.duration)
+                leftDuration.text =
+                    '<pre>' + Utils.durationMsToString(video.position) + '</pre>'
+            }
         }
         onPlaybackRateChanged: qualityButton.checked = false
         onPlaybackStateChanged: qualityButton.checked = false
@@ -48,6 +66,9 @@ Rectangle {
             if (playbackState === MediaPlayer.StoppedState 
                     || status === MediaPlayer.Stalled
                     || status === MediaPlayer.EndOfMedia)
+                return 'stopped'
+            if (playbackState === MediaPlayer.PausedState
+                    && playerSlider.value === 1)
                 return 'stopped'
             if (playbackState === MediaPlayer.PausedState)
                 return 'paused'
@@ -75,37 +96,34 @@ Rectangle {
             video.playbackStateChanged.connect(function() {
                 if (!buffered)
                     return
-                if (video.playerState() === 'playing')
-                    return audio.play()
-                if (video.playerState() === 'paused')
-                    return audio.pause()
-                if (video.playerState() === 'stopped')
-                    return audio.stop()
-            })
-            video.statusChanged.connect(function() {
-                if (video.status === MediaPlayer.Buffered) {
-                    buffered = true
-                    if (video.playerState() === 'playing')
-                        return audio.play()
+                if (video.playerState() === 'playing') {
+                    if (audio.playbackState !== MediaPlayer.PlayingState)
+                        audio.play()
+                } else if (video.playerState() === 'paused') {
+                    if (audio.playbackState !== MediaPlayer.PausedState)
+                        audio.pause()
+                } else if (video.playerState() === 'stopped') {
+                    if (audio.playbackState !== MediaPlayer.StoppedState)
+                        audio.stop()
                 }
-            })
-            video.sourceChanged.connect(function() {
-                buffered = false
             })
             video.positionChanged.connect(function() {
                 if (!buffered)
                     return
-                if (Math.abs(audio.position - video.position) > 250) {
-                    playerBusyIndicator.running = true
-                    video.pause()
-                    audio.pause()
+                if (Math.abs(audio.position - video.position) > 250)
                     audio.seek(video.position)
-                    Utils.delayCall(2000, audio, function() {
-                        playerBusyIndicator.running = false
-                        video.play()
+            })
+            video.statusChanged.connect(function() {
+                if (video.status === MediaPlayer.Buffered) {
+                    buffered = true
+                    audio.seek(video.position)
+                    if (video.playerState() === 'playing')
                         audio.play()
-                    })
                 }
+            })
+            video.sourceChanged.connect(function() {
+                buffered = false
+                audio.stop()
             })
         }
     }
@@ -161,14 +179,17 @@ Rectangle {
             tintColor: "white"
         }
         Component.onCompleted: video.playbackStateChanged.connect(function() {
-            if (!playerBusyIndicator.running)
-               animatePlayPause.restart()
+            Utils.suppressCall(100, playPauseCircle, function() {
+                if (!playerBusyIndicator.running)
+                    animatePlayPause.restart()
+            })
         })
     }
 
     Dock {
         id: dock
         videoPlayer: video
+        audioPlayer: audio
         onDockHid: if (yes) qualityButton.checked = false
 
         // Fullscreen controls
@@ -376,7 +397,6 @@ Rectangle {
                         onContainsMouseChanged: dockContainer.containsMouse = containsMouse
                     }
                     onClicked: {
-                        audio.seek(video.position - 15000)
                         video.seek(video.position - 15000)
                         qualityButton.checked = false
                     }
@@ -461,7 +481,6 @@ Rectangle {
                     }
                     onClicked: {
                         qualityButton.checked = false
-                        audio.seek(video.position + 15000)
                         video.seek(video.position + 15000)
                     }
                     onPressed: NumberAnimation {
@@ -484,9 +503,7 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                     maximumLineCount: 1
                     textFormat: Text.RichText
-                    text: !watchPane.video || typeof watchPane.video === "undefined"
-                          ? "<pre>--:--</pre>"
-                          : '<pre>' + Utils.durationMsToString(video.position) + '</pre>'
+                    text: "<pre>--:--</pre>"
                     color: enabled ? "white" : "#707070"
                     Cursor {
                         cursorShape: Qt.ArrowCursor
@@ -500,10 +517,12 @@ Rectangle {
                     Layout.preferredHeight: 12
                     from: 0.0
                     to: 1.0
+                    onValueChanged: {
+                        if (value === 1.0)
+                            video.pause()
+                    }
                     onMoved: {
-                        var seekVal = (value * Utils.toDurationMs(watchPane.video.duration)).toFixed(3)
-                        video.seek(seekVal)
-                        audio.seek(seekVal)
+                        video.seek(value * Utils.toDurationMs(watchPane.video.duration))
                         qualityButton.checked = false
                     }
                     Cursor {
@@ -650,13 +669,27 @@ Rectangle {
                 id: playerOptions
                 anchors.centerIn: parent
                 maxHeight: root.height - dockContainer.height - 30
-                qualities: Utils.getQualities(info)
+                onQualityChanged: { 
+                    if (quality !== "" && info.length > 0) {
+                        var videoPos = video.position
+                        var wasPlaying = video.playerState() === 'playing'
+                        video.source = Utils.getVideo(info, quality).url
+                        video.seek(videoPos)
+                        video.playbackRate = Utils.toPlaybackRate(playerOptions.speed)
+                        if (wasPlaying)
+                            video.play()
+                        else
+                            video.pause()
+                    }
+                }
+                onSpeedChanged: {
+                    video.playbackRate = Utils.toPlaybackRate(playerOptions.speed)
+                }
             }
             containsMouse: visible
         }
     }
 
-    onInfoChanged: qualityButton.checked = false
     property var info: null
     property alias quality: playerOptions.quality
     property alias core: video

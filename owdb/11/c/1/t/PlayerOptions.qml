@@ -347,7 +347,7 @@ StackView {
     }
         
     property string speed: "Normal"
-    property string quality: Utils.defaultVideoQuality(qualities)
+    property string quality: ""
     property var qualities: []
     property real maxHeight: 0
 }

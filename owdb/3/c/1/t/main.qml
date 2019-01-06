@@ -77,5 +77,5 @@ AnimatedImage {
     
     signal showNews(var news)
     property bool flowPaused: false
-    property bool flowOn: true
+    property bool flowOn: false
 }
