@@ -7,4 +7,5 @@ Page {
     width: 342
     height: 608
     Component.onCompleted: TrendsPaneJS.trendsPane_onCompleted()
+    property var ptrTrendsList: trendsList
 }

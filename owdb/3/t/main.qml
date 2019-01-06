@@ -30,7 +30,7 @@ Page {
                 spacing: 5
                 Label {
                     width: dlgNews.availableWidth
-                    text: news ? news.title : ""
+                    text: dialogNews ? dialogNews.title : ""
                     wrapMode: Label.WordWrap
                     font.pixelSize: 16
                     font.weight: Font.Medium
@@ -43,7 +43,7 @@ Page {
                         id: image
                         anchors.fill: parent
                         fillMode: Image.PreserveAspectCrop
-                        source: news ? news.imageUrl : ""
+                        source: dialogNews ? dialogNews.imageUrl : ""
                         visible: false
                     }
                     OpacityMask {
@@ -68,7 +68,7 @@ Page {
                                 anchors.margins: 5
                                 anchors.right: parent.right
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: qsTr("Source: ") + (news ? news.sourceName : "")
+                                text: qsTr("Source: ") + (dialogNews ? dialogNews.sourceName : "")
                                 font.bold: true
                                 style: Text.Raised
                                 styleColor: "black"
@@ -80,7 +80,7 @@ Page {
                 Item { width: 1; height: 5 }
                 Label {
                     width: dlgNews.availableWidth
-                    text: news ? news.description : ""
+                    text: dialogNews ? dialogNews.description : ""
                     wrapMode: Label.WordWrap
                     font.italic: true
                     font.weight: Font.Medium
@@ -88,8 +88,8 @@ Page {
                 Item { width: 1; height: 1 }
                 Label {
                     width: dlgNews.availableWidth
-                    text: (news ? news.content : "") +
-                          ' <a href="%1">more...</a>'.arg(news ? news.sourceUrl : "")
+                    text: (dialogNews ? dialogNews.content : "") +
+                          ' <a href="%1">more...</a>'.arg(dialogNews ? dialogNews.sourceUrl : "")
                     wrapMode: Label.WordWrap
                     
                     onLinkActivated: Qt.openUrlExternally(link)
@@ -105,8 +105,8 @@ Page {
                 Label {
                     width: dlgNews.availableWidth
                     font.pixelSize: 11
-                    text: qsTr("Published at: ") + (news
-                          ? news.date.toLocaleString(
+                    text: qsTr("Published at: ") + (dialogNews
+                          ? dialogNews.date.toLocaleString(
                               Qt.locale(Settings.languageCode()))
                           : "")
                     font.italic: true
@@ -116,6 +116,9 @@ Page {
         }
     }
     
-    property var news: null
     property alias newsDialog: dlgNews
+    property var dialogNews: null
+    property var news: []
+    property int newsIndex: 0
+    property var newsBubbles: []
 }

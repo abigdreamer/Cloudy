@@ -7,6 +7,7 @@ Settings {
     property string theme: 'Light'
     property string themeAccent: 'Blue'
     property string language: 'Auto'
+    property string location: 'Auto'
     property string measurementSystem: 'Auto'
 
     readonly property var availableThemes: [
@@ -71,5 +72,8 @@ Settings {
     }
     function countryCode() {
         return Qt.locale().name.substr(3, 2).toLowerCase()
+    }
+    function countrySettingToCode(setting) {
+        return setting === 'Auto' ? countryCode() : setting.toLowerCase()
     }
 }

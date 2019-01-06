@@ -58,73 +58,73 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="13"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="14"/>
         <source>Dark</source>
         <translation>Koyu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="14"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="15"/>
         <source>Light</source>
         <translation>Açık</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="17"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="22"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="18"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="23"/>
         <source>Auto</source>
         <translation>Oto</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="18"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="19"/>
         <source>English</source>
         <translation>İngilizce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="19"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="20"/>
         <source>Turkish</source>
         <translation>Türkçe</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="23"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="24"/>
         <source>Metric</source>
         <translation>Metrik</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="24"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="25"/>
         <source>Imperial</source>
         <translation>Emperyal</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="27"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="28"/>
         <source>Red</source>
         <translation>Kırmızı</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="28"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="29"/>
         <source>Indigo</source>
         <translation>Çivit</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="29"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="30"/>
         <source>Blue</source>
         <translation>Mavi</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="30"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="31"/>
         <source>Green</source>
         <translation>Yeşil</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="31"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="32"/>
         <source>Orange</source>
         <translation>Turuncu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="32"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="33"/>
         <source>Brown</source>
         <translation>Kahverengi</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="33"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="34"/>
         <source>Colorful</source>
         <translation>Rengarenk</translation>
     </message>
@@ -308,27 +308,27 @@ found</source>
         <translation>Dil</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/2/c/1/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/3/c/1/t/main.qml" line="9"/>
         <source>Measurement</source>
         <translation>Ölçü Birimi</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/3/c/2/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/4/c/2/t/main.qml" line="9"/>
         <source>Change application theme. Dark and Light themes are available for now.</source>
         <translation>Uygulama temasını değiştirin. Şimdilik sadece Koyu ve Açık temaları mevcut.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/3/c/3/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/4/c/3/t/main.qml" line="9"/>
         <source>Theme</source>
         <translation>Tema</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/4/c/2/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/5/c/2/t/main.qml" line="9"/>
         <source>Theme Accent</source>
         <translation>Tema Tonu</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/5/c/2/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/6/c/2/t/main.qml" line="9"/>
         <source>Theme Balloon</source>
         <translation>Tema Balonu</translation>
     </message>
@@ -348,17 +348,17 @@ found</source>
         <translation>Uygulama dilini değiştirin. Otomatik seçeneği sistem ayarlarınızı temel alır.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/2/c/2/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/3/c/2/t/main.qml" line="9"/>
         <source>Change current measurement system used by the application to represent information.</source>
         <translation>Uygulama tarafından sunulan verilerde kullanılan ölçü birimini değiştirin.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/4/c/3/t/main.qml" line="9"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/5/c/3/t/main.qml" line="9"/>
         <source>Choose the color tone that will add richness to the theme.</source>
         <translation>Temaya canlılık katacak renk tonunu seçin.</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/5/c/3/t/main.qml" line="10"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/6/c/3/t/main.qml" line="10"/>
         <source>Choose whether the theme changing balloon (&lt;b style=&quot;color:%1;&quot;&gt;floating bubble head&lt;/b&gt;) should be shown or hid.</source>
         <translation>Tema değiştirme balonunun (&lt;b style=&quot;color:%1;&quot;&gt;yüzen kabarcık zımbırtı&lt;/b&gt;) görünür olup olmayacağını seçin.</translation>
     </message>
@@ -467,6 +467,21 @@ found</source>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/main.qml" line="40"/>
         <source>This video is now playing picture-in-picture mode</source>
         <translation>Bu video resim içinde resim olarak oynatılıyor</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/2/c/2/t/main.qml" line="7"/>
+        <source>Location</source>
+        <translation>Konum</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/2/c/3/t/main.qml" line="8"/>
+        <source>Change source location for news feed and YouTube trends.</source>
+        <translation>Haber akışı ve YouTube tendleri için kaynak konumu seç.</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/7/c/1/c/1/c/2/c/4/t/main.qml" line="13"/>
+        <source>Auto</source>
+        <translation>Oto</translation>
     </message>
 </context>
 <context>

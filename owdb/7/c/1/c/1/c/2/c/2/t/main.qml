@@ -2,16 +2,13 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 
 Label {
-    y: 12
-    x: 15
-    id: measurementDesc
-    width: parent.width - 175
-    text: qsTr("Change current measurement system used by the application to represent information.")
+    id: locationTitle
+    width: parent.width - 150
+    text: qsTr("Location")
     font.weight: Font.Light
-    font.pixelSize: 12
+    font.pixelSize: 24
     anchors.left: parent.left
-    anchors.top: measurementTitle.bottom
+    anchors.bottom: parent.verticalCenter
     anchors.leftMargin: 16
-    anchors.topMargin: 2
-    wrapMode: Text.WordWrap
+    anchors.bottomMargin: 4
 }

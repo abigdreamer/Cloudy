@@ -2,7 +2,9 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 
 Label {
-    id: locationTitle
+    y: 23
+    x: 10
+    id: themeBalloonTitle
     width: parent.width - 150
     text: qsTr("Theme Balloon")
     font.weight: Font.Light

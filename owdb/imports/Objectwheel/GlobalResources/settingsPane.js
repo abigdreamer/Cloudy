@@ -2,8 +2,10 @@
 .import Application 1.0 as App
 .import Objectwheel.Core 1.0 as OC
 .import Application.Resources 1.0 as AppRes
+.import "newsSection.js" as NewsSectionJS
 
 function settingsPane_onCompleted() {
+    locationBox.activated.connect(locationBox_onActivated)
     langBox.activated.connect(langBox_onActivated)
     themeAccentBox.activated.connect(themeAccentBox_onActivated)
     themeBox.activated.connect(themeBox_onActivated)
@@ -53,10 +55,18 @@ function langBox_onActivated() {
         OC.Translation.load(AppRes.Resource.translations[App.Settings.languageCode()])
 }
 
+function locationBox_onActivated() {
+    App.Settings.location = locationBox.currentText
+    newsSection.newsIndex = 0
+    NewsSectionJS.updateNews()
+    trendsPane.ptrTrendsList.refresh()
+}
+
 function retrieveSettingInfo() {
     themeBalloonSwitch.checked = App.Settings.themeBalloonVisible
     measurementBox.currentIndex = measurementBox.find(App.Settings.measurementSystem)
     themeBox.currentIndex = themeBox.find(App.Settings.theme)
     themeAccentBox.currentIndex = themeAccentBox.find(App.Settings.themeAccent)
     langBox.currentIndex = langBox.find(App.Settings.language)
+    locationBox.currentIndex = locationBox.find(App.Settings.location)
 }

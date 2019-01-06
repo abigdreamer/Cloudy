@@ -2,16 +2,15 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 
 Label {
-    y: -157
-    x: 10
-    id: themeAccentDesc
-    width: parent.width - 175
-    text: qsTr('Choose the color tone that will add richness to the theme.')
+    y: 30
+    x: 31
+    id: themeTitle
+    width: parent.width - 150
+    text: qsTr("Theme")
     font.weight: Font.Light
-    font.pixelSize: 12
+    font.pixelSize: 24
     anchors.left: parent.left
-    anchors.top: themeAccentTitle.bottom
+    anchors.bottom: parent.verticalCenter
     anchors.leftMargin: 16
-    anchors.topMargin: 2
-    wrapMode: Text.WordWrap
+    anchors.bottomMargin: 4
 }

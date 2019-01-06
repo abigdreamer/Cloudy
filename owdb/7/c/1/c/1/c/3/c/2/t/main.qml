@@ -2,15 +2,15 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 
 Label {
-    y: -159
-    x: 31
-    id: themeDesc
+    y: 12
+    x: 15
+    id: measurementDesc
     width: parent.width - 175
-    text: qsTr("Change application theme. Dark and Light themes are available for now.")
+    text: qsTr("Change current measurement system used by the application to represent information.")
     font.weight: Font.Light
     font.pixelSize: 12
     anchors.left: parent.left
-    anchors.top: themeTitle.bottom
+    anchors.top: measurementTitle.bottom
     anchors.leftMargin: 16
     anchors.topMargin: 2
     wrapMode: Text.WordWrap

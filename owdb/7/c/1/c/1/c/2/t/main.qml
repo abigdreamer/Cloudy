@@ -1,6 +1,6 @@
 import Application 1.0
 
 SettingItem {
-    id: measurementSetting
+    id: locationSetting
     width: settingsPane.width
 }

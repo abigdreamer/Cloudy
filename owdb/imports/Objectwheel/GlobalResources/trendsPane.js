@@ -6,13 +6,15 @@
 function trendsPane_onCompleted() {
     trendsList.videoOpened.connect(trendsList_onVideoOpened)
     trendsList.refresh.connect(trendsList_onRefresh)
+    trendsList.refresh()
 }
 
 function trendsList_onRefresh() {
     trendsPane.enabled = false
     busyIndicator.running = true
     
-    YouTubeInfo.Fetch.getTrends(App.Settings.countryCode(), function(value, err) {
+    YouTubeInfo.Fetch.getTrends(App.Settings.countrySettingToCode(App.Settings.location),
+                                function(value, err) {
         trendsPane.enabled = true
         busyIndicator.running = false
         trendsList.model.clear()

@@ -1,6 +1,6 @@
 import Application 1.0
 
 SettingItem {
-    id: locationSetting
+    id: themeSetting
     width: settingsPane.width
 }

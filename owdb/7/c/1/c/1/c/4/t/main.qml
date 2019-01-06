@@ -1,6 +1,6 @@
 import Application 1.0
 
 SettingItem {
-    id: themeAccentSetting
+    id: balloonSetting
     width: settingsPane.width
 }

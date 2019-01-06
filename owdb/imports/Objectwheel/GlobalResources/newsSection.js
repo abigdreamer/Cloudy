@@ -4,10 +4,6 @@
 .import Application 1.0 as App
 .import QtQuick 2.0 as QQ
 
-var news = []
-var newsIndex = 0
-var newsBubbles = []
-
 function newsSection_onCompleted() {
     newsBalloon.QQ.Component.completed.connect(newsBalloon_onCompleted)
     newsBalloon.showNews.connect(newsBalloon_onShowNews)
@@ -25,18 +21,19 @@ function newsBalloon_onCompleted() {
 }
 
 function updateNews() {
-    NewsInfo.Fetch.getTopNews(App.Settings.countryCode(), function(val, err) {
+    NewsInfo.Fetch.getTopNews(App.Settings.countrySettingToCode(App.Settings.location),
+                              function(val, err) {
         if (err) {
             console.log(err)
             return
         }
-        news = val
+        newsSection.news = val
     })
 }
 
 function createBubbles(parent) {
     for (var i = 0; i < 10; ++i)
-        newsBubbles.push(createBubble(parent))
+        newsSection.newsBubbles.push(createBubble(parent))
 }
 
 function createBubble(parent) {
@@ -55,22 +52,22 @@ function createBubble(parent) {
 function newsBalloon_onFlowOnChanged() {
     if (newsBalloon.flowPaused)
         return
-    for (var i = 0; i < newsBubbles.length; ++i) {
+    for (var i = 0; i < newsSection.newsBubbles.length; ++i) {
         if (newsBalloon.flowOn)
-            newsBubbles[i].play()
+            newsSection.newsBubbles[i].play()
         else
-            newsBubbles[i].stop()
+            newsSection.newsBubbles[i].stop()
     }
 }
 
 function newsBalloon_onFlowPausedChanged() {
     if (!newsBalloon.flowOn)
         return
-    for (var i = 0; i < newsBubbles.length; ++i) {
+    for (var i = 0; i < newsSection.newsBubbles.length; ++i) {
         if (newsBalloon.flowPaused)
-            newsBubbles[i].pause()
+            newsSection.newsBubbles[i].pause()
         else
-            newsBubbles[i].play()
+            newsSection.newsBubbles[i].play()
     }
 }
 
@@ -81,28 +78,28 @@ function showNextBubble() {
     if (!newsBalloon.flowOn)
         return
     
-    if (news.length === 0)
+    if (newsSection.news.length === 0)
         return
     
-    if (news.length < newsIndex)
-        newsIndex = 0
+    if (newsSection.news.length < newsSection.newsIndex)
+        newsSection.newsIndex = 0
     
-    var nextNews = news[newsIndex]
+    var nextNews = newsSection.news[newsSection.newsIndex]
     if (!nextNews || typeof nextNews === "undefined") {
-        newsIndex = 0
+        newsSection.newsIndex = 0
         return
     }
     
-    var bubble = newsBubbles.shift()
+    var bubble = newsSection.newsBubbles.shift()
     bubble.news = nextNews
     bubble.resetPos()
     bubble.play()
-    newsBubbles.push(bubble)
-    newsIndex++
+    newsSection.newsBubbles.push(bubble)
+    newsSection.newsIndex++
 }
 
 function newsBalloon_onShowNews(news) {
-    newsSection.news = news
+    newsSection.dialogNews = news
     newsSection.newsDialog.open()
     App.Utils.delayCall(100, newsSection, () => newsBalloon.flowPaused = true)
 }
