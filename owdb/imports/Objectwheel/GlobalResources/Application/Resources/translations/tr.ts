@@ -41,6 +41,21 @@
     </message>
 </context>
 <context>
+    <name>PlayerOptions</name>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/PlayerOptions.qml" line="35"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/PlayerOptions.qml" line="266"/>
+        <source>Speed</source>
+        <translation>Hız</translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/PlayerOptions.qml" line="75"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/PlayerOptions.qml" line="147"/>
+        <source>Quality</source>
+        <translation>Kalite</translation>
+    </message>
+</context>
+<context>
     <name>Settings</name>
     <message>
         <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/Settings.qml" line="13"/>
@@ -439,119 +454,124 @@ found</source>
         <translation>Haber akışı: Kapalı</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/3/t/main.qml" line="70"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/3/t/main.qml" line="71"/>
         <source>Source: </source>
         <translation>Kaynak: </translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/3/t/main.qml" line="107"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/3/t/main.qml" line="108"/>
         <source>Published at: </source>
         <translation>Yayınlanma zamanı: </translation>
+    </message>
+    <message>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/11/c/1/t/main.qml" line="40"/>
+        <source>This video is now playing picture-in-picture mode</source>
+        <translation>Bu video resim içinde resim olarak oynatılıyor</translation>
     </message>
 </context>
 <context>
     <name>utils</name>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="99"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="103"/>
         <source>Just now</source>
         <translation>Az önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="101"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="105"/>
         <source>seconds ago</source>
         <translation>saniye önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="103"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="107"/>
         <source>minutes ago</source>
         <translation>dakika önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="105"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="109"/>
         <source>hours ago</source>
         <translation>saat önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="107"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="111"/>
         <source>days ago</source>
         <translation>gün önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="109"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="113"/>
         <source>weeks ago</source>
         <translation>hafta önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="111"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="115"/>
         <source>months ago</source>
         <translation>ay önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="112"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="116"/>
         <source>years ago</source>
         <translation>yıl önce</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="120"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="124"/>
         <source>views</source>
         <translation>görüntülenme</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="124"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="125"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="128"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="129"/>
         <source>K views</source>
         <translation>B görüntülenme</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="130"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="131"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="134"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="135"/>
         <source>M views</source>
         <translation>Mn görüntülenme</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="136"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="137"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="140"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="141"/>
         <source>B views</source>
         <translation>Mr görüntülenme</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="147"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="151"/>
         <source>subscribers</source>
         <translation>abone</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="151"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="152"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="155"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="156"/>
         <source>K subscribers</source>
         <translation>B abone</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="157"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="158"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="161"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="162"/>
         <source>M subscribers</source>
         <translation>Mn abone</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="163"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="164"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="167"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="168"/>
         <source>B subscribers</source>
         <translation>Mr abone</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="178"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="179"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="182"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="183"/>
         <source>K</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="184"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="185"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="188"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="189"/>
         <source>M</source>
         <translation>Mn</translation>
     </message>
     <message>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="190"/>
-        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="191"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="194"/>
+        <location filename="../Projeler/Git/build-objectwheel-Desktop_Qt_5_12_0_clang_64bit-Release/app/Objectwheel.app/Contents/MacOS/data/fd3c7d9e50e2dd3e9f3bdfba3c358af8/1/owdb/imports/Objectwheel/GlobalResources/Application/utils.js" line="195"/>
         <source>B</source>
         <translation>Mr</translation>
     </message>

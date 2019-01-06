@@ -56,16 +56,7 @@ Rectangle {
     VideoPlayer {
         id: video
         anchors.fill: parent
-        core.autoPlay: true
-        core.muted: false
         info: player.info
-        core.onStatusChanged: {
-            if (video.core.status === MediaPlayer.Buffering
-                    || video.core.status === MediaPlayer.Loading) {
-                return playerBusyIndicator.running = true
-            }
-            playerBusyIndicator.running = false
-        }
         onFullScreenChanged: {
             if (fullScreen) {
                 d.wasDetached = detached
@@ -115,6 +106,5 @@ Rectangle {
         return v.height / ratio
     }
     
-    property alias core: video.core
     property var info: []
 }

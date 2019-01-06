@@ -7,7 +7,6 @@ function watchPane_onCompleted() {
     commentsList.orderByTimeChanged.connect(fetchComments)
     watchPane.videoChanged.connect(watchPane_onVideoChanged)
     commentsList.loadMoreComments.connect(commentsList_onLoadMoreComments)
-    player.core.data.push(playerBusyIndicator)
 }
 
 function watchPane_onVideoChanged() {
@@ -58,9 +57,7 @@ function fetchVideoInfo() {
             || typeof watchPane.video === "undefined") {
         return
     }
-    
-    player.core.stop()
-    playerBusyIndicator.running = true
+
     player.enabled = false
     
     YouTubeInfo.Fetch.getVideoInfo(watchPane.video.id, function(value, err) {

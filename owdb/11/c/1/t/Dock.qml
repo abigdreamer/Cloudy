@@ -145,8 +145,10 @@ Item {
             setVisible(false)
         }
         function setVisible(yes) {
-            if (!yes && videoPlayer.playerState() !== 'playing')
+            if (!yes && (videoPlayer.playerState() !== 'playing'
+                         || !audioPlayer.buffered)) {
                 return
+            }
             opacityMask.opacity = yes ? 1 : 0
             contentItem.opacity = yes ? 1 : 0
             dockHid(!yes)

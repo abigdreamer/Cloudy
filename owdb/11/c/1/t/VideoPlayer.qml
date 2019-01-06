@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.3
 import QtQuick.Layouts 1.3
 import QtMultimedia 5.9
 import Application 1.0
@@ -9,17 +10,26 @@ import QtQuick.Window 2.3
 Rectangle {
     id: root
     color: "black"
-    
     focus: true
+
     Keys.onSpacePressed: playButton.clicked()
     Keys.onLeftPressed: {
         video.seek(video.position - 15000)
+        if (playerOptions.speed !== "Normal")
+            audio.seek(video.position - 15000)
     }
     Keys.onRightPressed: {
         video.seek(video.position + 15000)
+        if (playerOptions.speed !== "Normal")
+            audio.seek(video.position + 15000)
     }
     Keys.onEscapePressed: if(fullScreenButton.checked) fullScreenButton.checked = false
-    
+
+    Component.onCompleted: watchPane.videoChanged.connect(function() {
+        video.pause()
+        playerBusyIndicator.running = true
+    })
+
     onInfoChanged: {
         qualityButton.checked = false
         playerOptions.qualities = Utils.getQualities(info)
@@ -35,8 +45,13 @@ Rectangle {
 
     Video {
         id: video
-        notifyInterval: 100
         anchors.fill: parent
+        autoLoad: true
+        autoPlay: true
+        notifyInterval: 100
+        onPlaybackRateChanged: qualityButton.checked = false
+        onPlaybackStateChanged: qualityButton.checked = false
+
         Timer {
             repeat: true
             interval: 500
@@ -50,9 +65,7 @@ Rectangle {
                     '<pre>' + Utils.durationMsToString(video.position) + '</pre>'
             }
         }
-        onPlaybackRateChanged: qualityButton.checked = false
-        onPlaybackStateChanged: qualityButton.checked = false
-        
+
         function isAvailable() {
             return availability === MediaPlayer.Available
                  && error === MediaPlayer.NoError
@@ -86,12 +99,18 @@ Rectangle {
 
     Audio {
         id: audio
-        muted: video.muted && buffered
+        autoLoad: true
+        autoPlay: false
+        muted: video.muted || !buffered || blockSound
         volume: video.volume
         notifyInterval: 100
         playbackRate: video.playbackRate
         source: info.length > 0 ? Utils.getAudio(info).url : ""
-        property bool buffered: false
+        onSourceChanged: {
+            buffered = false
+            if (audio.playbackState !== MediaPlayer.PausedState)
+                audio.pause()
+        }
         Component.onCompleted: {
             video.playbackStateChanged.connect(function() {
                 if (!buffered)
@@ -110,8 +129,13 @@ Rectangle {
             video.positionChanged.connect(function() {
                 if (!buffered)
                     return
-                if (Math.abs(audio.position - video.position) > 250)
+                if (playerOptions.speed !== "Normal")
+                    return
+                if (Math.abs(audio.position - video.position) > 250) {
+                    blockSound = true
                     audio.seek(video.position)
+                    Utils.suppressCall(500, audio, () => blockSound = false)
+                }
             })
             video.statusChanged.connect(function() {
                 if (video.status === MediaPlayer.Buffered) {
@@ -119,15 +143,29 @@ Rectangle {
                     audio.seek(video.position)
                     if (video.playerState() === 'playing')
                         audio.play()
+                } else {
+                    buffered = false
+                    if (audio.playbackState !== MediaPlayer.PausedState)
+                        audio.pause()
                 }
             })
-            video.sourceChanged.connect(function() {
-                buffered = false
-                audio.stop()
-            })
         }
+        onBlockSoundChanged: if (buffered) playerBusyIndicator.running = blockSound
+        onBufferedChanged: playerBusyIndicator.running = !buffered
+
+        property bool blockSound: false
+        property bool buffered: false
     }
     
+    BusyIndicator {
+        id: playerBusyIndicator
+        height: 50
+        width: 50
+        anchors.centerIn: parent
+        Material.accent: "white"
+        running: false
+    }
+
     Rectangle {
         id: playPauseCircle
         anchors.centerIn: parent
@@ -398,6 +436,8 @@ Rectangle {
                     }
                     onClicked: {
                         video.seek(video.position - 15000)
+                        if (playerOptions.speed !== "Normal")
+                            audio.seek(video.position - 15000)
                         qualityButton.checked = false
                     }
                     
@@ -482,6 +522,8 @@ Rectangle {
                     onClicked: {
                         qualityButton.checked = false
                         video.seek(video.position + 15000)
+                        if (playerOptions.speed !== "Normal")
+                            audio.seek(video.position + 15000)
                     }
                     onPressed: NumberAnimation {
                         target: forwardButton
@@ -523,6 +565,8 @@ Rectangle {
                     }
                     onMoved: {
                         video.seek(value * Utils.toDurationMs(watchPane.video.duration))
+                        if (playerOptions.speed !== "Normal")
+                            audio.seek(value * Utils.toDurationMs(watchPane.video.duration))
                         qualityButton.checked = false
                     }
                     Cursor {
@@ -673,8 +717,11 @@ Rectangle {
                     if (quality !== "" && info.length > 0) {
                         var videoPos = video.position
                         var wasPlaying = video.playerState() === 'playing'
+                        video.pause()
                         video.source = Utils.getVideo(info, quality).url
                         video.seek(videoPos)
+                        if (playerOptions.speed !== "Normal")
+                            audio.seek(videoPos)
                         video.playbackRate = Utils.toPlaybackRate(playerOptions.speed)
                         if (wasPlaying)
                             video.play()
@@ -682,9 +729,7 @@ Rectangle {
                             video.pause()
                     }
                 }
-                onSpeedChanged: {
-                    video.playbackRate = Utils.toPlaybackRate(playerOptions.speed)
-                }
+                onSpeedChanged: video.playbackRate = Utils.toPlaybackRate(playerOptions.speed)
             }
             containsMouse: visible
         }
@@ -692,7 +737,6 @@ Rectangle {
 
     property var info: null
     property alias quality: playerOptions.quality
-    property alias core: video
     property alias staysOnTop: staysOnTopButton.checked
     property alias detached: attachButton.checked
     property alias fullScreen: fullScreenButton.checked
