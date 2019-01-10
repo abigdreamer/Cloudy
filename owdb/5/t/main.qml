@@ -8,8 +8,7 @@ Dialog {
     modal: true
     focus: true
     title: qsTr("About")
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
+    anchors.centerIn: parent
     width: 350
     height: 350
     Component.onCompleted: AboutDialogJS.aboutDialog_onCompleted()

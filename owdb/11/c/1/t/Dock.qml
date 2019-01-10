@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import QtMultimedia 5.8
-import QtGraphicalEffects 1.12
+import QtGraphicalEffects 1.0
 import Application 1.0
 
 // videoPlayer: Video

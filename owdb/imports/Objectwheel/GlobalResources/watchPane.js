@@ -1,7 +1,7 @@
 // watchPane.js
 
 .import YouTubeInfo 1.0 as YouTubeInfo
-.import QtQuick.Controls 2.8 as QC
+.import QtQuick.Controls 2.3 as QC
 
 function watchPane_onCompleted() {
     commentsList.orderByTimeChanged.connect(fetchComments)
