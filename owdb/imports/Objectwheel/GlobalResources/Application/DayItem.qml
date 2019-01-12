@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
+import Application 1.0
 import Application.Resources 1.0
 import QtGraphicalEffects 1.0
 
